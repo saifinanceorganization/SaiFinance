@@ -1,11 +1,11 @@
 const API = import.meta.env.PUBLIC_WP_API_URL
 
 function assertApi() {
-  if (!API) {
-    throw new Error(
-      "PUBLIC_WP_API_URL is not set. Add it to your .env file, e.g. PUBLIC_WP_API_URL=https://your-wp-site.com/wp-json/wp/v2"
-    )
+   if (!API) {
+    return null;
   }
+
+  return API;
 }
 export type WPPost = {
 id: number

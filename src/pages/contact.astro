@@ -8,18 +8,19 @@ const wpBaseUrl = (
     import.meta.env.PUBLIC_CF7_BASE_URL ||
     (wpApiUrl ? wpApiUrl.replace(/\/wp-json\/wp\/v2\/?$/i, "") : "")
 ).trim();
-const configuredCf7Endpoint = (import.meta.env.PUBLIC_CF7_ENDPOINT || "").trim();
-const cf7FormId = Number.parseInt(
-    (import.meta.env.PUBLIC_CF7_FORM_ID || "").toString().trim(),
-    10
-);
-const hasValidCf7FormId = Number.isFinite(cf7FormId) && cf7FormId > 0;
+
+const cf7EndpointOverride = (import.meta.env.PUBLIC_CF7_ENDPOINT || "").trim();
+// IMPORTANT: keep as string, do NOT parseInt
+const cf7FormId = (import.meta.env.PUBLIC_CF7_FORM_ID || "").toString().trim();
+const hasValidCf7FormId = cf7FormId.length > 0;
+
 const cf7Endpoint =
-  configuredCf7Endpoint ||
-  (wpBaseUrl && hasValidCf7FormId
-    ? `${wpBaseUrl}/wp-json/contact-form-7/v1/contact-forms/${cf7FormId}/feedback`
-    : "");
-const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
+    cf7EndpointOverride ||
+    (wpBaseUrl && hasValidCf7FormId
+        ? `${wpBaseUrl}/wp-json/contact-form-7/v1/contact-forms/${encodeURIComponent(cf7FormId)}/feedback`
+        : "");
+
+const turnstileSiteKey = (import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "").trim();
 ---
 
 <Layout>
@@ -29,7 +30,9 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 
     <!-- section 1 -->
     <section class="bg-[#f6f7fb]">
-        <div class="mx-auto max-w-4xl px-6 md:px-14 lg:px-6 py-16 text-center lg:py-24">
+        <div
+            class="mx-auto max-w-4xl px-6 md:px-14 lg:px-6 py-16 text-center lg:py-24"
+        >
             <h1
                 class="font-Arial font-bold text-[25px] lg:text-[40px] leading-[35px] lg:leading-[48px] tracking-normal text-center bg-primary bg-clip-text text-transparent"
             >
@@ -51,7 +54,6 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                 id="contact-form"
                 class="rounded-[24px] border border-[#203A6E] bg-white px-10 py-10 shadow-sm md:px-16 md:py-16"
                 data-endpoint={cf7Endpoint}
-                data-config-endpoint={wpBaseUrl ? `${wpBaseUrl}/wp-json/contact-form-7/v1/contact-forms/${hasValidCf7FormId ? cf7FormId : ""}` : ""}
             >
                 <div class="grid gap-8 md:grid-cols-2">
                     <div class="flex flex-col gap-3">
@@ -73,28 +75,34 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                             class="border-b border-[#D6DBE3] bg-transparent pb-5 font-Arial text-[16px] text-[#99A1AF] outline-none placeholder:text-[#8A93A8]"
                             placeholder="Email Address"
                         />
-                        <span class="hidden text-[12px] text-red-600" data-error="email">
+                        <span
+                            class="hidden text-[12px] text-red-600"
+                            data-error="email"
+                        >
                             Please enter a valid email address.
                         </span>
                     </div>
                 </div>
 
                 <div class="mt-12 flex flex-col gap-3">
-                        <input
-                            id="phone"
-                            name="tel-53"
+                    <input
+                        id="phone"
+                        name="tel-53"
                         type="tel"
                         required
                         class="border-b border-[#D6DBE3] bg-transparent pb-5 font-Arial text-[16px] text-[#99A1AF] outline-none placeholder:text-[#8A93A8]"
                         placeholder="Phone Number"
                     />
-                    <span class="hidden text-[12px] text-red-600" data-error="phone">
+                    <span
+                        class="hidden text-[12px] text-red-600"
+                        data-error="phone"
+                    >
                         Phone number is required.
                     </span>
                 </div>
 
                 <div class="mt-8 flex flex-col gap-3">
-                        <textarea
+                    <textarea
                         id="message"
                         name="your-message"
                         rows="4"
@@ -105,21 +113,39 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                 {
                     turnstileSiteKey && (
                         <div class="mt-8 flex flex-col gap-3">
-                            <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
-                            <span class="hidden text-[12px] text-red-600" data-error="turnstile">
+                            <div
+                                id="contact-turnstile"
+                                class="cf-turnstile"
+                                data-sitekey={turnstileSiteKey}
+                                data-callback="onContactTurnstileSuccess"
+                                data-expired-callback="onContactTurnstileExpired"
+                                data-error-callback="onContactTurnstileExpired"
+                            />
+                            <span
+                                class="hidden text-[12px] text-red-600"
+                                data-error="turnstile"
+                            >
                                 Please verify that you are human.
                             </span>
                         </div>
                     )
                 }
 
-                <input type="hidden" name="_wpcf7" id="wpcf7-id" value={hasValidCf7FormId ? cf7FormId : 0} />
-                <input type="hidden" name="_wpcf7_version" id="wpcf7-version" value="" />
-                <input type="hidden" name="_wpcf7_locale" id="wpcf7-locale" value="" />
-                <input type="hidden" name="_wpcf7_unit_tag" id="wpcf7-unit-tag" value="" />
+                <input type="hidden" name="_wpcf7" id="wpcf7-id" value={cf7FormId} />
+                <input type="hidden" name="_wpcf7_version" id="wpcf7-version" value="5.9.8" />
+                <input type="hidden" name="_wpcf7_locale" id="wpcf7-locale" value="en_US" />
+                <input
+                    type="hidden"
+                    name="_wpcf7_unit_tag"
+                    id="wpcf7-unit-tag"
+                    value="contact-form"
+                />
                 <input type="hidden" name="_wpcf7_container_post" id="wpcf7-container-post" value="0" />
 
-                <div class="mt-6 hidden text-[13px] text-red-600" data-error="submit">
+                <div
+                    class="mt-6 hidden text-[13px] text-red-600"
+                    data-error="submit"
+                >
                     Something went wrong. Please try again.
                 </div>
 
@@ -138,11 +164,16 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                 id="contact-thankyou"
                 class="hidden rounded-[24px] border border-[#203A6E] bg-white px-10 py-14 text-center shadow-sm md:px-16 md:py-16"
             >
-                <h2 class="font-Arial font-bold text-[24px] leading-[32px] text-primary">
+                <h2
+                    class="font-Arial font-bold text-[24px] leading-[32px] text-primary"
+                >
                     Thank you
                 </h2>
-                <p class="mt-3 font-Arial text-[16px] leading-[26px] text-[#4A5565]">
-                    Thank you for registering your interest, we will soon be in contact with you.
+                <p
+                    class="mt-3 font-Arial text-[16px] leading-[26px] text-[#4A5565]"
+                >
+                    Thank you for registering your interest, we will soon be in
+                    contact with you.
                 </p>
             </div>
         </div>
@@ -186,14 +217,23 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                             <div
                                 class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F9FAFB] text-[#1d2d53]"
                             >
-                                <svg viewBox="0 0 24 24" class="h-7 w-7" aria-hidden="true">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    class="h-7 w-7"
+                                    aria-hidden="true"
+                                >
                                     <path
                                         d="M12 3c-3.3 0-6 2.6-6 5.9 0 4.7 6 11.1 6 11.1s6-6.4 6-11.1C18 5.6 15.3 3 12 3z"
                                         fill="none"
                                         stroke="currentColor"
-                                        stroke-width="1.8"
-                                    />
-                                    <circle cx="12" cy="9" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8" />
+                                        stroke-width="1.8"></path>
+                                    <circle
+                                        cx="12"
+                                        cy="9"
+                                        r="2.2"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.8"></circle>
                                 </svg>
                             </div>
                             <div>
@@ -206,7 +246,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                                 <div
                                     class="mt-2 font-Arial font-normal text-[16px] leading-[25px] tracking-normal text-[#14254A]"
                                 >
-                                    123 Main St,<br/>NY 10001<br/>Australia
+                                    123 Main St,<br />NY 10001<br />Australia
                                 </div>
                             </div>
                         </div>
@@ -215,15 +255,18 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                             <div
                                 class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F9FAFB] text-[#1d2d53]"
                             >
-                                <svg viewBox="0 0 24 24" class="h-7 w-7" aria-hidden="true">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    class="h-7 w-7"
+                                    aria-hidden="true"
+                                >
                                     <path
                                         d="M6 3h4l2 5-2.5 1.5a12 12 0 005.5 5.5L16 12l5 2v4c-8 1-14-5-15-13z"
                                         fill="none"
                                         stroke="currentColor"
                                         stroke-width="1.8"
                                         stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
+                                        stroke-linejoin="round"></path>
                                 </svg>
                             </div>
                             <div>
@@ -232,7 +275,9 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                                 >
                                     Phone
                                 </div>
-                                <div class="mt-2 font-Arial font-normal text-[16px] leading-[25px] tracking-normal text-[#14254A]">
+                                <div
+                                    class="mt-2 font-Arial font-normal text-[16px] leading-[25px] tracking-normal text-[#14254A]"
+                                >
                                     +61 433 967 374
                                 </div>
                             </div>
@@ -242,22 +287,24 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                             <div
                                 class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F9FAFB] text-[#1d2d53]"
                             >
-                                <svg viewBox="0 0 24 24" class="h-7 w-7" aria-hidden="true">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    class="h-7 w-7"
+                                    aria-hidden="true"
+                                >
                                     <path
                                         d="M4 6h16v12H4z"
                                         fill="none"
                                         stroke="currentColor"
                                         stroke-width="1.8"
-                                        stroke-linejoin="round"
-                                    />
+                                        stroke-linejoin="round"></path>
                                     <path
                                         d="M4 7l8 6 8-6"
                                         fill="none"
                                         stroke="currentColor"
                                         stroke-width="1.8"
                                         stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
+                                        stroke-linejoin="round"></path>
                                 </svg>
                             </div>
                             <div>
@@ -266,7 +313,9 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                                 >
                                     Email
                                 </div>
-                                <div class="mt-2 font-Arial font-normal text-[16px] leading-[25px] tracking-normal text-[#14254A]">
+                                <div
+                                    class="mt-2 font-Arial font-normal text-[16px] leading-[25px] tracking-normal text-[#14254A]"
+                                >
                                     keyur@saifinance.com.au
                                 </div>
                             </div>
@@ -276,23 +325,25 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                             <div
                                 class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F9FAFB] text-[#1d2d53]"
                             >
-                                <svg viewBox="0 0 24 24" class="h-7 w-7" aria-hidden="true">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    class="h-7 w-7"
+                                    aria-hidden="true"
+                                >
                                     <circle
                                         cx="12"
                                         cy="12"
                                         r="8"
                                         fill="none"
                                         stroke="currentColor"
-                                        stroke-width="1.8"
-                                    />
+                                        stroke-width="1.8"></circle>
                                     <path
                                         d="M12 7v5l3 2"
                                         fill="none"
                                         stroke="currentColor"
                                         stroke-width="1.8"
                                         stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
+                                        stroke-linejoin="round"></path>
                                 </svg>
                             </div>
                             <div>
@@ -301,13 +352,21 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                                 >
                                     Business Hours
                                 </div>
-                                <div class="mt-2 font-Arial font-normal text-[16px] leading-[20px] tracking-normal text-[#14254A]">
+                                <div
+                                    class="mt-2 font-Arial font-normal text-[16px] leading-[20px] tracking-normal text-[#14254A]"
+                                >
                                     Mon - Fri: 9:00 AM - 6:00 PM
                                 </div>
-                                <div class="mt-2 font-Arial font-normal text-[16px] leading-[20px] tracking-normal text-[#14254A]">
+                                <div
+                                    class="mt-2 font-Arial font-normal text-[16px] leading-[20px] tracking-normal text-[#14254A]"
+                                >
                                     Saturday: 10:00 AM - 4:00 PM
                                 </div>
-                                <div class="mt-2 font-Arial font-normal text-[16px] leading-[20px] tracking-normal text-[#14254A]">Sunday: Closed</div>
+                                <div
+                                    class="mt-2 font-Arial font-normal text-[16px] leading-[20px] tracking-normal text-[#14254A]"
+                                >
+                                    Sunday: Closed
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -322,35 +381,76 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 
 {
     turnstileSiteKey && (
-        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+        <script
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            async
+            defer
+        />
     )
 }
 
 <script>
-    const form = document.querySelector("#contact-form") as HTMLFormElement | null;
-    const thankYou = document.querySelector("#contact-thankyou") as HTMLElement | null;
-    const emailInput = document.querySelector("#email") as HTMLInputElement | null;
-    const phoneInput = document.querySelector("#phone") as HTMLInputElement | null;
-    const emailError = document.querySelector('[data-error="email"]') as HTMLElement | null;
-    const phoneError = document.querySelector('[data-error="phone"]') as HTMLElement | null;
-    const turnstileError = document.querySelector('[data-error="turnstile"]') as HTMLElement | null;
-    const submitError = document.querySelector('[data-error="submit"]') as HTMLElement | null;
-    const wpcf7Version = document.querySelector("#wpcf7-version") as HTMLInputElement | null;
-    const wpcf7Locale = document.querySelector("#wpcf7-locale") as HTMLInputElement | null;
-    const wpcf7UnitTag = document.querySelector("#wpcf7-unit-tag") as HTMLInputElement | null;
-    const wpcf7ContainerPost = document.querySelector(
-        "#wpcf7-container-post"
-    ) as HTMLInputElement | null;
-    const wpcf7Id = document.querySelector("#wpcf7-id") as HTMLInputElement | null;
-    const turnstileBox = document.querySelector(".cf-turnstile") as HTMLElement | null;
+    (window as any).onContactTurnstileSuccess = (token: string) => {
+        const input = document.querySelector(
+            'input[name="cf-turnstile-response"]',
+        ) as HTMLInputElement | null;
+        if (input) input.value = token;
 
+        const error = document.querySelector(
+            '[data-error="turnstile"]',
+        ) as HTMLElement | null;
+        if (error) error.classList.add("hidden");
+    };
+
+    (window as any).onContactTurnstileExpired = () => {
+        const input = document.querySelector(
+            'input[name="cf-turnstile-response"]',
+        ) as HTMLInputElement | null;
+        if (input) input.value = "";
+    };
+
+    const form = document.querySelector(
+        "#contact-form",
+    ) as HTMLFormElement | null;
+    const thankYou = document.querySelector(
+        "#contact-thankyou",
+    ) as HTMLElement | null;
+    const emailInput = document.querySelector(
+        "#email",
+    ) as HTMLInputElement | null;
+    const phoneInput = document.querySelector(
+        "#phone",
+    ) as HTMLInputElement | null;
+    const emailError = document.querySelector(
+        '[data-error="email"]',
+    ) as HTMLElement | null;
+    const phoneError = document.querySelector(
+        '[data-error="phone"]',
+    ) as HTMLElement | null;
+    const turnstileError = document.querySelector(
+        '[data-error="turnstile"]',
+    ) as HTMLElement | null;
+    const submitError = document.querySelector(
+        '[data-error="submit"]',
+    ) as HTMLElement | null;
+    const wpcf7Version = document.querySelector(
+        "#wpcf7-version",
+    ) as HTMLInputElement | null;
+    const wpcf7Locale = document.querySelector(
+        "#wpcf7-locale",
+    ) as HTMLInputElement | null;
+    const wpcf7UnitTag = document.querySelector(
+        "#wpcf7-unit-tag",
+    ) as HTMLInputElement | null;
+    const wpcf7ContainerPost = document.querySelector(
+        "#wpcf7-container-post",
+    ) as HTMLInputElement | null;
+    const wpcf7Id = document.querySelector(
+        "#wpcf7-id",
+    ) as HTMLInputElement | null;
     const showError = (el: HTMLElement | null, show: boolean) => {
         if (!el) return;
         el.classList.toggle("hidden", !show);
-    };
-
-    const setTurnstileMessage = (message: string) => {
-        if (turnstileError) turnstileError.textContent = message;
     };
 
     const applyFallbackConfig = () => {
@@ -361,7 +461,13 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
     };
 
     const ensureCf7Config = async () => {
-        if (!form || !wpcf7Version || !wpcf7Locale || !wpcf7UnitTag || !wpcf7ContainerPost) {
+        if (
+            !form ||
+            !wpcf7Version ||
+            !wpcf7Locale ||
+            !wpcf7UnitTag ||
+            !wpcf7ContainerPost
+        ) {
             return false;
         }
 
@@ -393,9 +499,12 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
             }
             const data = await response.json();
             if (data?.id) {
-                wpcf7Version.value = data?.properties?.version || data?.version || "";
-                wpcf7Locale.value = data?.properties?.locale || data?.locale || "en_US";
-                wpcf7ContainerPost.value = data?.properties?.container_post || "0";
+                wpcf7Version.value =
+                    data?.properties?.version || data?.version || "";
+                wpcf7Locale.value =
+                    data?.properties?.locale || data?.locale || "en_US";
+                wpcf7ContainerPost.value =
+                    data?.properties?.container_post || "0";
                 return true;
             }
         } catch (error) {
@@ -417,20 +526,20 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
         form.addEventListener("submit", async (event: SubmitEvent) => {
             event.preventDefault();
 
-            const emailValid = emailInput.checkValidity() && emailInput.value.trim() !== "";
+            const emailValid =
+                emailInput.checkValidity() && emailInput.value.trim() !== "";
             const phoneValid = phoneInput.value.trim() !== "";
             const hasTurnstile = Boolean(form.querySelector(".cf-turnstile"));
             const turnstileToken =
-                (form.querySelector('input[name="cf-turnstile-response"]') as HTMLInputElement | null)
-                    ?.value
-                    ?.trim() || "";
+                (
+                    form.querySelector(
+                        'input[name="cf-turnstile-response"]',
+                    ) as HTMLInputElement | null
+                )?.value?.trim() || "";
             const turnstileValid = !hasTurnstile || turnstileToken.length > 0;
 
             showError(emailError, !emailValid);
             showError(phoneError, !phoneValid);
-            if (hasTurnstile && !turnstileToken) {
-                setTurnstileMessage("Please verify that you are human.");
-            }
             showError(turnstileError, !turnstileValid);
             showError(submitError, false);
 
@@ -440,7 +549,9 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 
             const configOk = await ensureCf7Config();
             if (!configOk) {
-                if (submitError) submitError.textContent = "Form configuration error. Please try again.";
+                if (submitError)
+                    submitError.textContent =
+                        "Form configuration error. Please try again.";
                 showError(submitError, true);
                 return;
             }
@@ -462,14 +573,19 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                 const data = await response.json();
 
                 const status = data?.status;
-                const isValidationFailed = status === "validation_failed";
-                if (response.ok && !isValidationFailed) {
+                const isSuccess = status === "mail_sent" || status === "mail_failed";
+                if (response.ok && isSuccess) {
                     showError(submitError, false);
                     form.classList.add("hidden");
                     thankYou.classList.remove("hidden");
-                    thankYou.scrollIntoView({ behavior: "smooth", block: "center" });
+                    thankYou.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center",
+                    });
                 } else {
-                    const msg = data?.message || "Something went wrong. Please try again.";
+                    const msg =
+                        data?.message ||
+                        "Something went wrong. Please try again.";
                     if (submitError) submitError.textContent = msg;
                     showError(submitError, true);
                     if ((window as any).turnstile?.reset) {
@@ -477,7 +593,9 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                     }
                 }
             } catch (error) {
-                if (submitError) submitError.textContent = "Something went wrong. Please try again.";
+                if (submitError)
+                    submitError.textContent =
+                        "Something went wrong. Please try again.";
                 showError(submitError, true);
                 if ((window as any).turnstile?.reset) {
                     (window as any).turnstile.reset();
@@ -486,8 +604,3 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
         });
     }
 </script>
-
-
-
-
-
