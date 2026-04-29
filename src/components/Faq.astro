@@ -1,0 +1,169 @@
+---
+const faqs = [
+	{
+		question:
+			"What does a mortgage broker do, and how do you help clients?",
+		answer: "A mortgage broker acts as an intermediary between you and multiple lenders to find the most suitable loan for your situation. We assess your financial position, borrowing capacity, and long-term goals, then compare loan products across banks and non-bank lenders. Our role is to simplify the process, negotiate competitive rates, and guide you from application through to settlement and beyond.",
+	},
+	{
+		question:
+			"Why should I use a mortgage broker instead of going directly to a bank?",
+		answer: "Brokers compare multiple lenders and products, not just one bank's offer. We can help you save time, access competitive rates, and structure the loan to match your goals while guiding you through the approval process.",
+	},
+	{
+		question:
+			"Do you help first home buyers, and what support do you provide?",
+		answer: "Yes. We help you understand borrowing capacity, grants or incentives, pre-approval, and the documentation required. We also guide you from application to settlement so you feel confident at every step.",
+	},
+	{
+		question:
+			"How do you help property investors build a long-term portfolio?",
+		answer: "We provide strategy-driven advice on loan structure, equity use, and future borrowing capacity. Our goal is to help you scale sustainably while keeping repayments manageable.",
+	},
+	{
+		question:
+			"Can you assist with SMSF (Self-Managed Super Fund) property loans?",
+		answer: "Yes. We can help you understand SMSF lending requirements, structure limited recourse borrowing arrangements, and work with specialist lenders to secure compliant finance.",
+	},
+	{
+		question:
+			"How are you paid, and does it cost me anything to use your services?",
+		answer: "In most cases, our service is at no direct cost to you. We are paid by the lender once your loan settles. If a fee ever applies for a particular scenario, we will explain it clearly upfront before you proceed.",
+	},
+	{
+		question: "How do you ensure your advice is in my best interest?",
+		answer: "We take the time to understand your goals, income, and liabilities, then compare options across multiple lenders. Our recommendations focus on suitability, long‑term affordability, and flexibility, and we explain the pros and cons before you decide.",
+	},
+	{
+		question: "How long does the mortgage process usually take?",
+		answer: "Timeframes vary by lender and complexity, but pre‑approval can often be obtained in a few business days. Full approval and settlement typically take several weeks. We keep you updated at every step to avoid delays.",
+	},
+	{
+		question: "What documents do I need to get started?",
+		answer: "Typically we’ll need ID, income evidence (payslips or tax returns), recent bank statements, details of existing debts, and information about the property. We provide a checklist tailored to your situation.",
+	},
+	{
+		question: "What is the next step if I want to speak with you?",
+		answer: "Book a free strategy call. We’ll discuss your goals, confirm your borrowing capacity, and outline the best options and next steps for your loan.",
+	},
+];
+---
+
+<section class="mx-auto max-w-7xl px-6 pb-20 md:px-14 lg:px-6">
+	<div class="grid lg:gap-16 gap-10 lg:grid-cols-[490px_1fr] lg:items-start">
+		<div>
+			<span
+				class="inline-flex items-center gap-2 rounded-full
+         px-3 p-1
+         font-poppins font-medium
+         text-[17px] leading-[30px]
+         tracking-normal capitalize
+         bg-[linear-gradient(270deg,#17284D_0%,#5A72A7_100%)]
+         bg-clip-text text-transparent border border-[#e5e7eb]"
+			>
+				<img src="/img/Text.png" alt="" class="" />
+				Questions
+				<img src="/img/Text.png" alt="" class="" />
+			</span>
+
+			<h2
+				class="lg:mt-5 mt-3 font-poppins lg:text-[40px] text-[25px] font-semibold leading-[35px] lg:leading-[50px]
+         text-primary"
+			>
+				Have any questions? <br />
+				here some answers
+			</h2>
+
+			<p
+				class="mt-4 font-inter text-[15px] leading-[24px] tracking-normal text-[#9CABC3]"
+			>
+				In relation to websites and apps, UI design considers the look,
+				interactivity of the making product. It’s all about making sure
+				that the user interface.
+			</p>
+
+			<a href="/contact"
+				class="mt-8 inline-flex items-center gap-3 rounded-full bg-[#1d2d53] pl-6 pr-2 py-2 font-dm-sans text-[16px] font-medium text-white"
+			>
+				Ask Your Question
+				<span
+					class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-primary"
+				>
+					&#8599;
+				</span>
+			</a>
+
+			<div class="lg:flex justify-end items-end h-full  hidden">
+				<img
+					src="/img/question.png"
+					alt="SAI Finance"
+					class="w-32 lg:w-48 -mt-20"
+				/>
+			</div>
+		</div>
+
+		<div class="space-y-4" data-accordion>
+			{
+				faqs.map((item, index) => (
+					<details
+						class="group rounded-xl bg-white shadow-sm overflow-hidden group-open:bg-[#F2F2F2]"
+						open={index === 0}
+					>
+						<summary class="flex cursor-pointer items-center gap-2 justify-between rounded-t-xl bg-[#F2F2F2] px-4 lg:px-6 py-4 font-Poppins text-[16px] lg:text-[18px] font-semibold text-primary group-open:rounded-t-xl group-open:bg-[#1D2D53] group-open:text-white">
+							{item.question}
+							<span class="ml-4 inline-flex lg:h-8 lg:w-8 p-2 items-center justify-center rounded-full bg-[#1D2D53] text-white transition-transform duration-300 group-open:rotate-180 group-open:bg-white group-open:text-[#1D2D53]">
+								<svg
+									viewBox="0 0 24 24"
+									aria-hidden="true"
+									class="h-4 w-4"
+								>
+									<path
+										d="M6 9l6 6 6-6"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
+							</span>
+						</summary>
+						<div class="faq-answer bg-[#F2F2F2] rounded-b-xl">
+							<div class="py-[20px] lg:px-[24px] px-[18px] font-Inter text-[15px] leading-[26px] text-[#14254A]">
+								{item.answer}
+							</div>
+						</div>
+					</details>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.faq-answer {
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 320ms ease;
+	}
+
+	details[open] .faq-answer {
+		max-height: 420px;
+	}
+	
+</style>
+
+<script>
+	const container = document.querySelector("[data-accordion]");
+	if (container) {
+		const items = Array.from(container.querySelectorAll("details"));
+		items.forEach((item) => {
+			item.addEventListener("toggle", () => {
+				if (!item.open) return;
+				items.forEach((other) => {
+					if (other !== item) other.open = false;
+				});
+			});
+		});
+	}
+</script>

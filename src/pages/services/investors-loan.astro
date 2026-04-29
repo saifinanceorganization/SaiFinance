@@ -1,0 +1,113 @@
+---
+import Header from "../../components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import ServiceLayout from "../../components/ServiceLayout.astro";
+
+const data = {
+    breadcrumb: [
+        { label: "Home", href: "/" },
+        { label: "Services", href: "/services" },
+        { label: "Investors Loan" },
+    ],
+    heroTitle: "Investors Loan",
+    heroSubtitle:
+        "Build long‑term wealth with a lending partner who understands strategy, risk, and opportunity.",
+    heroImage: "/img/investors-loan.webp",
+    heroImagePosition: "center 10%",
+    heroCtaPrimaryText: "Apply for Investors Loan",
+    heroCtaSecondaryText: "Book a Free Call",
+    aboutTitle: "Property Investors",
+    aboutText: [
+        "Investing in property can be one of the most effective ways to grow your wealth - but only when the finance structure, cash‑flow planning, and long‑term strategy are aligned.",
+        "At SAI Finance, we help investors make confident, well‑informed decisions by breaking down the numbers, the risks, and the opportunities in a way that’s practical and easy to act on.",
+        "Australia’s ongoing housing shortage and strong rental demand continue to create opportunities for investors, but every investment comes with trade‑offs. Our role is to help you understand them clearly so you can invest with confidence.",
+    ],
+    aboutImage: "/img/investors.webp",
+    benefitsTitle: "How SAI Finance Supports Investors",
+    benefits: [
+        "Tailored loan recommendations - We match your goals with competitive options across major banks and specialist lenders.",
+        "Negotiation power - Our lender relationships help secure sharper rates and investor‑friendly loan features.",
+        "End‑to‑end support - From strategy to settlement, we manage the paperwork and keep the process moving.",
+        "No cost to you - Our service is paid for by the lender you choose.",
+    ],
+    calculators: [
+        {
+            title: "Calculate Your Borrowing Power",
+            description:
+                "Find out how much you can borrow based on your income, expenses, and financial situation.",
+            href: "/calculator/borrowing-power-calculator",
+        },
+        {
+            title: "Calculate Repayment Options",
+            description:
+                "Explore different repayment scenarios and find the loan structure that works best for your budget.",
+            href: "/calculator/loan-repayment-calculator",
+        },
+    ],
+    servicesTitle: "Understanding Your Investors Loan Options",
+    servicesSubtitle:
+        "From deposits to guarantees and government grants - we guide you through every option available.",
+    services: [
+        {
+            title: "Why Property Investment Appeals to Australians",
+            description:
+                "Property remains a favourite investment because it blends growth potential, rental income, tax benefits, and the security of “bricks and mortar.” Add the ability to renovate and increase returns, and it becomes even more compelling. We help you balance these advantages with the realities of cost, borrowing power, and market conditions.",
+            icon: "ph:buildings",
+            iconAlt: "Property investment",
+        },
+        {
+            title: "Choosing Your Investment Strategy",
+            description:
+                "Choosing the right investment strategy depends on your goals, time horizon, and appetite for risk. Most investors focus on a mix of capital growth, rental yield, and tax efficiency - balancing long‑term value, steady cash flow, and smart structuring. We help you understand how each approach works and which combination best supports your financial objectives.",
+            icon: "ph:target",
+            iconAlt: "Investment strategy",
+        },
+        {
+            title: "Using Home Equity to Invest",
+            description:
+                "Many homeowners have untapped equity that can be used to invest, renovate, or strengthen their financial position. Equity can support deposits, diversification, or consolidating existing debt. We review your equity, cash flow, and risk profile to determine whether leveraging your home aligns with your long‑term goals.",
+            icon: "ph:hand-coins",
+            iconAlt: "Using home equity",
+        },
+        {
+            title: "Refinancing for Better Investment Performance",
+            description:
+                "Refinancing can improve your investment returns by lowering interest costs, freeing up equity, or shifting to a loan structure that better supports your strategy. It’s also a way to boost cash flow or access funds for your next purchase. We review your current loan against market options to ensure your finance continues to work in your favour.",
+            icon: "ph:arrows-clockwise",
+            iconAlt: "Refinancing options",
+        },
+         {
+            title: "Buying New, Existing, or Off‑the‑Plan",
+            description:
+                "Each type of property - new, established, or off‑the‑plan - comes with different lending requirements, risks, and growth potential. The right choice depends on your goals, budget, and appetite for construction timelines or renovation work. We help you compare the pros and cons so you can choose the property that best aligns with your investment strategy.",
+            icon: "ph:clipboard-text",
+            iconAlt: "Property type comparison",
+        },
+        {
+            title: "Rentvesting",
+            description:
+                "Rentvesting lets you live where you want while investing in a more affordable or higher‑growth area. It’s a flexible strategy for building wealth without compromising lifestyle. We help you assess whether the numbers, tax outcomes, and long‑term benefits make rentvesting the right fit for your goals.",
+            icon: "ph:key",
+            iconAlt: "Rentvesting strategy",
+        },
+    ],
+    ctaTitle: "Ready to Apply for Your First Investors Loan?",
+    ctaSubtitle:
+        "Take the first step towards homeownership today with expert guidance from SAI Finance.",
+    ctaPrimaryText: "Apply Now",
+    ctaSecondaryText: "Book Free Call",
+};
+---
+
+<Layout>
+    <Fragment slot="header">
+        <Header />
+    </Fragment>
+
+    <ServiceLayout {...data} />
+
+    <Fragment slot="footer">
+        <Footer />
+    </Fragment>
+</Layout>

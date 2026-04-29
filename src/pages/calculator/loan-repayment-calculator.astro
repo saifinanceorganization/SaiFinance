@@ -1,0 +1,60 @@
+---
+import HomeLoanCalculators from '../../components/HomeLoanCalculators.vue';
+import Layout from '../../layouts/Layout.astro';
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+---
+
+<Layout>
+    <Fragment slot="header">
+        <Header />
+    </Fragment>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home Loan Calculators</title>
+  </head>
+  <body>
+    <main class="page-shell">
+      <HomeLoanCalculators
+        client:load
+        ownerOccupiedRate={6.19}
+        investmentRate={6.49}
+        repaymentDefaultRate={6.19}
+        compareRate={6.89}
+      />
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #101828;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    min-height: 100vh;
+  }
+
+  .page-shell {
+    padding: 0px 20px 0px;
+  }
+</style>
+
+   <Fragment slot="footer">
+        <Footer />
+    </Fragment>
+</Layout>

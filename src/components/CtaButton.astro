@@ -1,0 +1,23 @@
+---
+const { href = "/contact", label = "Book a Free Strategy Call" } = Astro.props;
+---
+
+<a
+  href={href}
+  class="inline-flex items-center gap-2
+         rounded-full
+         bg-white
+         border border-[#9CABC3]
+         pl-5 pr-2 py-2
+         font-Poppins font-semibold
+         text-[15px] leading-[100%] tracking-normal
+         text-[#9CABC3]"
+>
+  {label}
+  <span
+    class="inline-flex h-8 w-8 items-center justify-center
+           rounded-full bg-[#0f2147] text-white"
+  >
+    &#8599;
+  </span>
+</a>

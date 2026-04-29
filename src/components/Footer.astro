@@ -1,0 +1,224 @@
+---
+import { Icon } from "astro-icon/components";
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-primary text-white">
+    <div class="mx-auto max-w-7xl px-6 py-14 md:px-14 lg:px-6">
+        <div
+            class="grid gap-6 lg:gap-16 lg:grid-cols-[1.4fr_1fr_1fr_1fr] md:grid-cols-2"
+        >
+            <!-- Brand -->
+            <div>
+                <img
+                    src="/img/Sai-Finance-Logo-black.svg"
+                    alt="SAI Finance"
+                    class="lg:w-[230px] w-[200px]"
+                    loading="lazy"
+                />
+                <!-- <p
+                    class="mt-5 max-w-sm font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1]"
+                >
+                    Each demo built with Teba will look different. You can
+                    customize almost anything in the appearance of your website
+                    with only a few
+                </p> -->
+
+                <div class="mt-6 flex items-center gap-3">
+                    <a
+                        href="https://www.facebook.com/profile.php?id=100065331496051#"
+                        class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#16264b] hover:opacity-90"
+                        aria-label="Facebook"
+                    >
+                        <!-- <Icon name="ph:facebook-logo" size="16" /> -->
+                        <img src="/img/facebook.png" alt="Facebook" class="" />
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/keyur-bandhara-69549279/"
+                        class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#16264b] hover:opacity-90"
+                        aria-label="LinkedIn"
+                    >
+                        <!-- <Icon name="ph:linkedin-logo" size="16" /> -->
+                        <img
+                            src="/img/linkdin.png"
+                            alt="LinkedIn"
+                            class="h-4 w-4"
+                        />
+                    </a>
+                    <!-- <a
+                        href=""
+                        class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#16264b] hover:opacity-90"
+                        aria-label="Twitter"
+                    >
+                        <img src="/img/twitter.png" alt="Twitter" class="" />
+                    </a> -->
+                    <!-- <a
+                        href=""
+                        class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#16264b] hover:opacity-90"
+                        aria-label="Instagram"
+                    >
+                            <img src="/img/instagram.png" alt="Instagram" class="h-4 w-4" />
+                    </a> -->
+                </div>
+            </div>
+
+            <!-- Links -->
+            <div>
+                <h3
+                    class="font-Poppins font-semibold text-[22px] leading-[32px] tracking-normal text-white"
+                >
+                    Quick Links
+                </h3>
+
+                <ul class="mt-4 space-y-3 text-sm text-[#B1B1B1]">
+                    <li>
+                        <a
+                            href="/"
+                            class="font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1] hover:text-white"
+                            >Home</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/services"
+                            class="font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1] hover:text-white"
+                            >Services</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/calculator"
+                            class="font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1] hover:text-white"
+                            >Calculators</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/blog"
+                            class="font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1] hover:text-white"
+                            >Blogs</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/contact"
+                            class="font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1] hover:text-white"
+                            >Contact Us</a
+                        >
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3
+                    class="font-Poppins font-semibold text-[22px] leading-[32px] tracking-normal text-white"
+                >
+                    Services
+                </h3>
+                <ul class="mt-4 space-y-3 text-sm text-[#B1B1B1]">
+                    <li>
+                        <a
+                            href="/services/home-loan"
+                            class="font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1] hover:text-white"
+                            >Home Loan</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/services/investors-loan"
+                            class="font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1] hover:text-white"
+                            >Investors Loan</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/services/construction-loan"
+                            class="font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1] hover:text-white"
+                            >Construction Loan</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/services/commercial-business-loan"
+                            class="font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1] hover:text-white"
+                            >Commercial & Business Loan</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/services/smsf-loan"
+                            class="font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1] hover:text-white"
+                            >SMSF Loan</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/services/personal-car-loan"
+                            class="font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1] hover:text-white"
+                            >Personal/Car Loan</a
+                        >
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3
+                    class="font-Poppins font-semibold text-[22px] leading-[32px] tracking-normal text-white"
+                >
+                    Contact
+                </h3>
+                <ul class="mt-4 space-y-3 text-sm text-[#B1B1B1]">
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1 text-white">
+                            <Icon name="ph:envelope-simple" size="18" />
+                        </span>
+                        <a
+                            href="mailto:keyur@saifinance.com.au"
+                            class="font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1] hover:text-white"
+                            >keyur@saifinance.com.au</a
+                        >
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1 text-white">
+                            <Icon name="ph:clock" size="18" />
+                        </span>
+                        <span
+                            class="font-Inter font-normal text-[16px] leading-[26px] tracking-normal text-[#B1B1B1]"
+                            >Mon - Sat 8:00 AM - 8:00 PM</span
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="border-t border-white">
+        <div
+            class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-5 text-xs text-[#F9F9FA] md:flex-row"
+        >
+            <p
+                class="font-Inter font-normal text-[18px] leading-[28px] tracking-normal text-white/70"
+            >
+                Copyright &copy; {currentYear} devstart. All rights reserved.
+            </p>
+
+            <div class="flex items-center gap-6">
+                <a
+                    href="/privacy"
+                    class="font-Inter font-normal text-[18px] leading-[26px] tracking-normal text-[#F9F9FA] hover:text-white"
+                    >Privacy & Terms</a
+                >
+                <a
+                    href="/faqs"
+                    class="font-Inter font-normal text-[18px] leading-[26px] tracking-normal text-[#F9F9FA] hover:text-white"
+                    >FAQ</a
+                >
+                <a
+                    href="/contact"
+                    class="font-Inter font-normal text-[18px] leading-[26px] tracking-normal text-[#F9F9FA] hover:text-white"
+                    >Contact Us</a
+                >
+            </div>
+        </div>
+    </div>
+</footer>

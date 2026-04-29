@@ -1,0 +1,802 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Services from "../components/Services.astro";
+import Layout from "../layouts/Layout.astro";
+import Review from "../components/Review.astro";
+import AboutUs from "../components/AboutUs.astro";
+import Blog from "../components/Blog.astro";
+import Faq from "../components/Faq.astro";
+import LogoSlider from "../components/LogoSlider.astro";
+import CtaButton from "../components/CtaButton.astro";
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+	<Fragment slot="header">
+		<Header />
+	</Fragment>
+
+	<!-- Hero (section 1)-->
+	<section class="relative isolate overflow-hidden bg-[#0f2147] text-white">
+		<div class="absolute inset-0 -z-10">
+			<img
+				src="/img/hero.webp"
+				alt="SAI Finance"
+				class="h-full w-full object-cover object-[74%_center] md:object-[68%_center] xl:object-center"
+			/>
+			<div class="xl:hidden block absolute inset-0 bg-[#0f2147]/45"></div>
+		</div>
+
+		<div class="relative mx-auto max-w-6xl px-5 py-14 md:px-14 md:py-14 xl:px-6 xl:py-24">
+			<div class="max-w-[22rem] md:max-w-[34rem] lg:max-w-2xl">
+				<span
+					class="inline-flex items-center gap-1.5
+         rounded-full border border-white
+         px-4 py-1 sm:gap-2 sm:px-6
+         font-Poppins font-medium
+         text-[14px] leading-7 tracking-normal sm:text-[18px] sm:leading-[32.61px]
+         capitalize
+         text-white/90"
+				>
+					<img src="/img/flower.png" alt="" class="h-3 w-3 sm:h-4 sm:w-4" /> Expert Financing <img
+						src="/img/flower.png"
+						alt=""
+						class="h-3 w-3 sm:h-4 sm:w-4"
+					/>
+				</span>
+
+				<!-- <h1 class="mt-6 text-4xl font-bold leading-tight lg:text-5xl">
+					<span class="inline-flex items-start gap-3">
+						<img
+							src="/img/icon_img_14.png" 
+							alt=""
+							class="mt-1 h-9 w-9 shrink-0"
+						/>
+						<span>
+							Build Wealth <br />
+							Through Property <br />
+							- with the right <br />
+							Finance Strategy.
+						</span>
+					</span>
+				</h1> -->
+				<div class="relative inline-block mt-4">
+					<!-- Border Image -->
+					<img
+						src="/img/icon_img_14.png"
+						alt=""
+						class="absolute left-29 -translate-x-1/2 h-14 w-[250px] md:left-40 md:w-[340px] md:h-[60px] -mt-2 xl:left-49 xl:h-[75px] xl:w-[420px] xl:-mt-1"
+					/>
+
+					<!-- Heading -->
+					<h1
+						class="text-4xl font-Poppins font-extrabold leading-[1.1] text-white md:text-5xl xl:text-6xl"
+					>
+						Build Wealth <br />
+						Through Property <br />
+						- with the right <br />
+						Finance Strategy.
+					</h1>
+				</div>
+			</div>
+
+			<p
+				class="mt-4 max-w-xl
+         font-dm-sans font-normal
+         text-[17px] leading-[27px] tracking-normal sm:text-[18px] sm:leading-[29px] md:max-w-[32rem] md:text-[18px] md:leading-[29px]
+         text-white"
+			>
+				Specialised mortgage solutions for Australian property investors
+				and first home buyers, backed by expert guidance on every step
+				of the way.
+			</p>
+
+			<div class="mt-7 flex flex-wrap items-start gap-4 sm:mt-8 sm:items-center sm:gap-5 md:max-w-[30rem] md:gap-4 xl:max-w-none xl:flex-nowrap xl:gap-6">
+				<div class="shrink-0">
+					<CtaButton />
+				</div>
+				<a
+					href="tel:+61433967374"
+					class="inline-flex items-center gap-3 text-sm font-semibold text-white/90 sm:gap-4 md:gap-3"
+				>
+					<span
+						class="inline-flex h-9 w-9 items-center justify-center rounded-full sm:h-10 sm:w-10"
+					>
+						<img
+							src="/img/phone.png"
+							alt="Call us"
+							class="h-10 w-8 -mt-1 sm:h-12 sm:w-10 sm:-mt-2"
+						/>
+					</span>
+					<span
+						class="font-Inter font-normal text-[13.5px] leading-[18px] tracking-normal text-white sm:text-[15px] sm:leading-[20px] md:text-[14px] md:leading-[18px]"
+					>
+						Explore your borrowing power
+						<span
+							class="block
+         font-Poppins font-medium
+         text-[15.5px] leading-[22px] tracking-normal sm:text-[17px] sm:leading-[27px] md:text-[16px] md:leading-[24px]
+         text-white mt-1"
+						>
+							+61 433 967 374
+						</span>
+					</span>
+				</a>
+			</div>
+		</div>
+
+		<div
+			class="absolute bottom-0 right-0 hidden xl:block bg-white rounded-tl-4xl shadow-lg"
+		>
+			<img
+				src="/img/img_1.webp"
+				alt="Chat with us"
+				class="h-[70px] w-auto rounded-lg shadow-lg"
+				loading="lazy"
+			/>
+		</div>
+	</section>
+
+	<!-- section 2 -->
+	<Services />
+
+	<!-- section 3 -->
+	<section class="mb-10 md:mb-14 lg:mt-8 lg:mb-18">
+		<div class="mx-auto max-w-7xl px-5 px-6 md:px-14 lg:px-6 lg:py-0 ">
+			<div class="grid gap-8 md:gap-10 lg:grid-cols-2 lg:gap-8">
+				<!-- LEFT SIDE -->
+				<div class="flex flex-col">
+					<div
+						class="flex flex-col gap-4 md:flex-row md:gap-7 lg:ml-20 lg:gap-10"
+					>
+						<!-- Badge -->
+						<div>
+							<span
+								class="inline-flex items-center justify-center
+                 rounded-full bg-[#1d2d53]
+                 min-w-[108px] px-2 py-1
+                 text-[16px] leading-[24px] md:text-[18px] md:leading-[28px]
+                 font-normal text-white capitalize"
+							>
+								Our Value
+							</span>
+						</div>
+
+						<div>
+							<!-- Heading -->
+							<h1
+								class="font-dm-sans font-semibold
+                 text-2xl md:text-[34px] lg:text-[40px]
+                 leading-tight md:leading-[42px] lg:leading-[50px] text-primary lg:ml-14"
+							>
+								Your success <br class="hidden sm:block" />
+								is our priority.
+							</h1>
+
+							<!-- Paragraph -->
+							<p
+								class="mt-2 max-w-lg font-Inter
+                 text-[15px] leading-[24px] md:text-[16px] md:leading-[28px]
+                 text-[#15274B] lg:ml-14"
+							>
+								Our mission is to empower businesses of all
+								sizes to thrive in an ever-changing marketplace.
+							</p>
+						</div>
+					</div>
+					<!-- Image + Stat Card -->
+					<div class="relative mt-6 md:mt-7 lg:mt-0">
+						<img
+							src="/img/house_logo.png"
+							alt="SAI Finance"
+							class="mx-auto h-auto w-full max-w-[360px] md:max-w-[500px] lg:max-w-[510px] lg:-mt-12 lg:-ml-7"
+						/>
+						<div
+							class="absolute bottom-2 right-0 md:bottom-8 md:right-16
+  lg:right-14 lg:bottom-2
+  w-[120px] h-[128px] md:w-[178px] md:h-[220px] lg:w-[200px] lg:h-[250px]
+  rounded-[10px]
+  bg-[#FFFFFF0F]
+  backdrop-blur-[60px]
+  shadow-[0px_30px_90px_0px_#041F1F4D]
+  text-[#1D2D53] text-center items-center flex flex-col justify-center"
+						>
+							<div
+								class="pointer-events-none absolute inset-0 rounded-[5px]"
+							>
+							</div>
+							<div class="relative px-4 pt-4 md:px-5 md:pt-5">
+								<div
+									class="text-[20px] leading-[1] font-Poppins font-semibold text-end md:text-[24px] lg:text-[38px]"
+								>
+									90%
+								</div>
+								<p
+									class="mt-1 text-[11px] leading-[15px] font-Poppins text-[#323232] text-end md:mt-2 md:text-[12px] md:leading-[16px] lg:text-[13px] lg:leading-[18px]"
+								>
+									Growth in business last month
+								</p>
+							</div>
+							<!-- <div class="relative px-4 pb-3 md:px-5 md:pb-4">
+								<div class="flex items-center -space-x-2">
+									<span
+										class="h-7 w-7 rounded-full bg-[#D9D9D9] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06)] md:h-8 md:w-8 lg:h-10 lg:w-10"
+									></span>
+									<span
+										class="h-7 w-7 rounded-full bg-[#D9D9D9] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06)] md:h-8 md:w-8 lg:h-10 lg:w-10"
+									></span>
+									<span
+										class="h-7 w-7 rounded-full bg-[#D9D9D9] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06)] md:h-8 md:w-8 lg:h-10 lg:w-10"
+									></span>
+									<span
+										class="h-7 w-7 rounded-full bg-[#D9D9D9] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06)] md:h-8 md:w-8 lg:h-10 lg:w-10"
+									></span>
+									<span
+										class="h-7 w-7 rounded-full bg-[#D9D9D9] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06)] md:h-8 md:w-8 lg:h-10 lg:w-10"
+									></span>
+								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+
+				<!-- RIGHT SIDE VALUES -->
+				<div
+					class="grid grid-cols-1 gap-x-8 gap-y-8 sm:gap-y-10 md:grid-cols-2 lg:gap-y-4 lg:grid-cols-2"
+				>
+					<!-- Item -->
+					<div class="flex flex-col items-start gap-4">
+						<div>
+							<img src="/img/icon_1.png" class="w-12 h-12" />
+						</div>
+						<div>
+							<h3
+								class="font-Poppins font-semibold
+         text-[20px] leading-[26.8px] tracking-normal
+        text-primary"
+							>
+								40+ lenders
+							</h3>
+
+							<p
+								class="mt-2 font-Inter font-normal text-[15px] leading-[26px] tracking-normal text-primary"
+							>
+								Our lending portfolio includes all major banks,
+								cooperatives, and non-banking financial
+								institutions.
+							</p>
+						</div>
+					</div>
+
+					<div class="flex flex-col items-start gap-4">
+						<div>
+							<img src="/img/icon_2.png" class="w-12 h-12" />
+						</div>
+						<div>
+							<h3
+								class="font-Poppins font-semibold
+         text-[20px] leading-[26.8px] tracking-normal
+        text-primary"
+							>
+								Personalised Loan Guidance
+							</h3>
+							<p
+								class="mt-2 font-Inter font-normal text-[15px] leading-[26px] tracking-normal text-primary"
+							>
+								We tailor our services to each client’s unique
+								needs, aligning our approach with their
+								financial goals and current circumstances.
+							</p>
+						</div>
+					</div>
+
+					<div class="flex flex-col items-start gap-4">
+						<div>
+							<img src="/img/icon_5.png" class="w-12 h-12" />
+						</div>
+						<div>
+							<h3
+								class="font-Poppins font-semibold
+         text-[20px] leading-[26.8px] tracking-normal
+         text-primary"
+							>
+								Excellent Customer Service
+							</h3>
+							<p
+								class="mt-2 font-Inter font-normal text-[15px] leading-[26px] tracking-normal text-primary"
+							>
+								We provide clear guidance and timely updates
+								throughout the process to ensure a smooth and
+								informed loan experience.
+							</p>
+						</div>
+					</div>
+
+					<div class="flex flex-col items-start gap-4">
+						<div>
+							<img src="/img/icon_3.png" class="w-12 h-12" />
+						</div>
+						<div>
+							<h3
+								class="font-Poppins font-semibold
+         text-[20px] leading-[26.8px] tracking-normal
+         text-primary"
+							>
+								Fast Approval Process
+							</h3>
+							<p
+								class="mt-2 font-Inter font-normal text-[15px] leading-[26px] tracking-normal text-primary"
+							>
+								Experience fast, hassle-free loan approvals
+								through our digitally managed process, supported
+								by clear upfront document requirements.
+							</p>
+						</div>
+					</div>
+
+					<div class="flex flex-col items-start gap-4">
+						<div>
+							<img src="/img/icon_04.png" class="w-12 h-12" />
+						</div>
+						<div>
+							<h3
+								class="font-Poppins font-semibold
+         text-[20px] leading-[26.8px] tracking-normal
+        text-primary"
+							>
+								ACL, CRN Licensee & FBAA Member
+							</h3>
+							<p
+								class="mt-2 font-Inter font-normal text-[15px] leading-[26px] tracking-normal text-primary"
+							>
+								In addition to our extensive experience and
+								refined processes, we hold all required industry
+								licenses and memberships, further strengthening
+								our credibility.
+							</p>
+						</div>
+					</div>
+
+					<div
+						class="flex flex-col items-center justify-center text-center"
+					>
+						<a
+							href="/contact"
+							class="inline-flex items-center gap-2
+         rounded-full
+         bg-primary
+         border border-[#9CABC3]
+         pl-5 pr-2 py-2
+         font-Poppins font-bold
+         text-[15px] leading-[100%] tracking-normal
+         text-white"
+						>
+							More About Us
+							<span
+								class="inline-flex h-8 w-8 items-center justify-center
+           rounded-full bg-white text-primary"
+							>
+								&#8599;
+							</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- section 4 -->
+	<LogoSlider />
+
+	<!-- section 4 -->
+	<section class="bg-[#f6f7fb] pt-18 pb-10">
+		<div class="mx-auto max-w-6xl px-6 lg:px-6 md:px-14 md:py-0">
+			<div
+				class="flex items-center gap-2 text-sm font-semibold text-[#0f2147]"
+			>
+				<img src="/img/icon_img_6.png" class="" />
+				<span class="font-dm-sans font-semibold text-[16px]">
+					How it works
+				</span>
+				<img src="/img/icon_img_7.png" class="" />
+			</div>
+
+			<div class="mt-5">
+				<h2
+					class="font-dm-sans font-semibold text-[25px] lg:text-[40px] leading-[30px] lg:leading-[50px] text-primary"
+				>
+					Our engagement <br /> process:
+				</h2>
+
+				<p
+					class="font-Arial mt-2 font-normal text-[16px] leading-[28px] tracking-normal text-[#4A5565]"
+				>
+					From initial consultation to settlement,<br /> we guide you through
+					every step.
+				</p>
+			</div>
+
+			<div class="relative mt-5 lg:mt-12">
+				<div class="absolute left-12 right-12 top-14 hidden lg:block">
+				</div>
+
+				<div class="grid gap-10 lg:grid-cols-5">
+					<div class="flex flex-col lg:items-start items-center">
+						<div class="relative">
+							<div
+								class="flex h-28 w-28 items-center justify-center rounded-2xl bg-white"
+							>
+								<img
+									src="/img/icon_img_8.png"
+									alt=""
+									class="h-14 w-14"
+								/>
+							</div>
+							<img
+								src="/img/icon_img_12.png"
+								alt="Process Flow"
+								class="pointer-events-none absolute left-[100%] top-[45%] hidden w-[340%] max-w-none -translate-y-1/2 lg:block"
+							/>
+							<span
+								class="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center justify-center w-[30px] h-[23px] rounded-[5px] border border-[#16161626] bg-[linear-gradient(93.79deg,_rgba(72,86,117,0.2)_2.94%,_rgba(255,255,255,0.2)_95.79%)] p-[9px] font-dm-sans font-medium text-[12px] leading-[24.8px] tracking-normal text-black"
+							>
+								01
+							</span>
+						</div>
+						<h3
+							class="mt-8 font-dm-sans font-semibold text-[20px] leading-[100%] tracking-normal text-[#1C1C1C]"
+						>
+							Initial consultation
+						</h3>
+
+						<p
+							class="mt-2 font-dm-sans font-normal text-[15px] leading-[24px] tracking-normal text-[#636363]"
+						>
+							We take into account your financial position,
+							including your income, existing liabilities, and
+							overall requirements.
+						</p>
+					</div>
+
+					<div class="flex flex-col lg:items-start items-center">
+						<div class="relative">
+							<div
+								class="flex h-28 w-28 items-center justify-center rounded-3xl bg-primary text-white shadow-lg"
+							>
+								<img
+									src="/img/icon_img_9.png"
+									alt=""
+									class="w-12 h-12"
+								/>
+							</div>
+							<span
+								class="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center justify-center w-[30px] h-[23px] rounded-[5px] border border-[#16161626] bg-[linear-gradient(93.79deg,_rgba(72,86,117,0.2)_2.94%,_rgba(255,255,255,0.2)_95.79%)] p-[9px] font-dm-sans font-medium text-[12px] leading-[24.8px] tracking-normal text-black"
+							>
+								02
+							</span>
+						</div>
+						<h3
+							class="mt-8 font-dm-sans font-semibold text-[20px] leading-[100%] tracking-normal text-[#1C1C1C]"
+						>
+							Present loan options
+						</h3>
+						<p
+							class="mt-2 font-dm-sans font-normal text-[15px] leading-[24px] tracking-normal text-[#636363]"
+						>
+							We present a range of loan options from various
+							lenders that best align with your requirements and
+							guide you in selecting the most suitable one.
+						</p>
+					</div>
+
+					<div class="flex flex-col lg:items-start items-center">
+						<div class="relative">
+							<div
+								class="flex h-28 w-28 items-center justify-center rounded-3xl bg-white shadow-sm"
+							>
+								<img
+									src="/img/icon_img_10.png"
+									alt=""
+									class=""
+								/>
+							</div>
+							<img
+								src="/img/icon_img_12.png"
+								alt="Process Flow"
+								class="pointer-events-none absolute left-[100%] top-[45%] hidden w-[335%] max-w-none -translate-y-1/2 lg:block"
+							/>
+							<span
+								class="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center justify-center w-[30px] h-[23px] rounded-[5px] border border-[#16161626] bg-[linear-gradient(93.79deg,_rgba(72,86,117,0.2)_2.94%,_rgba(255,255,255,0.2)_95.79%)] p-[9px] font-dm-sans font-medium text-[12px] leading-[24.8px] tracking-normal text-black"
+							>
+								03
+							</span>
+						</div>
+						<h3
+							class="mt-8 font-dm-sans font-semibold text-[20px] leading-[100%] tracking-normal text-[#1C1C1C]"
+						>
+							Lodge application
+						</h3>
+						<p
+							class="mt-2 font-dm-sans font-normal text-[15px] leading-[24px] tracking-normal text-[#636363]"
+						>
+							We securely collect the required documentation
+							through our digital process and assist you in
+							lodging your loan application as quickly as
+							possible.
+						</p>
+					</div>
+
+					<div class="flex flex-col lg:items-start items-center">
+						<div class="relative">
+							<div
+								class="flex h-28 w-28 items-center justify-center rounded-3xl bg-primary text-white shadow-lg"
+							>
+								<img
+									src="/img/icon_img_11.png"
+									alt=""
+									class="ml-3"
+								/>
+							</div>
+							<span
+								class="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center justify-center w-[30px] h-[23px] rounded-[5px] border border-[#16161626] bg-[linear-gradient(93.79deg,_rgba(72,86,117,0.2)_2.94%,_rgba(255,255,255,0.2)_95.79%)] p-[9px] font-dm-sans font-medium text-[12px] leading-[24.8px] tracking-normal text-black"
+							>
+								04
+							</span>
+						</div>
+						<h3
+							class="mt-8 font-dm-sans font-semibold text-[20px] leading-[100%] tracking-normal text-[#1C1C1C]"
+						>
+							Formal approval
+						</h3>
+						<p
+							class="mt-2 font-dm-sans font-normal text-[15px] leading-[24px] tracking-normal text-[#636363]"
+						>
+							As one of the top-rated mortgage brokers, we can
+							help you get pre-qualified, obtain lender
+							pre-approval, or secure a commitment letter from our
+							network of 40+ lenders-often within just one day.
+						</p>
+					</div>
+
+					<div class="flex flex-col lg:items-start items-center">
+						<div class="relative">
+							<div
+								class="flex h-28 w-28 items-center justify-center rounded-3xl bg-white shadow-sm"
+							>
+								<img
+									src="/img/icon_img_10.png"
+									alt=""
+									class=""
+								/>
+							</div>
+							<span
+								class="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center justify-center w-[30px] h-[23px] rounded-[5px] border border-[#16161626] bg-[linear-gradient(93.79deg,_rgba(72,86,117,0.2)_2.94%,_rgba(255,255,255,0.2)_95.79%)] p-[9px] font-dm-sans font-medium text-[12px] leading-[24.8px] tracking-normal text-black"
+							>
+								05
+							</span>
+						</div>
+						<h3
+							class="mt-8 font-Poppins text-[18px] font-semibold text-[#0f2147]"
+						>
+							Settlement
+						</h3>
+						<p
+							class="mt-2 font-dm-sans font-normal text-[15px] leading-[24px] tracking-normal text-[#636363]"
+						>
+							We support you through every stage of the loan
+							process-from approval to disbursement-ensuring a
+							smooth path to settlement for your property or
+							investment.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<h1
+				class="font-dm-sans font-normal text-[17px] leading-[28px] tracking-normal text-center mt-10"
+			>
+				We’ll contact you within one business day.
+				<a
+					href="/contact"
+					class="font-dm-sans font-medium text-[17px] leading-[26.05px] text-center"
+					>Get Free Quote</a
+				>
+			</h1>
+		</div>
+	</section>
+
+	<!-- section 5 -->
+	<section class="bg-[#F0F1F3] lg:py-18 py-10">
+		<div class="mx-auto max-w-6xl px-6 lg:px-6 md:px-14 md:py-0">
+			<div class="grid lg:gap-14 gap-10 lg:grid-cols-2 lg:items-center">
+				<div>
+					<span
+						class="inline-flex items-center justify-center gap-2 rounded-full bg-[#1d2d53] px-5 py-2 text-center font-dm-sans text-[16px] font-medium leading-[26px] text-white"
+					>
+						<img src="/img/flower.png" alt="" />
+						Trusted Company
+						<img src="/img/flower.png" alt="" />
+					</span>
+
+					<h2
+						class="mt-5 font-Poppins font-semibold
+         lg:text-[40px] lg:leading-[50px] leading-[40px] text-[25px]
+         tracking-normal
+         text-primary"
+					>
+						Digital Application <br />
+						Enables Fast and <br />
+						Reliable Service to Client
+					</h2>
+
+					<p
+						class="mt-2 font-Poppins font-medium
+         text-[16px] leading-[30px]
+         tracking-normal
+         text-[#636363]"
+					>
+						SAI Finance shops for your dream home or already have a
+						purchase contract? As one of Perth top-rated mortgage
+						brokers, we can help get you pre-qualified, pre-approved
+						by a lender, or help you obtain a commitment letter from
+						our range of 40+ lenders in as little as one day.
+					</p>
+				</div>
+
+				<div>
+					<img
+						src="/img/image.webp"
+						alt="SAI Finance"
+						class="h-full w-full rounded-xl object-cover"
+					/>
+				</div>
+			</div>
+
+			<div
+				class="mt-12 grid gap-6 lg:grid-cols-[minmax(0,390px)_minmax(0,390px)_auto] lg:items-stretch lg:gap-4"
+			>
+				<div class="grid gap-6">
+					<div
+						class="flex min-h-[96px] items-center gap-4 rounded-2xl bg-[#DFE2E7] p-5"
+					>
+						<div
+							class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary text-white"
+						>
+							<span class="font-dm-sans text-[26px] font-semibold"
+								>1</span
+							>
+						</div>
+						<p
+							class="font-Poppins text-[16px] font-semibold leading-[25.22px] tracking-normal text-primary"
+						>
+							We have digitized the entire loan application
+							process
+						</p>
+					</div>
+
+					<div
+						class="flex min-h-[96px] items-center gap-4 rounded-2xl bg-[#DFE2E7] p-5"
+					>
+						<div
+							class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary text-white"
+						>
+							<span class="font-dm-sans text-[26px] font-semibold"
+								>2</span
+							>
+						</div>
+						<p
+							class="font-Poppins text-[16px] font-semibold leading-[25.22px] tracking-normal text-primary"
+						>
+							Secured digital forms
+						</p>
+					</div>
+
+					<div
+						class="flex min-h-[96px] items-center gap-4 rounded-2xl bg-[#DFE2E7] p-5"
+					>
+						<div
+							class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary text-white"
+						>
+							<span class="font-dm-sans text-[26px] font-semibold"
+								>3</span
+							>
+						</div>
+						<p
+							class="font-Poppins text-[16px] font-semibold leading-[25.22px] tracking-normal text-primary"
+						>
+							Secured and encrypted data to ensure a secure
+							end-to-end loan process
+						</p>
+					</div>
+				</div>
+
+				<div class="grid gap-6">
+					<div
+						class="flex min-h-[96px] items-center gap-4 rounded-2xl bg-[#DFE2E7] p-5"
+					>
+						<div
+							class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary text-white"
+						>
+							<span class="font-dm-sans text-[26px] font-semibold"
+								>4</span
+							>
+						</div>
+						<p
+							class="font-Poppins text-[16px] font-semibold leading-[25.22px] tracking-normal text-primary"
+						>
+							Save loan application time
+						</p>
+					</div>
+
+					<div
+						class="flex min-h-[96px] items-center gap-4 rounded-2xl bg-[#DFE2E7] p-5"
+					>
+						<div
+							class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary text-white"
+						>
+							<span class="font-dm-sans text-[26px] font-semibold"
+								>5</span
+							>
+						</div>
+						<p
+							class="font-Poppins text-[16px] font-semibold leading-[25.22px] tracking-normal text-primary"
+						>
+							Pre-approvals within an hour
+						</p>
+					</div>
+
+					<div
+						class="flex min-h-[96px] items-center gap-4 rounded-2xl bg-[#DFE2E7] p-5"
+					>
+						<div
+							class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary text-white"
+						>
+							<span class="font-dm-sans text-[26px] font-semibold"
+								>6</span
+							>
+						</div>
+						<p
+							class="font-Poppins text-[16px] font-semibold leading-[25.22px] tracking-normal text-primary"
+						>
+							Reduced loan processing time from weeks to just a
+							few days
+						</p>
+					</div>
+				</div>
+
+				<div class="flex items-center justify-center lg:min-h-[324px]">
+					<a
+						href="/contact"
+						class="group inline-flex items-center gap-3 rounded-full border border-[#1d2d53] bg-white px-5 py-2 font-dm-sans text-[14px] font-semibold uppercase tracking-wide text-[#1d2d53] transition-all duration-200 hover:bg-[#1d2d53] hover:text-white"
+					>
+						Apply Now
+						<span
+							class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#1d2d53] text-white transition-all duration-200 group-hover:bg-white group-hover:text-[#1d2d53]"
+						>
+							&#8599;
+						</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- section 6 -->
+	<Review />
+
+	<!-- section 7 -->
+	<AboutUs />
+
+	<!-- section 8 -->
+	<Blog />
+
+	<!-- section 9 -->
+	<Faq />
+
+	<Fragment slot="footer">
+		<Footer />
+	</Fragment>
+</Layout>

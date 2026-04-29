@@ -1,0 +1,100 @@
+---
+import Header from "../../components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import ServiceLayout from "../../components/ServiceLayout.astro";
+
+const data = {
+    breadcrumb: [
+        { label: "Home", href: "/" },
+        { label: "Services", href: "/services" },
+        { label: "Asset Finance Loan" },
+    ],
+    heroTitle: "Asset Finance Loan",
+    heroSubtitle:
+        "Asset finance helps businesses access the equipment, vehicles, and tools they need without tying up cash flow.",
+    heroImage: "/img/asset-finance.webp",
+    heroCtaPrimaryText: "Apply for Asset Finance Loan",
+    heroCtaSecondaryText: "Book a Free Call",
+    aboutTitle: "Asset Finance",
+    aboutText: [
+        "Instead of paying upfront, you spread the cost over time while keeping your working capital free for growth.",
+        "Whether you’re upgrading machinery, expanding your fleet, or investing in technology, asset finance gives you flexibility, tax efficiency, and the ability to scale with confidence.",
+    ],
+    aboutImage: "/img/asset.jpg",
+    benefitsTitle: "How SAI Finance Secures Asset Finance",
+    benefits: [
+        "We work closely with a wide panel of lenders to find the best financing options.",
+        "We match your business with the right structure, interest rate, and repayment terms.",
+        "We understand your cash flow to recommend suitable financing solutions.",
+        "We compare multiple lender options to ensure you get the most competitive deal.",
+        "We negotiate on your behalf to secure better rates and tailored offers.",
+        "We guide you through the entire process—from application to final settlement.",
+        "We handle the complexities so you can stay focused on running your business.",
+    ],
+    calculators: [
+        {
+            title: "Calculate Your Borrowing Power",
+            description:
+                "Find out how much you can borrow based on your income, expenses, and financial situation.",
+            href: "/calculator/borrowing-power-calculator",
+        },
+        {
+            title: "Calculate Repayment Options",
+            description:
+                "Explore different repayment scenarios and find the loan structure that works best for your budget.",
+            href: "/calculator/loan-repayment-calculator",
+        },
+    ],
+    servicesTitle: "Understanding Your Asset Finance Options",
+    servicesSubtitle:
+        "From deposits to guarantees and government grants - we guide you through every option available.",
+    services: [
+        {
+            title: "Chattel Mortgage ",
+            description:
+                "You own the asset from day one while the lender takes security over it. Ideal for businesses wanting tax benefits and long‑term ownership.",
+            icon: "ph:receipt",
+            iconAlt: "Chattel mortgage",
+        },
+        {
+            title: "Finance Lease",
+            description:
+                " The lender owns the asset and leases it to you for a fixed term, with the option to buy it at the end. Great for managing cash flow and keeping equipment up to date.",
+            icon: "ph:files",
+            iconAlt: "Finance lease",
+        },
+        {
+            title: "Operating Lease",
+            description:
+                "A flexible, off‑balance‑sheet option where you use the asset without the responsibility of ownership. Perfect for equipment that needs regular upgrading.",
+            icon: "ph:wrench",
+            iconAlt: "Operating lease",
+        },
+        {
+            title: "Commercial Hire Purchase ",
+            description:
+                "You hire the asset with the intention to own it at the end of the term. Useful for businesses wanting predictable repayments and ownership certainty.",
+            icon: "ph:check-circle",
+            iconAlt: "Commercial hire purchase",
+        },
+    ],
+    ctaTitle: "Ready to Apply for Your Asset Finance Loan?",
+    ctaSubtitle:
+        "Take the first step towards homeownership today with expert guidance from SAI Finance.",
+    ctaPrimaryText: "Apply Now",
+    ctaSecondaryText: "Book Free Call",
+};
+---
+
+<Layout>
+    <Fragment slot="header">
+        <Header />
+    </Fragment>
+
+    <ServiceLayout {...data} />
+
+    <Fragment slot="footer">
+        <Footer />
+    </Fragment>
+</Layout>

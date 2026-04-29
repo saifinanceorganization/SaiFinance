@@ -1,0 +1,410 @@
+---
+import { Icon } from "astro-icon/components";
+
+const pathname = Astro.url.pathname || "/";
+const normalizePath = (path) => path.replace(/\/+$/, "") || "/";
+const isActive = (path) => {
+    const current = normalizePath(pathname);
+    const target = normalizePath(path);
+    if (target === "/") return current === "/";
+    return current === target || current.startsWith(`${target}/`);
+};
+---
+
+<header class="fixed top-0 inset-x-0 z-50 border-b border-gray-200 bg-white">
+    <div
+        class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 min-[700px]:px-8 md:px-10 lg:px-6"
+    >
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2">
+            <img
+                src="/img/Sai-Finance-Logo.svg"
+                alt="SAI Finance"
+                class="w-[170px] min-[700px]:w-[210px] xl:w-[230px]"
+            />
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden items-center gap-6 xl:flex">
+            <a
+                href="/"
+                class:list={[
+                    "font-Poppins text-[17px] leading-[28.18px] tracking-normal hover:opacity-80 p-2",
+                    isActive("/") ? "text-primary" : "text-[#9CABC3]",
+                    isActive("/") ? "font-bold" : "font-medium",
+                ]}
+            >
+                Home
+            </a>
+
+            <div class="relative group">
+                <a
+                    href="/services"
+                    class:list={[
+                        "flex items-center text-[17px]  leading-[28.18px] tracking-normal hover:text-primary hover:opacity-80 font-Poppins p-2",
+                        isActive("/services")
+                            ? "text-primary"
+                            : "text-[#9CABC3]",
+                        isActive("/services") ? "font-bold" : "font-medium",
+                    ]}
+                >
+                    Services
+                    <Icon
+                        name="ph:caret-down"
+                        size="16"
+                        class="ml-1 transition-transform duration-200 group-hover:rotate-180"
+                    />
+                </a>
+                <div
+                    class="invisible absolute left-0 top-full z-20 mt-3 w-60 rounded-2xl border border-[#E6ECF6] bg-white p-3 opacity-0 shadow-[0_20px_40px_-20px_rgba(15,40,71,0.45)] transition-all duration-200 group-hover:visible group-hover:opacity-100"
+                >
+                    <a
+                        href="/services/home-loan"
+                        class="block rounded-xl px-4 py-3 font-Arial text-[14px] font-semibold text-[#1E2E4A] hover:bg-[#F5F7FB]"
+                    >
+                        Home Loan
+                    </a>
+                    <a
+                        href="/services/investors-loan"
+                        class="block rounded-xl px-4 py-3 font-Arial text-[14px] font-semibold text-[#1E2E4A] hover:bg-[#F5F7FB]"
+                    >
+                        Investors Loan
+                    </a>
+                    <a
+                        href="/services/construction-loan"
+                        class="block rounded-xl px-4 py-3 font-Arial text-[14px] font-semibold text-[#1E2E4A] hover:bg-[#F5F7FB]"
+                    >
+                        Construction Loan
+                    </a>
+                    <a
+                        href="/services/commercial-business-loan"
+                        class="block rounded-xl px-4 py-3 font-Arial text-[14px] font-semibold text-[#1E2E4A] hover:bg-[#F5F7FB]"
+                    >
+                        Commercial & Business Loan
+                    </a>
+                    <a
+                        href="/services/smsf-loan"
+                        class="block rounded-xl px-4 py-3 font-Arial text-[14px] font-semibold text-[#1E2E4A] hover:bg-[#F5F7FB]"
+                    >
+                        SMSF Loan
+                    </a>
+                    <a
+                        href="/services/personal-car-loan"
+                        class="block rounded-xl px-4 py-3 font-Arial text-[14px] font-semibold text-[#1E2E4A] hover:bg-[#F5F7FB]"
+                    >
+                        Personal/Car Loan
+                    </a>
+                    <a
+                        href="/services/asset-finance"
+                        class="block rounded-xl px-4 py-3 font-Arial text-[14px] font-semibold text-[#1E2E4A] hover:bg-[#F5F7FB]"
+                    >
+                       Asset Finance
+                    </a>
+                </div>
+            </div>
+            <div class="relative group">
+                <a
+                    href="/calculator"
+                    class:list={[
+                        "flex items-center text-[17px] leading-[28.18px] tracking-normal hover:text-primary hover:opacity-80 font-Poppins p-2",
+                        isActive("/calculator")
+                            ? "text-primary"
+                            : "text-[#9CABC3]",
+                        isActive("/calculator") ? "font-bold" : "font-medium",
+                    ]}
+                >
+                    Calculators
+                    <Icon
+                        name="ph:caret-down"
+                        size="16"
+                        class="ml-1 transition-transform duration-200 group-hover:rotate-180"
+                    />
+                </a>
+                <div
+                    class="invisible absolute left-0 top-full z-20 mt-3 w-64 rounded-2xl border border-[#E6ECF6] bg-white p-3 opacity-0 shadow-[0_20px_40px_-20px_rgba(15,40,71,0.45)] transition-all duration-200 group-hover:visible group-hover:opacity-100"
+                >
+                    <a
+                        href="/calculator/borrowing-power-calculator"
+                        class="block rounded-xl px-4 py-3 font-Arial text-[14px] font-semibold text-[#1E2E4A] hover:bg-[#F5F7FB]"
+                    >
+                        Borrowing Power Calculator
+                    </a>
+                    <a
+                        href="/calculator/loan-repayment-calculator"
+                        class="block rounded-xl px-4 py-3 font-Arial text-[14px] font-semibold text-[#1E2E4A] hover:bg-[#F5F7FB]"
+                    >
+                        Loan Repayment Calculator
+                    </a>
+                </div>
+            </div>
+            <a
+                href="/blog"
+                class:list={[
+                    "text-[17px] leading-[28.18px] tracking-normal hover:text-primary hover:opacity-80 font-Poppins p-2",
+                    isActive("/blog") ? "text-primary" : "text-[#9CABC3]",
+                    isActive("/blog") ? "font-bold" : "font-medium",
+                ]}>Blog</a
+            >
+            <a
+                href="/contact"
+                class:list={[
+                    "text-[17px] leading-[28.18px] tracking-normal hover:text-primary hover:opacity-80 font-Poppins p-2",
+                    isActive("/contact") ? "text-primary" : "text-[#9CABC3]",
+                    isActive("/contact") ? "font-bold" : "font-medium",
+                ]}>Contact Us</a
+            >
+        </nav>
+
+        <!-- Right Actions -->
+        <div class="flex items-center gap-3">
+            <a
+                href="/contact"
+                class="hidden xl:inline-flex items-center gap-4 rounded-full
+         px-5 py-2.5
+         font-Poppins font-semibold
+         text-[16px] leading-[100%] tracking-normal
+         text-white shadow-sm hover:opacity-90
+         bg-primary"
+            >
+                Get in Touch
+                <span
+                    class="inline-flex h-6 w-6 items-center justify-center
+           rounded-full border border-white/50
+           bg-white text-primary"
+                >
+                    <Icon name="ph:arrow-up-right" size="16" />
+                </span>
+            </a>
+
+            <button
+                class="inline-flex h-10 w-10 items-center justify-center rounded-full text-primary hover:bg-slate-50 xl:hidden"
+                aria-label="Toggle menu"
+                aria-expanded="false"
+                data-menu-toggle
+            >
+                <Icon name="ph:list" size="20" class="menu-open-icon" />
+                <Icon name="ph:x" size="20" class="menu-close-icon hidden" />
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div
+        class="xl:hidden hidden border-t border-gray-100 bg-white"
+        data-mobile-menu
+    >
+        <nav class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-4">
+            <a
+                href="/"
+                class:list={[
+                    "rounded-lg px-3 py-2 font-Poppins text-[16px] leading-[24px]",
+                    isActive("/")
+                        ? "text-primary font-semibold"
+                        : "text-[#9CABC3]",
+                ]}
+            >
+                Home
+            </a>
+
+            <div class="flex flex-col gap-1">
+                <div
+                    class:list={[
+                        "flex items-center justify-between rounded-lg px-3 py-2",
+                        isActive("/services")
+                            ? "text-primary font-semibold"
+                            : "text-[#9CABC3]",
+                    ]}
+                >
+                    <a
+                        href="/services"
+                        class="font-Poppins text-[16px] leading-[24px]"
+                    >
+                        Services
+                    </a>
+                    <button
+                        type="button"
+                        class="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-white/60"
+                        data-submenu-toggle="services"
+                        aria-expanded="false"
+                        aria-label="Toggle Services submenu"
+                    >
+                        <Icon
+                            name="ph:caret-down"
+                            size="16"
+                            class="transition-transform duration-200"
+                            data-submenu-icon="services"
+                        />
+                    </button>
+                </div>
+                <div
+                    class="flex flex-col gap-1 pl-3 hidden"
+                    data-submenu-panel="services"
+                >
+                    <a
+                        href="/services/home-loan"
+                        class="rounded-lg px-3 py-2 font-Arial text-[14px] font-semibold text-[#1E2E4A]"
+                    >
+                        Home Loan
+                    </a>
+                    <a
+                        href="/services/investors-loan"
+                        class="rounded-lg px-3 py-2 font-Arial text-[14px] font-semibold text-[#1E2E4A]"
+                    >
+                        Investors Loan
+                    </a>
+                    <a
+                        href="/services/construction-loan"
+                        class="rounded-lg px-3 py-2 font-Arial text-[14px] font-semibold text-[#1E2E4A]"
+                    >
+                        Construction Loan
+                    </a>
+                    <a
+                        href="/services/commercial-business-loan"
+                        class="rounded-lg px-3 py-2 font-Arial text-[14px] font-semibold text-[#1E2E4A]"
+                    >
+                        Commercial & Business Loan
+                    </a>
+                    <a
+                        href="/services/smsf-loan"
+                        class="rounded-lg px-3 py-2 font-Arial text-[14px] font-semibold text-[#1E2E4A]"
+                    >
+                        SMSF Loan
+                    </a>
+                    <a
+                        href="/services/personal-car-loan"
+                        class="rounded-lg px-3 py-2 font-Arial text-[14px] font-semibold text-[#1E2E4A]"
+                    >
+                        Personal/Car Loan
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <div
+                    class:list={[
+                        "flex items-center justify-between rounded-lg px-3 py-2",
+                        isActive("/calculator")
+                            ? "text-primary font-semibold"
+                            : "text-[#9CABC3]",
+                    ]}
+                >
+                    <a
+                        href="/calculator"
+                        class="font-Poppins text-[16px] leading-[24px]"
+                    >
+                        Calculators
+                    </a>
+                    <button
+                        type="button"
+                        class="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-white/60"
+                        data-submenu-toggle="calculator"
+                        aria-expanded="false"
+                        aria-label="Toggle Calculators submenu"
+                    >
+                        <Icon
+                            name="ph:caret-down"
+                            size="16"
+                            class="transition-transform duration-200"
+                            data-submenu-icon="calculator"
+                        />
+                    </button>
+                </div>
+                <div
+                    class="flex flex-col gap-1 pl-3 hidden"
+                    data-submenu-panel="calculator"
+                >
+                    <a
+                        href="/calculator/borrowing-power-calculator"
+                        class="rounded-lg px-3 py-2 font-Arial text-[14px] font-semibold text-[#1E2E4A]"
+                    >
+                        Borrowing Power Calculator
+                    </a>
+                    <a
+                        href="/calculator/loan-repayment-calculator"
+                        class="rounded-lg px-3 py-2 font-Arial text-[14px] font-semibold text-[#1E2E4A]"
+                    >
+                        Loan Repayment Calculator
+                    </a>
+                </div>
+            </div>
+
+            <a
+                href="/blog"
+                class:list={[
+                    "rounded-lg px-3 py-2 font-Poppins text-[16px] leading-[24px]",
+                    isActive("/blog")
+                        ? "text-primary font-semibold"
+                        : "text-[#9CABC3]",
+                ]}
+            >
+                Blog
+            </a>
+            <a
+                href="/contact"
+                class:list={[
+                    "rounded-lg px-3 py-2 font-Poppins text-[16px] leading-[24px]",
+                    isActive("/contact")
+                        ? "text-primary font-semibold"
+                        : "text-[#9CABC3]",
+                ]}
+            >
+                Contact Us
+            </a>
+            <a
+                href="/contact"
+                class="mt-2 inline-flex items-center justify-center gap-3 rounded-full bg-primary px-5 py-2.5 font-Poppins text-[15px] font-semibold text-white"
+            >
+                Get in Touch
+                <span
+                    class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/50 bg-white text-primary"
+                >
+                    <Icon name="ph:arrow-up-right" size="16" />
+                </span>
+            </a>
+        </nav>
+    </div>
+</header>
+
+<script>
+    const toggleButton = document.querySelector("[data-menu-toggle]");
+    const mobileMenu = document.querySelector("[data-mobile-menu]");
+    const openIcon = document.querySelector(".menu-open-icon");
+    const closeIcon = document.querySelector(".menu-close-icon");
+
+    if (toggleButton && mobileMenu && openIcon && closeIcon) {
+        toggleButton.addEventListener("click", () => {
+            const isOpen = !mobileMenu.classList.contains("hidden");
+            mobileMenu.classList.toggle("hidden", isOpen);
+            toggleButton.setAttribute("aria-expanded", String(!isOpen));
+            openIcon.classList.toggle("hidden", !isOpen);
+            closeIcon.classList.toggle("hidden", isOpen);
+        });
+
+        mobileMenu.addEventListener("click", (event) => {
+            const target = event.target;
+            if (target && target.closest("a")) {
+                mobileMenu.classList.add("hidden");
+                toggleButton.setAttribute("aria-expanded", "false");
+                openIcon.classList.remove("hidden");
+                closeIcon.classList.add("hidden");
+            }
+        });
+    }
+
+    const submenuToggles = document.querySelectorAll("[data-submenu-toggle]");
+    submenuToggles.forEach((toggle) => {
+        const key = toggle.getAttribute("data-submenu-toggle");
+        const panel = document.querySelector(`[data-submenu-panel="${key}"]`);
+        const icon = document.querySelector(`[data-submenu-icon="${key}"]`);
+        if (!panel) return;
+
+        toggle.addEventListener("click", () => {
+            const isOpen = !panel.classList.contains("hidden");
+            panel.classList.toggle("hidden", isOpen);
+            toggle.setAttribute("aria-expanded", String(!isOpen));
+            if (icon) {
+                icon.classList.toggle("rotate-180", !isOpen);
+            }
+        });
+    });
+</script>

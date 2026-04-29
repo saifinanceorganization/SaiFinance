@@ -1,0 +1,98 @@
+---
+import Header from "../../components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import ServiceLayout from "../../components/ServiceLayout.astro";
+
+const data = {
+    breadcrumb: [
+        { label: "Home", href: "/" },
+        { label: "Services", href: "/services" },
+        { label: "Home Loan" },
+    ],
+    heroTitle: "Home Loan",
+    heroSubtitle:
+        "Your journey to owning a home starts with clarity, confidence, and the right lending partner.",
+    heroImage: "/img/services_hero.webp",
+    heroCtaPrimaryText: "Apply for Home Loan",
+    heroCtaSecondaryText: "Book a Free Call",
+    aboutTitle: "Home Buyers",
+    aboutText: [
+        "Buying a home is one of the biggest milestones in life. Whether you are stepping into the market for the first time or upgrading to a home that better suits your family, the process can feel overwhelming.",
+        "At SAI Finance, we make it simpler, clearer, and far less stressful by guiding you through every step - from understanding your borrowing power to securing the right loan structure for your goals.",
+        "Our approach is personal. We take the time to understand your situation, your plans, and what home means for you. Then we match you with lending options that support your long-term financial wellbeing.",
+    ],
+    aboutImage: "/img/service_home.png",
+    benefitsTitle: "How SAI Finance Helps",
+    benefits: [
+        "We find the right loan for you - We compare your goals with thousands of lending options across major banks and specialist lenders.",
+        "We negotiate on your behalf - Our relationships with lenders help us secure sharper rates and tailored offers.",
+        "We handle the paperwork - From application to settlement, we manage the details so you can focus on your home.",
+        "Our service is free - You do not pay us; the lender you choose pays our fee.",
+    ],
+    calculators: [
+        {
+            title: "Calculate Your Borrowing Power",
+            description:
+                "Find out how much you can borrow based on your income, expenses, and financial situation.",
+            href: "/calculator/borrowing-power-calculator",
+        },
+        {
+            title: "Calculate Repayment Options",
+            description:
+                "Explore different repayment scenarios and find the loan structure that works best for your budget.",
+            href: "/calculator/loan-repayment-calculator",
+        },
+    ],
+    servicesTitle: "Understanding Your Home Loan Options",
+    servicesSubtitle:
+        "From deposits to guarantees and government grants - we guide you through every option available.",
+    services: [
+        {
+            title: "First-Home Buyers",
+            description:
+                "Taking the first step into the property market is easier with clear, personalised support. We break down your deposit needs, borrowing capacity, government incentives, and pre‑approval requirements, and manage the process with your agent and solicitor from start to finish.",
+            icon: "ph:house-line",
+            iconAlt: "First Home Buyers",
+        },
+        {
+            title: "How Much Deposit Do You Need?",
+            description:
+                "Your deposit options are more flexible than most people realise. Whether you’re borrowing up to 95%, combining savings, or using a Family Guarantee, we explain the pros, cons, and long‑term impact so you can move forward with confidence.",
+            icon: "ph:piggy-bank",
+            iconAlt: "Deposit planning",
+        },
+        {
+            title: "Family Guarantee",
+            description:
+                "A Family Guarantee can fast‑track your home purchase by using a parent’s equity to lower your LVR, avoid LMI, and increase how much you can borrow. We walk you through the process and make sure the arrangement is secure and fair for everyone.",
+            icon: "ph:hand-heart",
+            iconAlt: "Family support guarantee",
+        },
+        {
+            title: "First Home Owner Grant (FHOG)",
+            description:
+                "What you can access depends on your state.Each state and territory has different eligibility rules and grant amounts. We’ll help you check what applies to you and ensure your application is completed correctly.",
+            icon: "ph:certificate",
+            iconAlt: "First Home Owner Grant",
+        },
+    ],
+    ctaTitle: "Ready to Apply for Your First Home Loan?",
+    ctaSubtitle:
+        "Take the first step towards homeownership today with expert guidance from SAI Finance.",
+    ctaPrimaryText: "Apply Now",
+    ctaSecondaryText: "Book Free Call",
+};
+---
+
+<Layout>
+    <Fragment slot="header">
+        <Header />
+    </Fragment>
+
+    <ServiceLayout {...data} />
+
+    <Fragment slot="footer">
+        <Footer />
+    </Fragment>
+</Layout>

@@ -1,0 +1,101 @@
+---
+import Header from "../../components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import ServiceLayout from "../../components/ServiceLayout.astro";
+
+const data = {
+    breadcrumb: [
+        { label: "Home", href: "/" },
+        { label: "Services", href: "/services" },
+        { label: "Commercial & Business Loan" },
+    ],
+    heroTitle: "Commercial & Business Loan",
+    heroSubtitle:
+        "Finance that helps your business grow, expand, and operate with confidence.",
+    heroImage: "/img/commercial-business-loan.webp",
+    heroImagePosition: "center 15%",
+    heroCtaPrimaryText: "Apply for Commercial & Business Loan",
+    heroCtaSecondaryText: "Book a Free Call",
+    aboutTitle: "Commercial & Business Loans",
+    aboutText: [
+        "Access to the right finance can be the difference between maintaining momentum and missing opportunities.",
+        "Whether you’re purchasing a commercial property, expanding operations, upgrading equipment, or improving cash flow, SAI Finance helps you secure lending that supports your business goals today and into the future.",
+        "We take the time to understand your business model, cash flow, and long‑term plans so we can match you with lenders who genuinely support your growth.",
+    ],
+    aboutImage: "/img/commercial-business.webp",
+    benefitsTitle: "How SAI Finance Supports Your Business",
+    benefits: [
+        "Tailored lending solutions for your industry",
+        "Access to major banks and specialist commercial lenders",
+        "Guidance on documentation, valuations, and risk assessment",
+        "Support with refinancing and restructuring existing debt",
+        "End‑to‑end management from application to settlement",
+        "Your business deserves a finance partner who understands growth - and we’re here to help you move forward with clarity",
+    ],
+    calculators: [
+        {
+            title: "Calculate Your Borrowing Power",
+            description:
+                "Find out how much you can borrow based on your income, expenses, and financial situation.",
+            href: "/calculator/borrowing-power-calculator",
+        },
+        {
+            title: "Calculate Repayment Options",
+            description:
+                "Explore different repayment scenarios and find the loan structure that works best for your budget.",
+            href: "/calculator/loan-repayment-calculator",
+        },
+    ],
+    servicesTitle: "Understanding Your Commercial & Business Loan Options",
+    servicesSubtitle:
+        "From deposits to guarantees and government grants - we guide you through every option available.",
+    services: [
+        {
+            title: "What Commercial & Business Loans Can Be Used For",
+            description:
+                "Commercial and business loans can support everything from buying property or equipment to funding growth, managing cash flow, or even acquiring a business. Each purpose comes with its own lending criteria, risk checks, and documentation. We help you understand what’s required and guide you through the process so your finance aligns with your goals.",
+            icon: "ph:briefcase",
+            iconAlt: "Business loan use cases",
+        },
+        {
+            title: "How Lenders Assess Commercial Borrowing",
+            description:
+                "Lenders look at commercial borrowing through a wider lens than residential loans, assessing the strength of the business as well as the security offered. They review financials, cash flow, industry risk, guarantees, leases, and overall asset position to understand how the loan will be repaid. We help you prepare the right documents and present your application clearly so you’re in the strongest position possible.",
+            icon: "ph:chart-bar",
+            iconAlt: "Commercial borrowing assessment",
+        },
+        {
+            title: "Commercial Property Loans",
+            description:
+                "Whether you’re buying a warehouse, office, retail space, or mixed‑use property, it’s important to understand how lenders look at things like LVRs, lease‑back arrangements, loan structures, and rate options. Each choice affects cash flow, risk, and tax outcomes. We compare specialist commercial lenders to ensure your loan structure genuinely supports your investment strategy.",
+            icon: "ph:buildings",
+            iconAlt: "Commercial property loan",
+        },
+        {
+            title: "Choosing the Right Loan Structure",
+            description:
+                "The best loan structure depends on how your business operates, your cash‑flow cycle, and what you’re trying to achieve. Options range from term loans and lines of credit to equipment finance, commercial property loans, and cash‑flow facilities - each with different repayment styles, securities, and flexibility. We help you compare structures so your finance supports growth without putting pressure on day‑to‑day operations.",
+            icon: "ph:scales",
+            iconAlt: "Loan structure options",
+        },
+    ],
+    ctaTitle: "Ready to Apply for Your First Commercial & Business Loan?",
+    ctaSubtitle:
+        "Take the first step towards homeownership today with expert guidance from SAI Finance.",
+    ctaPrimaryText: "Apply Now",
+    ctaSecondaryText: "Book Free Call",
+};
+---
+
+<Layout>
+    <Fragment slot="header">
+        <Header />
+    </Fragment>
+
+    <ServiceLayout {...data} />
+
+    <Fragment slot="footer">
+        <Footer />
+    </Fragment>
+</Layout>

@@ -1,0 +1,114 @@
+---
+import Header from "../../components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import ServiceLayout from "../../components/ServiceLayout.astro";
+
+const data = {
+    breadcrumb: [
+        { label: "Home", href: "/" },
+        { label: "Services", href: "/services" },
+        { label: "Construction Loan" },
+    ],
+    heroTitle: "Construction Loan",
+    heroSubtitle:
+        "Finance designed for building, renovating, or creating your next home from the ground up.",
+    heroImage: "/img/construction-loan.webp",
+    heroCtaPrimaryText: "Apply for Construction Loan",
+    heroCtaSecondaryText: "Book a Free Call",
+    aboutTitle: "Construction Loans",
+    aboutText: [
+        "Building a home is exciting - but it also comes with more moving parts than a standard home purchase. A construction loan works differently from a traditional mortgage, with staged payments, progress inspections, and specific lender requirements.",
+        " At SAI Finance, we guide you through the entire process so your build stays on track financially and structurally.",
+        "Whether you're planning a custom build, a major renovation, or a knockdown‑rebuild, we help you secure the right loan structure and lender support to bring your plans to life.",
+    ],
+    aboutImage: "/img/construction.webp",
+    benefitsTitle: "How SAI Finance Supports Your Build",
+    benefits: [
+        "Loan comparisons across major banks and specialist lenders",
+        "Guidance on contract types, valuations, and lender requirements",
+        "Support with progress payments and lender communication",
+        "Cash‑flow modelling to help you plan confidently",
+        "Refinancing options once construction is complete",
+        "Our goal is to make your building experience smoother, clearer, and financially secure.",
+    ],
+    calculators: [
+        {
+            title: "Calculate Your Borrowing Power",
+            description:
+                "Find out how much you can borrow based on your income, expenses, and financial situation.",
+            href: "/calculator/borrowing-power-calculator",
+        },
+        {
+            title: "Calculate Repayment Options",
+            description:
+                "Explore different repayment scenarios and find the loan structure that works best for your budget.",
+            href: "/calculator/loan-repayment-calculator",
+        },
+    ],
+    servicesTitle: "Understanding Your Construction Loan Options",
+    servicesSubtitle:
+        "From deposits to guarantees and government grants - we guide you through every option available.",
+    services: [
+        {
+            title: "Who Construction Loans Are For",
+            description:
+                "Construction loans are great if you’re building a new home, doing a major renovation, or planning a knockdown‑rebuild. They also work well for extensions, upgrades, or even dual‑occupancy projects. If your plans involve building in stages or transforming an existing space, this type of loan is designed to support you through the process.",
+            icon: "ph:hammer",
+            iconAlt: "Construction project",
+        },
+        {
+            title: "What Lenders Need to Approve a Construction Loan",
+            description:
+                "Because building comes with more moving parts, lenders want to see things like a fixed‑price contract, council‑approved plans, builder insurance, and a detailed cost breakdown. They’ll also order a valuation based on the proposed works. We help you pull everything together so your application feels smooth and stress‑free.",
+            icon: "ph:file-text",
+            iconAlt: "Loan approval requirements",
+        },
+        {
+            title: "Using Equity for Your Build",
+            description:
+                "If you already own a property, you might be able to use your existing equity to fund part-or even most-of your construction. It’s a smart way to reduce how much cash you need upfront and may even help you avoid LMI. We’ll walk you through your equity position and show you how it can support your build.",
+            icon: "ph:house-line",
+            iconAlt: "Using equity",
+        },
+        {
+            title: "Fixed‑Price vs Cost‑Plus Contracts",
+            description:
+                "Your lender will want to know exactly how your build is priced, and the contract type plays a big role. A fixed‑price contract gives you certainty because the builder commits to a set cost, while a cost‑plus contract can shift as materials or labour change. We help you understand how each option affects your loan approval and your budget.",
+            icon: "ph:scales",
+            iconAlt: "Contract comparison",
+        },
+         {
+            title: "Managing Cash Flow During Construction",
+            description:
+                "Building comes with extra costs like rent, mortgage payments, and progress‑payment interest, so planning ahead makes everything feel easier. Because you only pay interest on the funds drawn, your repayments start small and grow as the build progresses. We help you map out your cash flow so you’re never caught off‑guard.",
+            icon: "ph:calculator",
+            iconAlt: "Construction cash flow",
+        },
+        {
+            title: "Construction Loans for Investors",
+            description:
+                "If you’re building an investment property, lenders will look closely at rental estimates, location, and the long‑term value of the project. A well‑planned build can boost equity, improve rental yield, and open the door to future investments. We help you structure your loan so the numbers stack up and support your broader strategy.",
+            icon: "ph:trend-up",
+            iconAlt: "Investor construction loan",
+        },
+    ],
+    ctaTitle: "Ready to Apply for Your First Investors Loan?",
+    ctaSubtitle:
+        "Take the first step towards homeownership today with expert guidance from SAI Finance.",
+    ctaPrimaryText: "Apply Now",
+    ctaSecondaryText: "Book Free Call",
+};
+---
+
+<Layout>
+    <Fragment slot="header">
+        <Header />
+    </Fragment>
+
+    <ServiceLayout {...data} />
+
+    <Fragment slot="footer">
+        <Footer />
+    </Fragment>
+</Layout>

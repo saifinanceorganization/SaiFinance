@@ -1,0 +1,98 @@
+---
+import Header from "../../components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import ServiceLayout from "../../components/ServiceLayout.astro";
+
+const data = {
+    breadcrumb: [
+        { label: "Home", href: "/" },
+        { label: "Services", href: "/services" },
+        { label: "Personal & Car Loan" },
+    ],
+    heroTitle: "Personal & Car Loan",
+    heroSubtitle:
+        "Simple, flexible finance for the things that matter.",
+    heroImage: "/img/personal-car-loan.webp",
+    heroImagePosition: "center 35%",
+    heroCtaPrimaryText: "Apply for Personal & Car Loan",
+    heroCtaSecondaryText: "Book a Free Call",
+    aboutTitle: "Personal & Car Loans",
+    aboutText: [
+        "Whether you’re buying a new car, consolidating debt, or funding a personal goal, SAI Finance helps you secure a loan that fits your lifestyle and budget. We compare a wide range of lenders to find competitive rates, flexible terms, and fast approvals.",
+    ],
+    aboutImage: "/img/personal-car.webp",
+    benefitsTitle: "Why Choose SAI Finance",
+    benefits: [
+        "Access to a wide panel of personal and car loan lenders",
+        "Fast pre‑approvals and clear guidance",
+        "Support with paperwork and settlement",
+        "Transparent explanations of fees, rates, and loan features",
+        "We make personal finance simple, so you can focus on what matters most",
+    ],
+    calculators: [
+        {
+            title: "Calculate Your Borrowing Power",
+            description:
+                "Find out how much you can borrow based on your income, expenses, and financial situation.",
+            href: "/calculator/borrowing-power-calculator",
+        },
+        {
+            title: "Calculate Repayment Options",
+            description:
+                "Explore different repayment scenarios and find the loan structure that works best for your budget.",
+            href: "/calculator/loan-repayment-calculator",
+        },
+    ],
+    servicesTitle: "Understanding Your Personal & Car Loan Options",
+    servicesSubtitle:
+        "From deposits to guarantees and government grants - we guide you through every option available.",
+    services: [
+        {
+            title: "Car Loans",
+            description:
+                "We can help you finance new or used cars, dealer or private‑sale vehicles, electric and hybrid models, and even motorbikes, boats, or recreational vehicles. You’ll get a clear understanding of repayment options, balloon payments, and the differences between secured and unsecured loans so you can choose what fits your budget and plans.",
+            icon: "ph:car-profile",
+            iconAlt: "Car loan options",
+        },
+        {
+            title: "Personal loans can be used for:",
+            description:
+                "Personal loans can help you consolidate debt, cover travel or life events, manage medical or education costs, fund home improvements, or make larger purchases without dipping into savings. You can choose from fixed or variable rates, different loan terms, and flexible early‑repayment options. We help you compare the choices so your loan fits comfortably with your cash flow.",
+            icon: "ph:wallet",
+            iconAlt: "Personal loan use cases",
+        },
+        {
+            title: "What Lenders Look At",
+            description:
+                "Lenders look at your income stability, credit history, existing debts, and the purpose of the loan to understand how comfortably you can manage repayments. They also consider your overall asset position to gauge financial strength. We help you present a strong application and understand how each factor shapes your borrowing power.",
+            icon: "ph:file-doc",
+            iconAlt: "Lender assessment factors",
+        },
+        {
+            title: "Choosing the Right Personal Loan Structure",
+            description:
+                "The right loan structure depends on how you plan to use the funds, how stable your cash flow is, and whether flexibility or lower overall cost matters more to you. Factors like fixed vs variable rates, loan length, fees, and early‑repayment options can change both your monthly repayments and the total interest you pay. We help you compare these choices so your loan feels comfortable today and still makes sense in the long run.",
+            icon: "ph:scales",
+            iconAlt: "Loan structure comparison",
+        },
+    ],
+    ctaTitle: "Ready to Apply for Your First Personal & Car Loan?",
+    ctaSubtitle:
+        "Take the first step towards homeownership today with expert guidance from SAI Finance.",
+    ctaPrimaryText: "Apply Now",
+    ctaSecondaryText: "Book Free Call",
+};
+---
+
+<Layout>
+    <Fragment slot="header">
+        <Header />
+    </Fragment>
+
+    <ServiceLayout {...data} />
+
+    <Fragment slot="footer">
+        <Footer />
+    </Fragment>
+</Layout>

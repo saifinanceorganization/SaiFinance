@@ -1,0 +1,643 @@
+---
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Servicess from "../components/Services.astro";
+import CtaButton from "../components/CtaButton.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout>
+    <Fragment slot="header">
+        <Header />
+    </Fragment>
+
+    <!-- services hero section 1 -->
+    <section class="relative overflow-hidden bg-[#0f2147] text-white">
+        <div
+            class="absolute inset-0 bg-cover bg-center md:bg-[position:center_35%]"
+            style="background-image: url('/img/services.webp');"
+            aria-hidden="true"
+        >
+        </div>
+        <div
+            class="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,40,71,0.82)_0%,rgba(30,58,95,0.82)_50%,rgba(45,90,143,0.82)_100%)]"
+        >
+        </div>
+
+        <div
+            class="relative mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-24 text-center"
+        >
+            <div
+                class="mx-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 font-Arial text-[12px] leading-[18px] tracking-[0px] text-center text-white sm:text-[14px] sm:leading-[20px]"
+            >
+                <span class="inline-block h-2 w-2 rounded-full bg-emerald-400"
+                ></span>
+                Trusted by 700+ customers
+            </div>
+
+            <h1
+                class="mt-5 font-Arial font-bold text-[32px] leading-[40px] tracking-[0px] text-center sm:text-[42px] sm:leading-[52px] lg:text-[58px] lg:leading-[90px]"
+            >
+                Flexible Mortgage Solutions
+                <span
+                    class="block font-Arial font-bold text-[32px] leading-[40px] tracking-[0px] bg-gradient-to-r from-[#788FBF] to-[#5A72A7] bg-clip-text text-transparent sm:text-[42px] sm:leading-[50px] lg:text-[58px] lg:leading-[65px]"
+                >
+                    Tailored to You
+                </span>
+            </h1>
+
+            <p
+                class="mx-auto mt-4 max-w-2xl font-Arial text-[16px] leading-[26px] tracking-[0px] text-center text-[#E5E7EB] sm:text-[18px] sm:leading-[28px] lg:text-[20px] lg:leading-[32.5px]"
+            >
+                Whether you’re buying your first home, investing, refinancing or
+                growing your business - we structure loans that work for your
+                future.
+            </p>
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                <CtaButton />
+                <!-- <a
+                    href="/services"
+                    class="inline-flex items-center justify-center gap-2
+         rounded-full border border-white/30 bg-white/10
+         px-6 py-2
+         font-Arial font-normal
+         text-[15px] leading-[28px] tracking-[0.5px]
+         text-center text-white
+         hover:bg-white/20"
+                >
+                    Learn More
+                </a> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- services section 2 -->
+    <Servicess />
+
+    <section class="bg-white py-0">
+        <div class="mx-auto max-w-6xl px-6 flex justify-center">
+            <a
+                href="/contact"
+                class="inline-flex items-center justify-center gap-2
+         rounded-full bg-primary
+         px-8 py-3
+         font-Arial font-bold text-[10px]
+         lg:text-[14px] leading-[24px] tracking-[0.5px]
+         text-center text-white"
+            >
+                Get Started with a Free Consultation &#8594;
+            </a>
+        </div>
+    </section>
+
+    <!-- section 3 -->
+    <section class="pt-5 lg:pt-10 pb-10 mt-14 bg-[#f6f7fb]">
+        <div class="mx-auto max-w-6xl px-6 lg:px-6">
+            <div class="mt-5">
+                <h2
+                    class="font-Arial font-bold
+         lg:text-[40px] text-[30px] lg:leading-[48px] leading-[40px] tracking-[0px]
+         text-center text-primary"
+                >
+                    Your Path to
+                    <span
+                        class="font-Arial font-bold
+           lg:text-[40px] text-[30px] lg:leading-[48px] leading-[40px] tracking-[0px]
+           text-center text-[#5A72A7]"
+                    >
+                        Approval
+                    </span>
+                    in 5 Simple Steps
+                </h2>
+
+                <p
+                    class="mt-2
+         font-Arial font-normal
+         lg:text-[16px] text-[14px] leading-[28px] tracking-[0px]
+         text-center
+         text-[#4A5565]"
+                >
+                    Specialised mortgage solutions for every situation
+                </p>
+            </div>
+
+            <div class="relative mt-5 lg:mt-12">
+                <div class="absolute left-12 right-12 top-14 hidden lg:block">
+                </div>
+
+                <div class="grid gap-10 lg:grid-cols-5">
+                    <div class="flex flex-col lg:items-start items-center">
+                        <div class="relative">
+                            <div
+                                class="flex h-28 w-28 items-center justify-center rounded-3xl bg-white shadow-sm"
+                            >
+                                <img
+                                    src="/img/icon_img_8.png"
+                                    alt=""
+                                    class="h-14 w-14"
+                                />
+                            </div>
+                            <img
+                                src="/img/icon_img_12.png"
+                                alt="Process Flow"
+                                class="pointer-events-none absolute left-[100%] top-[45%] hidden w-[340%] max-w-none -translate-y-1/2 lg:block"
+                            />
+                            <span
+                                class="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center justify-center w-[30px] h-[23px] rounded-[5px] border border-[#16161626] bg-[linear-gradient(93.79deg,_rgba(72,86,117,0.2)_2.94%,_rgba(255,255,255,0.2)_95.79%)] p-[9px] font-dm-sans font-medium text-[12px] leading-[24.8px] tracking-normal text-black"
+                            >
+                                01
+                            </span>
+                        </div>
+                        <h3
+                            class="mt-8 font-dm-sans font-semibold text-[20px] leading-[100%] tracking-normal text-[#1C1C1C]"
+                        >
+                            Initial consultation
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-col lg:items-start items-center">
+                        <div class="relative">
+                            <div
+                                class="flex h-28 w-28 items-center justify-center rounded-3xl bg-primary text-white shadow-lg"
+                            >
+                                <img
+                                    src="/img/icon_img_9.png"
+                                    alt=""
+                                    class="w-12 h-12"
+                                />
+                            </div>
+                            <span
+                                class="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center justify-center w-[30px] h-[23px] rounded-[5px] border border-[#16161626] bg-[linear-gradient(93.79deg,_rgba(72,86,117,0.2)_2.94%,_rgba(255,255,255,0.2)_95.79%)] p-[9px] font-dm-sans font-medium text-[12px] leading-[24.8px] tracking-normal text-black"
+                            >
+                                02
+                            </span>
+                        </div>
+                        <h3
+                            class="mt-8 font-dm-sans font-semibold text-[20px] leading-[100%] tracking-normal text-[#1C1C1C]"
+                        >
+                            Present loan options
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-col lg:items-start items-center">
+                        <div class="relative">
+                            <div
+                                class="flex h-28 w-28 items-center justify-center rounded-3xl bg-white shadow-sm"
+                            >
+                                <img
+                                    src="/img/icon_img_10.png"
+                                    alt=""
+                                    class=""
+                                />
+                            </div>
+                            <img
+                                src="/img/icon_img_12.png"
+                                alt="Process Flow"
+                                class="pointer-events-none absolute left-[100%] top-[45%] hidden w-[335%] max-w-none -translate-y-1/2 lg:block"
+                            />
+                            <span
+                                class="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center justify-center w-[30px] h-[23px] rounded-[5px] border border-[#16161626] bg-[linear-gradient(93.79deg,_rgba(72,86,117,0.2)_2.94%,_rgba(255,255,255,0.2)_95.79%)] p-[9px] font-dm-sans font-medium text-[12px] leading-[24.8px] tracking-normal text-black"
+                            >
+                                03
+                            </span>
+                        </div>
+                        <h3
+                            class="mt-8 font-dm-sans font-semibold text-[20px] leading-[100%] tracking-normal text-[#1C1C1C]"
+                        >
+                            Lodge application
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-col lg:items-start items-center">
+                        <div class="relative">
+                            <div
+                                class="flex h-28 w-28 items-center justify-center rounded-3xl bg-primary text-white shadow-lg"
+                            >
+                                <img
+                                    src="/img/icon_img_11.png"
+                                    alt=""
+                                    class="ml-3"
+                                />
+                            </div>
+                            <span
+                                class="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center justify-center w-[30px] h-[23px] rounded-[5px] border border-[#16161626] bg-[linear-gradient(93.79deg,_rgba(72,86,117,0.2)_2.94%,_rgba(255,255,255,0.2)_95.79%)] p-[9px] font-dm-sans font-medium text-[12px] leading-[24.8px] tracking-normal text-black"
+                            >
+                                04
+                            </span>
+                        </div>
+                        <h3
+                            class="mt-8 font-dm-sans font-semibold text-[20px] leading-[100%] tracking-normal text-[#1C1C1C]"
+                        >
+                            Formal approval
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-col lg:items-start items-center">
+                        <div class="relative">
+                            <div
+                                class="flex h-28 w-28 items-center justify-center rounded-3xl bg-white shadow-sm"
+                            >
+                                <img
+                                    src="/img/icon_img_10.png"
+                                    alt=""
+                                    class=""
+                                />
+                            </div>
+                            <span
+                                class="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center justify-center w-[30px] h-[23px] rounded-[5px] border border-[#16161626] bg-[linear-gradient(93.79deg,_rgba(72,86,117,0.2)_2.94%,_rgba(255,255,255,0.2)_95.79%)] p-[9px] font-dm-sans font-medium text-[12px] leading-[24.8px] tracking-normal text-black"
+                            >
+                                05
+                            </span>
+                        </div>
+                        <h3
+                            class="mt-8 font-Poppins text-[18px] font-semibold text-[#0f2147]"
+                        >
+                            Settlement
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mx-auto max-w-6xl px-6 flex justify-center mt-16">
+            <a
+                href="/contact"
+                class="inline-flex items-center justify-center gap-2
+               rounded-full
+               bg-primary
+               px-8 py-3
+               font-[Arial] font-bold
+               text-[10px] lg:text-[14px]
+               leading-[24px] tracking-[0.5px]
+               text-center text-white"
+            >
+                Start Your Application Now &#8594;
+            </a>
+        </div>
+    </section>
+
+    <!-- section 4 -->
+    <section class="">
+        <div
+            class="mx-auto grid max-w-6xl gap-18 px-6 md:px-14 lg:px-6 lg:grid-cols-2 lg:items-center bg-gradient-to-br
+         from-[#F9FAFB]
+         via-[rgba(239,246,255,0.3)]
+         to-[rgba(250,245,255,0.3)] py-12 lg:py-20 rounded-3xl"
+        >
+            <div class="relative">
+                <img
+                    src="/img/service_img_2.png"
+                    alt="Loan Consultation"
+                    class="h-full w-full rounded-3xl object-cover shadow-lg"
+                />
+                <div
+                    class="absolute -right-4 -top-4 rounded-full bg-emerald-500 px-6 py-3 text-white shadow-lg lg:-right-6 lg:-top-6"
+                >
+                    <span
+                        class="inline-flex items-center gap-2 font-Arial font-bold text-[16px]"
+                    >
+                       <img src="/img/service_icon_4.png" class="w-4 h-4"> 90% Success
+                    </span>
+                </div>
+                <div class="mt-10 flex justify-center">
+                    <a
+                        href="/contact"
+                        class="inline-flex items-center justify-center gap-2
+               rounded-full
+               bg-primary
+               px-8 py-3
+               font-[Arial] font-bold
+               text-[10px] lg:text-[14px]
+               leading-[24px] tracking-[0.5px]
+               text-center text-white"
+                    >
+                        Book a Free Consultation &#8594;
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-10 lg:mt-0">
+                <p
+                    class="font-Arial font-normal
+         text-[20px] leading-[30.5px] tracking-[0px]
+         text-[#364153]"
+                >
+                    We guide you through every step of the loan process, from
+                    application to settlement, making sure you secure the best
+                    outcome with minimal stress.
+                </p>
+                <ul class="mt-8 space-y-5">
+                    <li class="flex items-start gap-5">
+                        <span
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-[0px_4px_6px_-4px_#0000001A,0px_10px_15px_-3px_#0000001A]"
+                        >
+                            <svg
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M5 12.5L10 17.5L19 7.5"
+                                    stroke="#0f2147"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                        <span
+                            class="font-Arial font-normal
+         text-[17px] leading-[28px] tracking-[0px]
+         text-[#1E2939] mt-3"
+                        >
+                            Access to Multiple Lenders
+                        </span>
+                    </li>
+                    <li class="flex items-start gap-5">
+                        <span
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-[0px_4px_6px_-4px_#0000001A,0px_10px_15px_-3px_#0000001A]"
+                        >
+                            <svg
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M5 12.5L10 17.5L19 7.5"
+                                    stroke="#0f2147"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                        <span
+                            class="font-Arial font-normal
+         text-[17px] leading-[28px] tracking-[0px]
+         text-[#1E2939] mt-3"
+                        >
+                            Custom Loan Structuring
+                        </span>
+                    </li>
+                    <li class="flex items-start gap-5">
+                        <span
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-[0px_4px_6px_-4px_#0000001A,0px_10px_15px_-3px_#0000001A]"
+                        >
+                            <svg
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M5 12.5L10 17.5L19 7.5"
+                                    stroke="#0f2147"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                        <span
+                            class="font-Arial font-normal
+         text-[17px] leading-[28px] tracking-[0px]
+         text-[#1E2939] mt-3"
+                        >
+                            Dedicated Loan Specialist
+                        </span>
+                    </li>
+                    <li class="flex items-start gap-5">
+                        <span
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-[0px_4px_6px_-4px_#0000001A,0px_10px_15px_-3px_#0000001A]"
+                        >
+                            <svg
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M5 12.5L10 17.5L19 7.5"
+                                    stroke="#0f2147"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                        <span
+                            class="font-Arial font-normal
+         text-[17px] leading-[28px] tracking-[0px]
+         text-[#1E2939] mt-3"
+                        >
+                            Rate Negotiation Expertise
+                        </span>
+                    </li>
+                    <li class="flex items-start gap-5">
+                        <span
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-[0px_4px_6px_-4px_#0000001A,0px_10px_15px_-3px_#0000001A]"
+                        >
+                            <svg
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M5 12.5L10 17.5L19 7.5"
+                                    stroke="#0f2147"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                        <span
+                            class="font-Arial font-normal
+         text-[17px] leading-[28px] tracking-[0px]
+         text-[#1E2939] mt-3"
+                        >
+                            Ongoing Loan Reviews
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 5 -->
+    <section class="bg-white py-12 lg:py-0 py-10">
+        <div class="mx-auto max-w-6xl px-6 md:px-14 lg:px-6">
+            <h2
+                class="text-center font-Arial font-bold text-primary text-[30px] lg:text-[40px] lg:mt-10"
+            >
+                Flexible. Fast. Transparent.
+            </h2>
+
+            <div class="mt-10 grid gap-6 lg:grid-cols-3">
+                <div
+                    class="rounded-2xl border border-[#EEF2F7] bg-white p-6 shadow-[0_8px_10px_-6px_#0000001A,0_20px_25px_-5px_#0000001A]"
+                >
+                    <div
+                        class="flex h-12 w-12 items-center justify-center rounded-xl
+  bg-primary
+  shadow-[0_8px_10px_-6px_#0000001A,0_20px_25px_-5px_#0000001A]
+  text-white"
+                    >
+                        <span class="text-[22px]">
+                            <img
+                                src="/img/service_icon_1.png"
+                                alt="Flexible EMI Options"
+                                class="w-6 h-6"
+                            />
+                        </span>
+                    </div>
+                    <h3
+                        class="mt-5 font-Arial text-[18px] font-semibold text-primary"
+                    >
+                        Flexible EMI Options
+                    </h3>
+                    <p
+                        class="mt-2 font-Arial text-[15px] leading-[25.25px] tracking-[0.4px] text-[#364153]"
+                    >
+                        We offer adjustable EMI plans tailored to suit your
+                        budget and financial timeline.
+                    </p>
+                    <a
+                        href="/services"
+                        class="mt-4 inline-flex items-center gap-2 text-[14px] font-semibold text-primary"
+                    >
+                        Learn more
+                        <span>&#8594;</span>
+                    </a>
+                </div>
+
+                <div
+                    class="rounded-2xl border border-[#EEF2F7] bg-white p-6 shadow-[0_8px_10px_-6px_#0000001A,0_20px_25px_-5px_#0000001A]"
+                >
+                    <div
+                        class="flex h-12 w-12 items-center justify-center rounded-xl
+  bg-primary
+  shadow-[0_8px_10px_-6px_#0000001A,0_20px_25px_-5px_#0000001A]
+  text-white"
+                    >
+                        <span class="text-[20px]">
+                            <img
+                                src="/img/service_icon_2.png"
+                                alt="Flexible EMI Options"
+                                class="w-6 h-6"
+                            /></span
+                        >
+                    </div>
+                    <h3
+                        class="mt-5 font-Arial text-[18px] font-semibold text-primary"
+                    >
+                        Quick & Easy Processing
+                    </h3>
+                    <p
+                        class="mt-2 font-Arial text-[15px] leading-[25.25px] tracking-[0.4px] text-[#364153]"
+                    >
+                        Speedy loan approvals with minimal documentation
+                        hassle-free disbursal.
+                    </p>
+                    <a
+                        href="/services"
+                        class="mt-4 inline-flex items-center gap-2 text-[14px] font-semibold text-primary"
+                    >
+                        Learn more
+                        <span>&#8594;</span>
+                    </a>
+                </div>
+
+                <div
+                    class="rounded-2xl border border-[#EEF2F7] bg-white p-6 shadow-[0_8px_10px_-6px_#0000001A,0_20px_25px_-5px_#0000001A]"
+                >
+                    <div
+                        class="flex h-12 w-12 items-center justify-center rounded-xl
+  bg-primary
+  shadow-[0_8px_10px_-6px_#0000001A,0_20px_25px_-5px_#0000001A]
+  text-white"
+                    >
+                        <span class="text-[20px]">
+                            <img
+                                src="/img/service_icon_3.png"
+                                alt="Flexible EMI Options"
+                                class="w-6 h-6"
+                            /></span
+                        >
+                    </div>
+                    <h3
+                        class="mt-5 font-Arial text-[18px] font-semibold text-[#243B5A]"
+                    >
+                        Transparent
+                    </h3>
+                    <p
+                        class="mt-2 font-Arial text-[15px] leading-[25.25px] tracking-[0.4px] text-[#364153]"
+                    >
+                        We build trust through clarity-open processes, honest
+                        communication, and no hidden terms.
+                    </p>
+                    <a
+                        href="/services"
+                        class="mt-4 inline-flex items-center gap-2 text-[14px] font-semibold text-primary"
+                    >
+                        Learn more
+                        <span>&#8594;</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-10 flex justify-center">
+                <a
+                    href="/calculator/borrowing-power-calculator"
+                    class="inline-flex items-center gap-2 rounded-full border border-[#D2D8E3] bg-white px-6 py-2 text-[14px] font-semibold text-[#243B5A] shadow-sm"
+                >
+                    Calculate Your Borrowing Power
+                    <span>&#8594;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 6 -->
+    <section class="bg-white pb-12 lg:py-20">
+        <div class="mx-auto max-w-6xl px-6 md:px-14 lg:px-6">
+            <div
+                class="rounded-4xl bg-primary px-6 py-10 text-center text-white shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] sm:px-10 sm:py-12 lg:px-16 lg:py-14"
+            >
+                <h2
+                    class="font-Arial text-[26px] font-bold sm:text-[32px] lg:text-[36px]"
+                >
+                    Ready to Get Started?
+                </h2>
+                <p
+                    class="mx-auto mt-3 max-w-2xl text-[14px] leading-[24px] text-white/80 sm:text-[16px] sm:leading-[26px]"
+                >
+                    Book a free strategy call with our mortgage specialists and
+                    discover how we can help you achieve your property goals.
+                </p>
+
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <a
+                        href="/contact"
+                        class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-[14px] font-semibold text-[#1E3A6F] sm:text-[15px] w-[300px]"
+                    >
+                        Book Free Strategy Call &#8594;
+                    </a>
+                    <a
+                        href="calculator/borrowing-power-calculator"
+                        class="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-[14px] font-semibold text-white sm:text-[15px] w-[300px]"
+                    >
+                        Calculate your borrowing power
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <Fragment slot="footer">
+        <Footer />
+    </Fragment>
+</Layout>

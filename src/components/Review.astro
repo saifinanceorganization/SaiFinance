@@ -1,0 +1,274 @@
+﻿---
+const testimonials = [
+    {
+        name: "Dahly Padillo",
+        avatar: "/img/Dahly.png",
+        meta: "5 reviews | 0 photos",
+        date: "28 weeks ago",
+        rating: 5,
+        quote: "Four years ago I consulted Keyur regarding our loan application. He has provided advise and insight on how we can prepare and be ready for when the right time comes. 4 years after, I reached out to Keyur again to explore our options and he has been an absolute legend in guiding us to achieve our goals. Communication is excellent and he would bend forward and back to schedule our meeting with our work schedules. No questions are silly, prompt responses, clear insights and advise provided and he is very honest and upfront, this made our loan application smooth and minimal stress! Thank you Keyur! Andrew and I are forever grateful for you in helping us secure our first home!",
+    },
+    {
+        name: "Jay Arnold Balanay",
+        meta: "2 reviews | 0 photos",
+        date: "49 weeks ago",
+        rating: 5,
+        quote: "I recently purchased my second home with the help of Keyur( KB), and I couldn't be happier with the experience! From start to finish, they made the process smooth, stress-free, and incredibly efficient. Their expertise in navigating loan options, securing the best rates, and handling all the paperwork made a huge difference.\n\nWhat stood out the most was their dedication, clear communication, and willingness to go the extra mile to ensure everything went smoothly. If you're looking for a knowledgeable and trustworthy mortgage broker, I highly recommend- Keyur Bandhara (KB)-I wouldn't go anywhere else!",
+    },{
+        name: "Melissa Barnett",
+        meta: "1 review | 0 photos",
+        date: "50 weeks ago",
+        rating: 5,
+        quote: "My Husband and I just went through Keyur Bandhara for our new land finance and we found him to be very helpful, friendly and thoughtful. We had an amazing experience working with him, we would definitely recommend him",
+    },
+    {
+        name: "Cory Ragobert",
+        meta: "2 reviews | 0 photos",
+        date: "6 Mar 2025",
+        rating: 5,
+        quote: "We recently had the pleasure of working with KB to secure our home loan for our dream house, and we can't speak highly enough of his outstanding service!.\n\nKB went above and beyond to ensure that our loan application process was seamless and stress-free. His super-friendly demeanor, prompt communication (even on holidays!), and flexibility to meet at a time and location that suited us were truly impressive.\n\nKB's expertise and knowledge of the loan process were evident throughout our interactions. He took the time to explain everything clearly, addressed all our concerns, and made sure we understood each step of the way.",
+    },
+    {
+        name: "Dominic Ong",
+        avatar: "/img/Dominic-Ong.png",
+        meta: "Local Guide | 23 reviews | 70 photos",
+        date: "11 Nov 2024",
+        rating: 5,
+        quote: "From our initial meeting to settlement, KB's communication, engagement, and self-service portal made the experience so easy to follow and understand.\n\nHis knowledge in mortgages and understanding of credit processing was key to a smooth purchase. I would recommend KB to anyone who is purchasing locally in WA, or across state borders.\n\nI have now completed 2 new home purchases and 1 refinance with KB within a span of less than 2 years, and he has made the experience super easy.",
+    },
+    {
+        name: "Lance Dionisio",
+        avatar: "/img/Lance.png",
+        meta: "8 reviews | 3 photos",
+        date: "2 May 2024",
+        rating: 5,
+        quote: "KB like most people here have been recommended to us by a close friend. Me and wife find KB’s services to be extremely helpful. He has shown us dedication and commitment which enabled us to secure our goals. We have now recommended his services to our entire family. He is truly someone who you can rely on and is someone who will see your dreams come truly. We are very thankful and would highly recommend him to anyone in a heartbeat.",
+    },
+    {
+        name: "Sumit Sharma",
+        meta: "3 reviews | 0 photos",
+        date: "6 Mar 2024",
+        rating: 5,
+        quote: "My Wife and I recently bought my first home with the help of Keyur at Sai Finance and couldn’t be happier with the whole process! He made what would have been a very stressful experience smooth. Keyur has been very accommodating with all our questions and explain everything the way we can easily understand.",
+    },
+];
+---
+
+<section class="mx-auto max-w-6xl px-6 py-16 md:px-14" data-review-slider>
+    <div class="text-center">
+        <span
+            class="mx-auto inline-flex items-center justify-center
+         gap-2 rounded-full
+         border border-[#e5e7eb]
+         px-4 py-1
+         font-Poppins font-medium
+         text-[16px] leading-[30px]
+         tracking-normal
+         text-center capitalize
+         text-[#8A99B6]"
+        >
+            <img src="/img/flower.png" alt="" />
+            Testimonial
+            <img src="/img/flower.png" alt="" />
+        </span>
+
+        <h2
+            class="mx-auto mt-4 max-w-[620px] font-Poppins text-[28px] font-semibold leading-[36px] text-primary lg:text-[40px] lg:leading-[50px]"
+        >
+            Reviews from our customers
+        </h2>
+
+        <div class="mx-auto mt-8 max-w-6xl" data-testimonial-slider>
+            {
+                testimonials.map((item, index) => {
+                    const initials = item.name
+                        .split(" ")
+                        .filter(Boolean)
+                        .slice(0, 2)
+                        .map((part) => part[0])
+                        .join("")
+                        .toUpperCase();
+
+                    return (
+                        <article
+                            data-testimonial-slide
+                            class:list={[
+                                "flex flex-col rounded-[24px] border border-[#DFE8F4] bg-[#DFE2E7] p-5 shadow-[0_20px_55px_-40px_rgba(15,40,71,0.45)] transition-all duration-300 lg:p-9 md:h-[530px]",
+                                index === 0 ? "block" : "hidden",
+                            ]}
+                        >
+                            <div class="flex items-center justify-between gap-3">
+                                <div class="inline-flex items-center gap-3 rounded-full px-3 py-2">
+                                    {
+                                        item.avatar ? (
+                                            <img
+                                                src={item.avatar}
+                                                alt={item.name}
+                                                class="h-15 w-15 rounded-full object-cover ring-2 ring-white/90"
+                                                loading="lazy"
+                                            />
+                                        ) : (
+                                            <span
+                                                class="inline-flex h-15 w-15 items-center justify-center rounded-full bg-[#E8EFFA] font-Poppins text-[13px] font-semibold text-[#102245]"
+                                                aria-hidden="true"
+                                            >
+                                                {initials}
+                                            </span>
+                                        )
+                                    }
+                                </div>
+                                <div
+                                    class="flex items-center gap-1 text-[20px] text-[#F59E0B]"
+                                    aria-label={`Rated ${item.rating} out of 5`}
+                                >
+                                    {Array.from({
+                                        length: item.rating,
+                                    }).map(() => (
+                                        <span aria-hidden="true">&#9733;</span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div class="mt-4 flex-1 overflow-y-auto pr-1 text-left">
+                                <p class="whitespace-pre-line font-Arial text-[16px] leading-[28px] text-[#213454] lg:text-[17px] lg:leading-[30px]">
+                                    {item.quote}
+                                </p>
+                            </div>
+
+
+                            <div class="mt-5 flex items-center justify-end border-t border-[#ECF1F8] pt-5">
+                                <p class="text-right font-Poppins text-[18px] font-semibold text-[#102245]">
+                                    {item.name}
+                                </p>
+                            </div>
+                        </article>
+                    );
+                })
+            }
+        </div>
+
+        <div class="mx-auto mt-6 flex max-w-6xl items-center justify-between gap-4">
+            <div class="flex items-center gap-2" data-testimonial-dots>
+                {
+                    testimonials.map((_, index) => (
+                        <button
+                            type="button"
+                            data-testimonial-dot
+                            data-index={index}
+                            class:list={[
+                                "h-2.5 rounded-full transition-all",
+                                index === 0
+                                    ? "w-8 bg-primary"
+                                    : "w-2.5 bg-[#C4D3E9] hover:bg-[#8FA7CC]",
+                            ]}
+                            aria-label={`Show testimonial ${index + 1}`}
+                        />
+                    ))
+                }
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button
+                    type="button"
+                    data-testimonial-prev
+                    class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#CFD8E9] text-primary transition-all hover:-translate-y-0.5 hover:bg-[#EEF3FB]"
+                    aria-label="Previous testimonial"
+                >
+                    &#8592;
+                </button>
+                <button
+                    type="button"
+                    data-testimonial-next
+                    class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#CFD8E9] text-primary transition-all hover:-translate-y-0.5 hover:bg-[#EEF3FB]"
+                    aria-label="Next testimonial"
+                >
+                    &#8594;
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const reviewRoot = document.querySelector("[data-review-slider]");
+
+    if (reviewRoot) {
+        const slides = Array.from(
+            reviewRoot.querySelectorAll("[data-testimonial-slide]"),
+        );
+        const dots = Array.from(
+            reviewRoot.querySelectorAll("[data-testimonial-dot]"),
+        );
+        const prevBtn = reviewRoot.querySelector("[data-testimonial-prev]");
+        const nextBtn = reviewRoot.querySelector("[data-testimonial-next]");
+
+        if (slides.length > 0) {
+            let currentIndex = 0;
+            let autoplayId;
+
+            const showSlide = (index) => {
+                if (index < 0) {
+                    currentIndex = slides.length - 1;
+                } else if (index >= slides.length) {
+                    currentIndex = 0;
+                } else {
+                    currentIndex = index;
+                }
+
+                slides.forEach((slide, slideIndex) => {
+                    const isActive = slideIndex === currentIndex;
+                    slide.classList.toggle("block", isActive);
+                    slide.classList.toggle("hidden", !isActive);
+                    slide.setAttribute("aria-hidden", String(!isActive));
+                });
+
+                dots.forEach((dot, dotIndex) => {
+                    const isActive = dotIndex === currentIndex;
+                    dot.classList.toggle("w-8", isActive);
+                    dot.classList.toggle("bg-primary", isActive);
+                    dot.classList.toggle("w-2.5", !isActive);
+                    dot.classList.toggle("bg-[#C4D3E9]", !isActive);
+                    dot.classList.toggle("hover:bg-[#8FA7CC]", !isActive);
+                });
+            };
+
+            const nextSlide = () => showSlide(currentIndex + 1);
+            const prevSlide = () => showSlide(currentIndex - 1);
+
+            const stopAutoplay = () => {
+                if (autoplayId) {
+                    window.clearInterval(autoplayId);
+                }
+            };
+
+            const startAutoplay = () => {
+                stopAutoplay();
+                autoplayId = window.setInterval(nextSlide, 4500);
+            };
+
+            prevBtn?.addEventListener("click", () => {
+                prevSlide();
+                startAutoplay();
+            });
+
+            nextBtn?.addEventListener("click", () => {
+                nextSlide();
+                startAutoplay();
+            });
+
+            dots.forEach((dot, dotIndex) => {
+                dot.addEventListener("click", () => {
+                    showSlide(dotIndex);
+                    startAutoplay();
+                });
+            });
+
+            reviewRoot.addEventListener("mouseenter", stopAutoplay);
+            reviewRoot.addEventListener("mouseleave", startAutoplay);
+
+            showSlide(0);
+            startAutoplay();
+        }
+    }
+</script>
+

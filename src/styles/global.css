@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #14254a;
+  --color-text: #0f172a;
+  --color-secondary: #5A72A7;
+
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: "Epilogue", "Poppins", "Inter", "Space Grotesk", "DM Sans","Arial", sans-serif;
+  color: var(--color-text);
+  overflow-y: scroll;
+}
+ 
+
+/* .text-primary {
+  color: var(--color-primary);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+} */
+
+@layer utilities {
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+  .font-epilogue {
+    font-family: "Epilogue", sans-serif;
+  }
+  .font-Poppins {
+    font-family: "Poppins", sans-serif;
+  }
+  .font-Inter {
+    font-family: "Inter", sans-serif;
+  }
+  .font-space-grotesk {
+    font-family: "Space Grotesk", sans-serif;
+  }
+  .font-dm-sans {
+    font-family: "DM Sans", sans-serif;
+  }
+  .font-Arial {
+    font-family: "Arial", sans-serif;
+  }
+
+}
+
+.VisiCalcClass {
+  width: 100%;
+  min-height: 1200px;
+  border: 0;
+}

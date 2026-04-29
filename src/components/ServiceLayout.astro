@@ -1,0 +1,537 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface ServiceCard {
+    title: string;
+    description: string;
+    icon?: string;
+    iconAlt?: string;
+}
+
+export interface CalculatorCard {
+    title: string;
+    description: string;
+    href?: string;
+}
+
+export interface DetailSection {
+    title: string;
+    subtitle?: string;
+    paragraphs?: string[];
+    points?: string[];
+}
+
+export interface BreadcrumbItem {
+    label: string;
+    href?: string;
+}
+
+export interface Props {
+    breadcrumb?: Array<string | BreadcrumbItem>;
+    heroTitle: string;
+    heroSubtitle: string;
+    heroImage: string;
+    heroImagePosition?: string;
+    heroCtaPrimaryText: string;
+    heroCtaPrimaryHref?: string;
+    heroCtaSecondaryText?: string;
+    heroCtaSecondaryHref?: string;
+    aboutTitle: string;
+    aboutText: string[];
+    detailSections?: DetailSection[];
+    aboutImage: string;
+    benefitsTitle?: string;
+    benefits: string[];
+    calculators: CalculatorCard[];
+    servicesTitle: string;
+    servicesSubtitle?: string;
+    services: ServiceCard[];
+    servicesCtaTitle?: string;
+    servicesCtaSubtitle?: string;
+    servicesCtaPrimaryText?: string;
+    servicesCtaPrimaryHref?: string;
+    ctaTitle: string;
+    ctaSubtitle?: string;
+    ctaPrimaryText: string;
+    ctaPrimaryHref?: string;
+    ctaSecondaryText?: string;
+    ctaSecondaryHref?: string;
+}
+
+const {
+    breadcrumb = [
+        { label: "Home", href: "/" },
+        { label: "Services", href: "/services" },
+        { label: "Home Loan" },
+    ],
+    heroTitle,
+    heroSubtitle,
+    heroImage,
+    heroImagePosition = "center",
+    heroCtaPrimaryText,
+    heroCtaPrimaryHref = "/contact",
+    heroCtaSecondaryText,
+    heroCtaSecondaryHref = "/contact",
+    aboutTitle,
+    aboutText,
+    detailSections = [],
+    aboutImage,
+    benefitsTitle = "How SAI Finance Helps",
+    benefits,
+    calculators,
+    servicesTitle,
+    servicesSubtitle,
+    services,
+    servicesCtaTitle = "Ready to explore your loan options?",
+    servicesCtaSubtitle = "Our mortgage specialists are here to help you find the perfect loan solution",
+    servicesCtaPrimaryText = "Get Expert Advice Today",
+    servicesCtaPrimaryHref = "/contact",
+    ctaTitle,
+    ctaSubtitle,
+    ctaPrimaryText,
+    ctaPrimaryHref = "/contact",
+    ctaSecondaryText,
+    ctaSecondaryHref = "/contact",
+} = Astro.props;
+
+const normalizedBreadcrumb = breadcrumb.map((item) =>
+    typeof item === "string" ? { label: item } : item
+);
+---
+
+<!-- Hero -->
+<section class="relative overflow-hidden bg-[#0f2147] text-white">
+    <div
+        class="absolute inset-0 bg-cover"
+        style={`background-image: url(${heroImage}); background-position: ${heroImagePosition};`}
+        aria-hidden="true"
+    >
+    </div>
+    <div
+        class="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,40,71,0.78)_0%,rgba(30,58,95,0.78)_50%,rgba(45,90,143,0.78)_100%)]"
+    >
+    </div>
+
+    <div class="relative mx-auto max-w-6xl px-6 pt-8 md:px-14 lg:px-6">
+        <nav
+            aria-label="Breadcrumb"
+            class="flex items-center gap-3 font-Arial text-[14px] leading-[20px] text-white/80"
+        >
+            {
+                normalizedBreadcrumb.map((item, index) => (
+                    <>
+                        {index > 0 && <span class="text-white/50">&#62;</span>}
+                        {
+                            item.href && index < normalizedBreadcrumb.length - 1 ? (
+                                <a
+                                    href={item.href}
+                                    class="transition-colors hover:text-white"
+                                >
+                                    {item.label}
+                                </a>
+                            ) : (
+                                <span
+                                    aria-current={index === normalizedBreadcrumb.length - 1
+                                        ? "page"
+                                        : undefined}
+                                    class={index === normalizedBreadcrumb.length - 1
+                                        ? "text-white"
+                                        : undefined}
+                                >
+                                    {item.label}
+                                </span>
+                            )
+                        }
+                    </>
+                ))
+            }
+        </nav>
+    </div>
+
+    <div
+        class="relative mx-auto flex max-w-6xl flex-col items-center px-6 md:px-14 lg:px-6 pb-16 pt-10 text-center lg:pb-24 lg:pt-14"
+    >
+        <div
+            class="mx-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 font-Arial text-[12px] leading-[18px] tracking-[0px] text-center text-white sm:text-[14px] sm:leading-[20px]"
+        >
+            <span class="inline-block h-2 w-2 rounded-full bg-emerald-400"
+            ></span>
+            Trusted by 700+ customers
+        </div>
+
+        <h1
+            class="mt-5 font-Arial font-bold text-[32px] leading-[40px] tracking-[0px] text-center sm:text-[42px] sm:leading-[52px] lg:text-[58px] lg:leading-[90px]"
+        >
+            {heroTitle}
+        </h1>
+        <p
+            class="mx-auto max-w-2xl font-Arial text-[16px] leading-[26px] tracking-[0px] text-center text-[#E5E7EB] sm:text-[18px] sm:leading-[28px] lg:text-[20px] lg:leading-[32.5px]"
+        >
+            {heroSubtitle}
+        </p>
+
+        <div class="mt-7 flex flex-wrap items-center justify-center gap-4">
+            <a
+                href={heroCtaPrimaryHref}
+                class="inline-flex items-center justify-center gap-2
+  rounded-full bg-white pl-6 pr-3 py-2
+  font-Poppins font-semibold
+  text-[15px] leading-[100%] tracking-normal
+  text-[#1E2E4A]"
+            >
+                {heroCtaPrimaryText}
+                <span class="text-white bg-primary rounded-full p-2"
+                    >&#8594;</span
+                >
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- About + Calculators -->
+<section class="bg-white py-12 lg:py-20">
+    <div class="mx-auto max-w-7xl px-6 md:px-14 lg:px-6">
+        <div class="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-start">
+            <div class="min-w-0">
+                <h2
+                    class="font-Arial font-bold
+  lg:text-[40px] text-[30px] leading-[55.03px]
+  tracking-normal
+  text-[#1E3A5F]"
+                >
+                    {aboutTitle}
+                </h2>
+                <div
+                    class="mt-6 space-y-6
+  font-Arial font-normal
+  text-[20px] leading-[33px]
+  tracking-normal
+  text-[#364153]"
+                >
+                    {aboutText.map((para) => <p>{para}</p>)}
+                </div>
+
+                <div class="mt-10 max-w-[860px]">
+                    <h3
+                        class="font-Arial font-bold
+  text-[30px] leading-[40px]
+  lg:text-[36px] lg:leading-[46px]
+  tracking-normal
+  text-[#1E3A5F]"
+                    >
+                        {benefitsTitle}
+                    </h3>
+                    <ul
+                        class="mt-5 space-y-5 font-Arial text-[#2F3B4F]"
+                    >
+                        {
+                            benefits.map((item) => (
+                                <li class="flex items-start gap-3">
+                                    <span
+                                        class="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#1E3A5F] text-white shadow-[0_6px_16px_-8px_rgba(30,58,95,0.8)]"
+                                        aria-hidden="true"
+                                    >
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="h-3.5 w-3.5"
+                                        >
+                                            <path d="M20 6L9 17l-5-5" />
+                                        </svg>
+                                    </span>
+                                    <span class="font-Arial font-normal text-[17px] leading-[30px] lg:text-[20px] lg:leading-[34px] tracking-normal text-[#1E2939]">
+                                        {item}
+                                    </span>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="min-w-0">
+                <div
+                    class="overflow-hidden rounded-[18px]"
+                >
+                    <div class="relative h-[490px] w-full">
+                        <!-- Image -->
+                        <img
+                            src={aboutImage}
+                            alt={aboutTitle}
+                            class="absolute inset-0 h-full w-full object-cover"
+                        />
+
+                        <!-- Gradient Overlay -->
+                        <!-- <div
+                            class="absolute inset-0 z-10
+      bg-[linear-gradient(223.9deg,rgba(23,40,77,0.98)_5.93%,rgba(90,114,167,0.22)_98.8%)]"
+                        >
+                        </div> -->
+                    </div>
+                </div>
+
+                <div class="mt-14 rounded-[16px] bg-[#EEF2F7] px-5 py-10">
+                    <h4
+                        class="text-center font-Arial text-[28px] font-bold leading-[40px] text-[#1E3A5F]"
+                    >
+                        Calculators
+                    </h4>
+                    <p
+                        class="mx-auto mt-2 max-w-[380px] text-center font-Arial text-[16px] leading-[22px] text-[#364153]"
+                    >
+                        Use our tools to plan your home loan journey and
+                        understand your options.
+                    </p>
+                    <div class="mt-5 grid gap-4 sm:grid-cols-2">
+                        {
+                            calculators.map((item) => {
+                                const CardTag = item.href ? "a" : "div";
+                                const cardProps = item.href
+                                    ? { href: item.href }
+                                    : {};
+                                return (
+                                    <CardTag
+                                        {...cardProps}
+                                        class="block rounded-[14px] bg-white p-4 shadow-[0px_1.21px_2.42px_-1.21px_rgba(0,0,0,0.10),0px_2.42px_3.63px_-0.61px_rgba(0,0,0,0.10)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-[0px_10px_22px_-12px_rgba(15,40,71,0.35)]"
+                                    >
+                                        <div class="flex items-start gap-3">
+                                            <span
+                                                class="mt-0.5 inline-flex h-6 w-8 items-center justify-center rounded-[5px] bg-[#1E3A5F] p-1 text-white shadow-[0_6px_16px_-8px_rgba(30,58,95,0.8)]"
+                                                aria-hidden="true"
+                                            >
+                                                <svg
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="h-4 w-4"
+                                                >
+                                                    <path d="M6 6h12" />
+                                                    <path d="M6 12h12" />
+                                                    <path d="M6 18h8" />
+                                                </svg>
+                                            </span>
+                                            <div>
+                                                <p class="font-Arial font-bold text-[16px] leading-[21px] tracking-normal text-[#1E3A5F]">
+                                                    {item.title}
+                                                </p>
+                                                <p class="mt-1 font-Arial font-normal text-[10px] leading-[16px] tracking-normal text-[#364153]">
+                                                    {item.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </CardTag>
+                                );
+                            })
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{
+    detailSections.length > 0 ? (
+        <section class="bg-white pb-10 lg:pb-16">
+            <div class="mx-auto max-w-6xl px-6 md:px-14 lg:px-6">
+                <div class="rounded-[20px] bg-[#F6F8FC] px-6 py-8 lg:px-10 lg:py-10">
+                    <div class="space-y-10 lg:space-y-12">
+                        {
+                            detailSections.map((section) => (
+                                <article>
+                                    <h3 class="font-Arial font-bold text-[30px] leading-[44px] tracking-normal text-[#1E3A5F]">
+                                        {section.title}
+                                    </h3>
+                                    {
+                                        section.subtitle ? (
+                                            <p class="mt-2 font-Arial font-semibold text-[20px] leading-[32px] text-[#364153]">
+                                                {section.subtitle}
+                                            </p>
+                                        ) : null
+                                    }
+                                    {
+                                        section.paragraphs?.map((paragraph) => (
+                                            <p class="mt-4 font-Arial font-normal text-[20px] leading-[33px] tracking-normal text-[#364153]">
+                                                {paragraph}
+                                            </p>
+                                        ))
+                                    }
+                                    {
+                                        section.points && section.points.length > 0 ? (
+                                            <ul class="mt-4 space-y-4 font-Arial text-[16px] leading-[24px] text-[#2F3B4F]">
+                                                {
+                                                    section.points.map((point) => (
+                                                        <li class="flex items-start gap-4">
+                                                            <span
+                                                                class="mt-0.5 flex lg:h-8 lg:w-8 h-6 w-6 items-center justify-center rounded-full bg-[#1E3A5F] text-white shadow-[0_6px_16px_-8px_rgba(30,58,95,0.8)]"
+                                                                aria-hidden="true"
+                                                            >
+                                                                <svg
+                                                                    viewBox="0 0 24 24"
+                                                                    fill="none"
+                                                                    stroke="currentColor"
+                                                                    stroke-width="2.5"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    class="lg:h-4 lg:w-4 h-3 w-3"
+                                                                >
+                                                                    <path d="M20 6L9 17l-5-5" />
+                                                                </svg>
+                                                            </span>
+                                                            <span class="font-Arial font-normal text-[16px] leading-[26px] lg:text-[20px] lg:leading-[35px] tracking-normal text-[#1E2939]">
+                                                                {point}
+                                                            </span>
+                                                        </li>
+                                                    ))
+                                                }
+                                            </ul>
+                                        ) : null
+                                    }
+                                </article>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    ) : null
+}
+
+<!-- Services -->
+<section class="bg-[#F6F8FC] py-12 lg:py-12">
+    <div class="mx-auto max-w-6xl px-6 md:px-14 lg:px-6">
+        <div class="text-center">
+            <h2
+                class="font-Arial text-[30px] font-bold text-[#1E2E4A] lg:text-[40px] lg:leading-[48px]"
+            >
+                {servicesTitle}
+            </h2>
+            {
+                servicesSubtitle ? (
+                    <p class="mx-auto mt-3 max-w-2xl font-Arial text-[15px] leading-[24px] text-[#6B7A93]">
+                        {servicesSubtitle}
+                    </p>
+                ) : null
+            }
+        </div>
+
+        <div class="mt-8 grid gap-4 lg:grid-cols-2 sm:gap-5">
+            {
+                services.map((item) => (
+                    <div class="rounded-[16px] bg-white p-4 sm:p-5 lg:p-6 shadow-[0_18px_40px_-28px_rgba(15,40,71,0.5)] ring-1 ring-black/5">
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <span
+                                class="mt-0.5 sm:mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary text-white shadow-[0_8px_10px_-6px_#0000001A,0_20px_25px_-5px_#0000001A] lg:h-12 lg:w-12 lg:rounded-xl"
+                            >
+                                {item.icon ? (
+                                    item.icon.startsWith("/") ? (
+                                        <img
+                                            src={item.icon}
+                                            alt={item.iconAlt ?? item.title}
+                                            class="h-4 w-4 sm:h-5 sm:w-5"
+                                            loading="lazy"
+                                        />
+                                    ) : (
+                                        <Icon
+                                            name={item.icon}
+                                            class="h-4 w-4 sm:h-5 sm:w-5"
+                                            aria-hidden="true"
+                                        />
+                                    )
+                                ) : (
+                                    <span
+                                        class="block h-2.5 w-2.5 rounded-full bg-white/80"
+                                        aria-hidden="true"
+                                    />
+                                )}
+                            </span>
+                            <div class="min-w-0">
+                                <h3 class="font-Arial font-bold text-[16px] leading-[24px] tracking-normal text-[#1E3A5F] sm:text-[18px] sm:leading-[30px]">
+                                    {item.title}
+                                </h3>
+                                <p class="mt-1.5 text-[13px] leading-[20px] text-[#6B7A93] sm:mt-2 sm:leading-[22px]">
+                                    {item.description}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+        <div class="mt-12 text-center">
+            <h3
+                class="font-Arial lg:text-[20px] text-[14px] leading-[34px] font-bold text-center text-[#14254A]"
+            >
+                {servicesCtaTitle}
+            </h3>
+            <div class="mt-4 flex items-center justify-center">
+                <a
+                    href={servicesCtaPrimaryHref}
+                    class="inline-flex items-center justify-center gap-2 rounded-full
+        bg-primary
+        px-8 py-3 font-Poppins text-[14px] leading-[27.5px] font-semibold
+        text-white text-center
+        shadow-[0_10px_24px_-12px_rgba(30,46,74,0.9)]"
+                >
+                    {servicesCtaPrimaryText}
+                    <span class="text-[16px]" aria-hidden="true">&#8594;</span>
+                </a>
+            </div>
+            {
+                servicesCtaSubtitle ? (
+                    <p class="mx-auto mt-5 max-w-2xl font-Arial lg:text-[15px] text-[13px] leading-[22px] font-normal text-center text-[#364153]">
+                        {servicesCtaSubtitle}
+                    </p>
+                ) : null
+            }
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-white py-12 lg:py-20">
+    <div class="mx-auto max-w-6xl px-6 md:px-14 lg:px-6">
+        <div
+            class="rounded-[20px] bg-[#142449] px-6 py-10 text-center text-white shadow-[0_30px_60px_-35px_rgba(6,24,51,0.8)] lg:px-16 lg:py-25"
+        >
+            <h2
+                class="font-Arial text-[22px] font-bold leading-[30px] lg:text-[43px] lg:leading-[44px]"
+            >
+                {ctaTitle}
+            </h2>
+            {
+                ctaSubtitle ? (
+                    <p class="mx-auto mt-5 max-w-2xl font-Arial text-[18px] leading-[26px] text-white/80">
+                        {ctaSubtitle}
+                    </p>
+                ) : null
+            }
+            <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
+                <!-- <a
+                    href={ctaPrimaryHref}
+                    class="inline-flex items-center justify-center gap-2 rounded-full bg-white lg:px-6 lg:py-4 py-2 px-4 font-Arial lg:text-[17px] text-[13px] text-[#1E2E4A] shadow-[0_10px_24px_-12px_rgba(0,0,0,0.35)]"
+                >
+                    {ctaPrimaryText}
+                    <span class="text-[14px]" aria-hidden="true">&#8594;</span>
+                </a> -->
+                {
+                    ctaSecondaryText ? (
+                        <a
+                            href={ctaSecondaryHref}
+                            class="inline-flex items-center justify-center rounded-full border border-white/50 bg-white/5 lg:px-6 lg:py-4 py-2 px-4 font-Arial lg:text-[17px] text-[13px] text-white hover:bg-white/10"
+                        >
+                            {ctaSecondaryText}
+                        </a>
+                    ) : null
+                }
+            </div>
+        </div>
+    </div>
+</section>

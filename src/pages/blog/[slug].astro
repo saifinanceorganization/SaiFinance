@@ -1,0 +1,72 @@
+---
+import Header from "../../components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import { fetchAllSlugs, fetchPostBySlug, getFeaturedImageUrl } from "../../lib/wp";
+
+export async function getStaticPaths() {
+    const slugs = await fetchAllSlugs();
+    return slugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const post = await fetchPostBySlug(slug);
+
+if (!post) {
+    throw new Error(`Post not found: ${slug}`);
+}
+
+const featuredImage = getFeaturedImageUrl(post);
+const stripHtml = (html: string) => html.replace(/<[^>]*>/g, "").trim();
+const formatDate = (dateStr: string) =>
+    new Date(dateStr).toLocaleString("en-US", { month: "short", year: "numeric" });
+---
+
+<Layout>
+    <Fragment slot="header">
+        <Header />
+    </Fragment>
+
+    <section class="bg-white">
+        <div class="mx-auto max-w-6xl px-6 pt-10">
+            <nav
+                aria-label="Breadcrumb"
+                class="flex items-center gap-3 font-Arial text-[16px] leading-[20px] tracking-[0px] text-[#6B7A93]"
+            >
+                <a href="/" class="hover:text-primary">Home</a>
+                <span class="text-[#C7D0E0]">&#62;</span>
+                <a href="/blog" class="hover:text-primary">Blog</a>
+                <span class="text-[#C7D0E0]">&#62;</span>
+                <span class="text-[#1E2E4A]">{stripHtml(post.title.rendered)}</span>
+            </nav>
+        </div>
+
+        <div class="mx-auto max-w-4xl px-6 py-10 lg:py-16">
+            <h1
+                class="font-Arial text-[30px] font-bold leading-[40px] text-[#1E2E4A] sm:text-[38px] sm:leading-[46px] lg:text-[44px] lg:leading-[54px]"
+            >
+                {stripHtml(post.title.rendered)}
+            </h1>
+            <div
+                class="mt-4 font-Arial text-[14px] leading-[22px] text-[#8A97AD]"
+            >
+                {formatDate(post.date)}
+            </div>
+
+            {featuredImage ? (
+                <div class="mt-8 overflow-hidden rounded-[24px]">
+                    <img
+                        src={featuredImage}
+                        alt={stripHtml(post.title.rendered)}
+                        class="h-full w-full object-cover"
+                    />
+                </div>
+            ) : null}
+
+            <article
+                class="prose mt-8 max-w-none font-Arial text-[#2D3B52] prose-headings:text-[#1E2E4A]"
+            >
+                <div set:html={post.content.rendered}></div>
+            </article>
+        </div>
+    </section>
+</Layout>

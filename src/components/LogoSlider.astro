@@ -1,0 +1,57 @@
+---
+const logos = [
+  "/img/logo_1.png",
+  "/img/logo_2.png",
+  "/img/logo_3.png",
+  "/img/logo_4.jpg",
+  "/img/logo_5.png",
+  "/img/logo_6.png",
+  "/img/logo_7.jpg",
+  "/img/logo_8.png",
+  "/img/logo_9.png",
+  "/img/logo_10.png",
+  "/img/logo_11.png",
+  "/img/logo_12.png",
+  "/img/logo_13.png",
+  "/img/logo_14.png",
+  "/img/logo_15.png",
+  "/img/logo_16.png",
+];
+---
+
+<section class="w-full overflow-hidden bg-white" aria-label="Partner logos">
+  <div class="flex w-max items-center gap-8 pb-14 [animation:logo-scroll_30s_linear_infinite]">
+    {logos.map((src) => (
+      <div class="flex h-20 w-36 shrink-0 items-center justify-center max-sm:h-16 max-sm:w-28">
+        <img
+          src={src}
+          alt=""
+          loading="lazy"
+          class="h-12 w-28 object-contain object-center max-sm:h-10 max-sm:w-24"
+        />
+      </div>
+    ))}
+    {logos.map((src) => (
+      <div class="flex h-20 w-36 shrink-0 items-center justify-center max-sm:h-16 max-sm:w-28">
+        <img
+          src={src}
+          alt=""
+          loading="lazy"
+          aria-hidden="true"
+          class="h-12 w-28 object-contain object-center max-sm:h-10 max-sm:w-24"
+        />
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  @keyframes logo-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

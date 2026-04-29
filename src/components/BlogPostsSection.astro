@@ -1,0 +1,74 @@
+---
+import { fetchPosts, getFeaturedImageUrl } from "../lib/wp";
+
+const posts = await fetchPosts();
+
+const stripHtml = (html: string) => html.replace(/<[^>]*>/g, "").trim();
+const words = (text: string) => text.split(/\s+/).filter(Boolean).length;
+const readTime = (html: string) =>
+    Math.max(1, Math.round(words(stripHtml(html)) / 200));
+const getPrimaryCategory = (post: any) =>
+    post?._embedded?.["wp:term"]?.[0]?.[0]?.name ?? "Finance";
+---
+
+<section class="bg-white pb-12 lg:pb-20">
+    <div class="mx-auto max-w-6xl px-6 md:px-14 lg:px-6">
+        <div class="grid gap-8 lg:grid-cols-3">
+            {
+                posts.map((post) => {
+                    const imageUrl =
+                        getFeaturedImageUrl(post) ?? "/img/blog_img_1.png";
+                    const category = getPrimaryCategory(post);
+                    const excerpt = stripHtml(post.excerpt.rendered);
+                    const time = readTime(post.content.rendered);
+                    return (
+                        <article
+                            class="overflow-hidden rounded-[22px] 
+                border-1 border-[#9CABC361] 
+                bg-white 
+                shadow-[0_16px_35px_-18px_rgba(15,40,71,0.45)]"
+                        >
+                            <div class="relative h-[220px]">
+                                <img
+                                    src={imageUrl}
+                                    alt={stripHtml(post.title.rendered)}
+                                    class="h-full w-full object-cover"
+                                />
+                            </div>
+                            <div class="p-6">
+
+                                <div class="inline-flex items-center rounded-full bg-[#E8F0FF] px-4 py-2 font-Arial text-[13px] leading-[18px] text-primary">
+                                    {category}
+                                </div>
+                                <h3 class="mt-4 font-Arial font-bold text-[20px] leading-[30px] tracking-[0px] text-[#1E3A5F]">
+
+                                    <a href={`/blog/${post.slug}`}>
+                                        {stripHtml(post.title.rendered)}
+                                    </a>
+                                </h3>
+                                <p
+                                    class="mt-3 font-Arial font-normal 
+         text-[14px] leading-[24px] 
+         tracking-[0px] text-[#364153B2]"
+                                >
+                                    {excerpt}
+                                </p>
+                                <div class="mt-6 flex items-center justify-between font-Arial text-[13px] leading-[20px] text-[#9AA7BF]">
+                                    <span>
+                                        SaiFinance Team • {time} min read
+                                    </span>
+                                    <a
+                                        href={`/blog/${post.slug}`}
+                                        class="font-Arial text-[13px] font-semibold text-[#1E2E4A] hover:text-primary"
+                                    >
+                                        Read more &#8594;
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    );
+                })
+            }
+        </div>
+    </div>
+</section>
