@@ -65,42 +65,31 @@
               <label class="text-sm text-gray-600">
                 {{ interestRateLabel }}
               </label>
-
-              <button class="text-sm font-medium text-primary" type="button" @click="toggleCustomRate">
-                {{ form.useCustomRate ? 'Choose an ANZ rate' : 'Enter my own interest rate' }}
-              </button>
             </div>
 
-            <template v-if="form.useCustomRate">
-              <input v-model="form.customRate" type="number" min="0" max="30" step="0.01" placeholder="%"
-                class="mt-2 w-full rounded border p-3" />
+            <input
+              :value="form.customRate"
+              type="text"
+              inputmode="decimal"
+              pattern="[0-9]*[.]?[0-9]*"
+              placeholder="Enter interest rate, e.g. 6.25"
+              class="mt-2 w-full rounded border p-3"
+              @input="updateCustomRate"
+            />
 
-              <div v-if="showCustomFixedPeriod" class="mt-4">
-                <label class="text-sm text-gray-600">Fixed period</label>
+            <div v-if="showCustomFixedPeriod" class="mt-4">
+              <label class="text-sm text-gray-600">Fixed period</label>
 
-                <select v-model.number="form.customFixedTermYears" class="mt-2 w-full rounded border p-3">
-                  <option v-for="year in customFixedPeriodOptions" :key="year" :value="year">
-                    {{ year }} {{ year === 1 ? 'year' : 'years' }}
-                  </option>
-                </select>
-              </div>
-
-              <p class="mt-2 text-xs text-gray-500">
-                Note: the manual interest rate you have selected may not be available.
-              </p>
-            </template>
-
-            <template v-else>
-              <select v-model="form.selectedRateId" class="mt-2 w-full rounded border p-3">
-                <option value="">
-                  Please select
-                </option>
-
-                <option v-for="option in availableRateOptions" :key="option.id" :value="option.id">
-                  {{ option.label }}
+              <select v-model.number="form.customFixedTermYears" class="mt-2 w-full rounded border p-3">
+                <option v-for="year in customFixedPeriodOptions" :key="year" :value="year">
+                  {{ year }} {{ year === 1 ? 'year' : 'years' }}
                 </option>
               </select>
-            </template>
+            </div>
+
+            <p class="mt-2 text-xs text-gray-500">
+              Enter your own interest rate for a custom calculation.
+            </p>
 
             <div class="mt-2 text-sm text-gray-600">
               Comparison rate:
@@ -316,7 +305,6 @@ import {
   repaymentCalculatorData,
   type PaymentType,
   type PropertyType,
-  type RateOption,
   type RateType,
 } from '../lib/homeLoanRepaymentData'
 
@@ -351,10 +339,9 @@ const DEFAULT_FORM = {
   loanAmount: 500000,
   rateType: 'variable' as RateType,
   paymentType: 'pi' as PaymentType,
-  selectedRateId: '',
   loanYears: 30,
   frequency: 'Monthly' as Frequency,
-  useCustomRate: false,
+  useCustomRate: true,
   customRate: '',
   customFixedTermYears: 1,
 }
@@ -391,31 +378,9 @@ const showCustomFixedPeriod = computed(() => {
   return form.useCustomRate && form.rateType === 'fixed' && form.paymentType === 'pi'
 })
 
-const availableRateOptions = computed<RateOption[]>(() => {
-  const config = repaymentCalculatorData[form.propertyType]
-
-  if (form.rateType === 'variable') {
-    return form.paymentType === 'pi' ? config.variable.pi : config.variable.io
-  }
-
-  if (form.paymentType === 'pi') {
-    return config.fixed.pi
-  }
-
-  return config.fixed.io[interestOnlyYears.value || 0] || []
-})
-
-const selectedRateOption = computed(() => {
-  return availableRateOptions.value.find((option) => option.id === form.selectedRateId) || null
-})
-
 const selectedComparisonRateText = computed(() => {
-  if (form.useCustomRate) {
-    const value = parseRateInput(form.customRate)
-    return value ? formatRate(value) : '-%'
-  }
-
-  return selectedRateOption.value ? formatRate(selectedRateOption.value.comparisonRate) : '-%'
+  const value = parseRateInput(form.customRate)
+  return value ? formatRate(value) : '-%'
 })
 
 const interestRateLabel = computed(() => {
@@ -443,11 +408,7 @@ const activeFixedPeriodYears = computed(() => {
     return interestOnlyYears.value
   }
 
-  if (form.useCustomRate) {
-    return form.customFixedTermYears
-  }
-
-  return selectedRateOption.value?.fixedTermYears || null
+  return form.customFixedTermYears
 })
 
 const showFixedPeriodRow = computed(() => {
@@ -459,15 +420,6 @@ watch(
   () => {
     ensurePaymentTypeIsValid()
     ensureCustomFixedTermIsValid()
-    form.selectedRateId = ''
-    clearCalculation()
-  },
-)
-
-watch(
-  () => form.rateType,
-  () => {
-    form.selectedRateId = ''
     clearCalculation()
   },
 )
@@ -475,38 +427,13 @@ watch(
 watch(
   () => form.paymentType,
   () => {
-    form.selectedRateId = ''
-    clearCalculation()
-  },
-)
-
-watch(
-  () => form.useCustomRate,
-  (isCustom) => {
-    if (isCustom) {
-      form.selectedRateId = ''
-    } else {
-      form.customRate = ''
-    }
-
-    clearCalculation()
-  },
-)
-
-watch(
-  () => form.selectedRateId,
-  () => {
     clearCalculation()
   },
 )
 
 watch(
   () => form.customRate,
-  () => {
-    if (form.useCustomRate) {
-      clearCalculation()
-    }
-  },
+  () => clearCalculation(),
 )
 
 watch(
@@ -555,13 +482,11 @@ function ensureCustomFixedTermIsValid() {
   }
 }
 
-function toggleCustomRate() {
-  form.useCustomRate = !form.useCustomRate
-}
-
 function resetCalculator() {
   Object.assign(form, {
     ...DEFAULT_FORM,
+    useCustomRate: true,
+    customRate: '',
     customFixedTermYears: repaymentCalculatorData.owner_occupier.fixed.customPeriods[0],
   })
 
@@ -606,6 +531,14 @@ function removeScenario(id: number) {
   savedScenarios.value = savedScenarios.value.filter((scenario) => scenario.id !== id)
 }
 
+function updateCustomRate(event: Event) {
+  const input = event.target as HTMLInputElement
+  const sanitized = sanitizeDecimalInput(input.value)
+
+  input.value = sanitized
+  form.customRate = sanitized
+}
+
 function calculate() {
   const loan = Number(form.loanAmount || 0)
   const years = Number(form.loanYears || 0)
@@ -631,105 +564,34 @@ function calculate() {
 }
 
 function resolveRateContext(): ResolvedRateContext | null {
-  if (form.useCustomRate) {
-    const customRate = parseRateInput(form.customRate)
+  const customRate = parseRateInput(form.customRate)
 
-    if (!customRate) {
-      return null
-    }
-
-    const customLabel = `${formatRate(customRate)} Custom rate`
-
-    if (form.rateType === 'variable' && form.paymentType === 'pi') {
-      return {
-        rate: customRate,
-        comparisonRate: customRate,
-        displayRateLabel: customLabel,
-        fallbackRate: null,
-        fallbackLabel: null,
-        specialPeriodYears: null,
-        fixedPeriodYears: null,
-        transitionType: null,
-      }
-    }
-
-    const fallback = getNearestStandardVariableFallback(form.propertyType, customRate)
-    const specialPeriodYears =
-      form.rateType === 'fixed' && form.paymentType === 'pi'
-        ? form.customFixedTermYears
-        : interestOnlyYears.value
-
-    return {
-      rate: customRate,
-      comparisonRate: customRate,
-      displayRateLabel: customLabel,
-      fallbackRate: fallback.rate,
-      fallbackLabel: fallback.label,
-      specialPeriodYears,
-      fixedPeriodYears: form.rateType === 'fixed' ? specialPeriodYears : null,
-      transitionType:
-        form.rateType === 'fixed'
-          ? form.paymentType === 'pi'
-            ? 'fixed'
-            : 'fixed_io'
-          : 'io',
-    }
-  }
-
-  if (!selectedRateOption.value) {
+  if (!customRate) {
     return null
   }
 
-  const selected = selectedRateOption.value
-
-  if (form.rateType === 'variable' && form.paymentType === 'pi') {
-    return {
-      rate: selected.rate,
-      comparisonRate: selected.comparisonRate,
-      displayRateLabel: selected.label,
-      fallbackRate: null,
-      fallbackLabel: null,
-      specialPeriodYears: null,
-      fixedPeriodYears: null,
-      transitionType: null,
-    }
-  }
-
-  if (form.rateType === 'variable') {
-    return {
-      rate: selected.rate,
-      comparisonRate: selected.comparisonRate,
-      displayRateLabel: selected.label,
-      fallbackRate: selected.fallbackRate || null,
-      fallbackLabel: selected.fallbackLabel || null,
-      specialPeriodYears: interestOnlyYears.value,
-      fixedPeriodYears: null,
-      transitionType: 'io',
-    }
-  }
-
-  if (form.paymentType === 'pi') {
-    return {
-      rate: selected.rate,
-      comparisonRate: selected.comparisonRate,
-      displayRateLabel: selected.label,
-      fallbackRate: selected.fallbackRate || null,
-      fallbackLabel: selected.fallbackLabel || null,
-      specialPeriodYears: selected.fixedTermYears || null,
-      fixedPeriodYears: selected.fixedTermYears || null,
-      transitionType: 'fixed',
-    }
-  }
+  const customLabel = `${formatRate(customRate)} Custom rate`
+  const specialPeriodYears =
+    form.rateType === 'fixed' && form.paymentType === 'pi'
+      ? form.customFixedTermYears
+      : interestOnlyYears.value
 
   return {
-    rate: selected.rate,
-    comparisonRate: selected.comparisonRate,
-    displayRateLabel: selected.label,
-    fallbackRate: selected.fallbackRate || null,
-    fallbackLabel: selected.fallbackLabel || null,
-    specialPeriodYears: interestOnlyYears.value,
-    fixedPeriodYears: interestOnlyYears.value,
-    transitionType: 'fixed_io',
+    rate: customRate,
+    comparisonRate: customRate,
+    displayRateLabel: customLabel,
+    fallbackRate: null,
+    fallbackLabel: null,
+    specialPeriodYears,
+    fixedPeriodYears: form.rateType === 'fixed' ? specialPeriodYears : null,
+    transitionType:
+      form.rateType === 'fixed'
+        ? form.paymentType === 'pi'
+          ? 'fixed'
+          : 'fixed_io'
+        : form.paymentType === 'pi'
+          ? null
+          : 'io',
   }
 }
 
@@ -813,19 +675,17 @@ function remainingBalanceAfterPayments(
   return Math.max(0, principal * factor - payment * ((factor - 1) / monthlyRate))
 }
 
-function getNearestStandardVariableFallback(propertyType: PropertyType, customRate: number) {
-  const candidates = repaymentCalculatorData[propertyType].variable.pi.slice(0, 2)
-
-  return candidates.reduce((closest, current) => {
-    const currentDelta = Math.abs(current.rate - customRate)
-    const closestDelta = Math.abs(closest.rate - customRate)
-    return currentDelta < closestDelta ? current : closest
-  })
+function parseRateInput(value: string | number) {
+  const parsed = Number.parseFloat(sanitizeDecimalInput(value))
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 0
 }
 
-function parseRateInput(value: string | number) {
-  const parsed = Number.parseFloat(String(value))
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : 0
+function sanitizeDecimalInput(value: string | number) {
+  const normalized = String(value).replace(',', '.')
+  const [integerPart = '', ...decimalParts] = normalized.replace(/[^0-9.]/g, '').split('.')
+  const decimalPart = decimalParts.join('')
+
+  return decimalParts.length ? `${integerPart}.${decimalPart}` : integerPart
 }
 
 function applyFrequency(monthlyPayment: number) {
