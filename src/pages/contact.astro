@@ -8,14 +8,17 @@ const wpBaseUrl = (
     import.meta.env.PUBLIC_CF7_BASE_URL ||
     (wpApiUrl ? wpApiUrl.replace(/\/wp-json\/wp\/v2\/?$/i, "") : "")
 ).trim();
+const configuredCf7Endpoint = (import.meta.env.PUBLIC_CF7_ENDPOINT || "").trim();
 const cf7FormId = Number.parseInt(
     (import.meta.env.PUBLIC_CF7_FORM_ID || "").toString().trim(),
     10
 );
 const hasValidCf7FormId = Number.isFinite(cf7FormId) && cf7FormId > 0;
-const cf7Endpoint = wpBaseUrl && hasValidCf7FormId
-  ? `${wpBaseUrl}/wp-json/contact-form-7/v1/contact-forms/${cf7FormId}/feedback`
-  : "";
+const cf7Endpoint =
+  configuredCf7Endpoint ||
+  (wpBaseUrl && hasValidCf7FormId
+    ? `${wpBaseUrl}/wp-json/contact-form-7/v1/contact-forms/${cf7FormId}/feedback`
+    : "");
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 ---
 
@@ -48,6 +51,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
                 id="contact-form"
                 class="rounded-[24px] border border-[#203A6E] bg-white px-10 py-10 shadow-sm md:px-16 md:py-16"
                 data-endpoint={cf7Endpoint}
+                data-config-endpoint={wpBaseUrl ? `${wpBaseUrl}/wp-json/contact-form-7/v1/contact-forms/${hasValidCf7FormId ? cf7FormId : ""}` : ""}
             >
                 <div class="grid gap-8 md:grid-cols-2">
                     <div class="flex flex-col gap-3">
@@ -338,10 +342,15 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
         "#wpcf7-container-post"
     ) as HTMLInputElement | null;
     const wpcf7Id = document.querySelector("#wpcf7-id") as HTMLInputElement | null;
+    const turnstileBox = document.querySelector(".cf-turnstile") as HTMLElement | null;
 
     const showError = (el: HTMLElement | null, show: boolean) => {
         if (!el) return;
         el.classList.toggle("hidden", !show);
+    };
+
+    const setTurnstileMessage = (message: string) => {
+        if (turnstileError) turnstileError.textContent = message;
     };
 
     const applyFallbackConfig = () => {
@@ -419,6 +428,9 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 
             showError(emailError, !emailValid);
             showError(phoneError, !phoneValid);
+            if (hasTurnstile && !turnstileToken) {
+                setTurnstileMessage("Please verify that you are human.");
+            }
             showError(turnstileError, !turnstileValid);
             showError(submitError, false);
 
