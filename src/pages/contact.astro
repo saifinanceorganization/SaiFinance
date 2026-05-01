@@ -10,26 +10,16 @@ const wpBaseUrl = (
 ).trim();
 
 const cf7EndpointOverride = (import.meta.env.PUBLIC_CF7_ENDPOINT || "").trim();
+// IMPORTANT: keep as string, do NOT parseInt
 const cf7FormId = (import.meta.env.PUBLIC_CF7_FORM_ID || "").toString().trim();
-const turnstileSiteKey = (import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "").trim();
-const currentHostname = Astro.url.hostname;
-
 const hasValidCf7FormId = cf7FormId.length > 0;
-const hasTurnstileSiteKey = turnstileSiteKey.length > 0;
-const isLocalHost =
-    currentHostname === "localhost" ||
-    currentHostname === "127.0.0.1" ||
-    currentHostname === "0.0.0.0" ||
-    currentHostname === "::1";
-const shouldRenderTurnstile = hasTurnstileSiteKey && !isLocalHost;
+const cf7DerivedEndpoint =
+    wpBaseUrl && hasValidCf7FormId
+        ? `${wpBaseUrl}/wp-json/contact-form-7/v1/contact-forms/${encodeURIComponent(cf7FormId)}/feedback`
+        : "";
 
-const cf7Endpoint =
-    cf7EndpointOverride ||
-    (wpBaseUrl && hasValidCf7FormId
-        ? `${wpBaseUrl}/wp-json/contact-form-7/v1/contact-forms/${encodeURIComponent(
-              cf7FormId,
-          )}/feedback`
-        : "");
+const cf7Endpoint = cf7DerivedEndpoint || cf7EndpointOverride;
+
 ---
 
 <Layout title="Contact US | SAI Finance">
@@ -37,21 +27,22 @@ const cf7Endpoint =
         <Header />
     </Fragment>
 
+    <!-- section 1 -->
     <section class="bg-[#f6f7fb]">
         <div
-            class="mx-auto max-w-4xl px-6 py-16 text-center md:px-14 lg:px-6 lg:py-24"
+            class="mx-auto max-w-4xl px-6 md:px-14 lg:px-6 py-16 text-center lg:py-24"
         >
             <h1
-                class="bg-primary bg-clip-text text-center font-Arial text-[25px] font-bold leading-[35px] tracking-normal text-transparent lg:text-[40px] lg:leading-[48px]"
+                class="font-Arial font-bold text-[25px] lg:text-[40px] leading-[35px] lg:leading-[48px] tracking-normal text-center bg-primary bg-clip-text text-transparent"
             >
                 Get in Touch
             </h1>
 
             <p
-                class="mt-3 text-center font-Arial text-[16px] font-normal leading-[24px] tracking-normal text-[#4A5565]"
+                class="mt-3 font-Arial font-normal text-[16px] leading-[24px] tracking-normal text-center text-[#4A5565]"
             >
-                We&apos;d love to hear from you. Send us a message and we&apos;ll
-                respond as<br /> soon as possible.
+                We’d love to hear from you. Send us a message and we’ll respond
+                as<br /> soon as possible.
             </p>
         </div>
     </section>
@@ -61,140 +52,87 @@ const cf7Endpoint =
             <form
                 id="contact-form"
                 class="rounded-[24px] border border-[#203A6E] bg-white px-10 py-10 shadow-sm md:px-16 md:py-16"
-                action={cf7Endpoint}
-                method="post"
-                enctype="multipart/form-data"
-                data-cf7-base-url={wpBaseUrl}
-                data-cf7-endpoint={cf7EndpointOverride}
-                data-cf7-form-id={cf7FormId}
-                data-turnstile-enabled={shouldRenderTurnstile ? "true" : "false"}
-                novalidate
+                data-endpoint={cf7Endpoint}
             >
-                <div
-                    class="mb-6 hidden rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-[14px] leading-6 text-red-800"
-                    data-message="error"
-                    aria-live="polite"
-                >
-                    Something went wrong. Please try again.
-                </div>
-
                 <div class="grid gap-8 md:grid-cols-2">
-                    <div class="flex flex-col gap-3" data-field="your-name">
+                    <div class="flex flex-col gap-3">
                         <input
                             id="name"
                             name="your-name"
                             type="text"
-                            autocomplete="name"
                             class="border-b border-[#D6DBE3] bg-transparent pb-5 font-Arial text-[16px] text-[#99A1AF] outline-none placeholder:text-[#8A93A8]"
                             placeholder="Your Name"
                         />
-                        <span
-                            class="hidden text-[12px] text-red-600"
-                            data-error="your-name"
-                        ></span>
                     </div>
 
-                    <div class="flex flex-col gap-3" data-field="your-email">
+                    <div class="flex flex-col gap-3">
                         <input
                             id="email"
                             name="your-email"
                             type="email"
                             required
-                            autocomplete="email"
                             class="border-b border-[#D6DBE3] bg-transparent pb-5 font-Arial text-[16px] text-[#99A1AF] outline-none placeholder:text-[#8A93A8]"
                             placeholder="Email Address"
                         />
                         <span
                             class="hidden text-[12px] text-red-600"
-                            data-error="your-email"
-                        ></span>
+                            data-error="email"
+                        >
+                            Please enter a valid email address.
+                        </span>
                     </div>
                 </div>
 
-                <div class="mt-12 flex flex-col gap-3" data-field="tel-53">
+                <div class="mt-12 flex flex-col gap-3">
                     <input
                         id="phone"
                         name="tel-53"
                         type="tel"
                         required
-                        autocomplete="tel"
                         class="border-b border-[#D6DBE3] bg-transparent pb-5 font-Arial text-[16px] text-[#99A1AF] outline-none placeholder:text-[#8A93A8]"
                         placeholder="Phone Number"
                     />
                     <span
                         class="hidden text-[12px] text-red-600"
-                        data-error="tel-53"
-                    ></span>
+                        data-error="phone"
+                    >
+                        Phone number is required.
+                    </span>
                 </div>
 
-                <div class="mt-8 flex flex-col gap-3" data-field="your-message">
+                <div class="mt-8 flex flex-col gap-3">
                     <textarea
                         id="message"
                         name="your-message"
                         rows="4"
                         class="border-b border-[#D6DBE3] bg-transparent pb-5 font-Arial text-[16px] text-[#99A1AF] outline-none placeholder:text-[#8A93A8]"
-                        placeholder="Your Message"
-                    ></textarea>
-                    <span
-                        class="hidden text-[12px] text-red-600"
-                        data-error="your-message"
-                    ></span>
+                        placeholder="Your Message"></textarea>
                 </div>
 
                 <input type="hidden" name="_wpcf7" id="wpcf7-id" value={cf7FormId} />
-                <input
-                    type="hidden"
-                    name="_wpcf7_version"
-                    id="wpcf7-version"
-                    value="5.9.8"
-                />
-                <input
-                    type="hidden"
-                    name="_wpcf7_locale"
-                    id="wpcf7-locale"
-                    value="en_US"
-                />
+                <input type="hidden" name="_wpcf7_version" id="wpcf7-version" value="5.9.8" />
+                <input type="hidden" name="_wpcf7_locale" id="wpcf7-locale" value="en_US" />
                 <input
                     type="hidden"
                     name="_wpcf7_unit_tag"
                     id="wpcf7-unit-tag"
-                    value=""
+                    value="contact-form"
                 />
-                <input
-                    type="hidden"
-                    name="_wpcf7_container_post"
-                    id="wpcf7-container-post"
-                    value="0"
-                />
+                <input type="hidden" name="_wpcf7_container_post" id="wpcf7-container-post" value="0" />
 
-                {shouldRenderTurnstile && (
-                    <div class="mt-6 flex justify-start">
-                        <div
-                            class="cf-turnstile"
-                            data-sitekey={turnstileSiteKey}
-                            data-theme="light"
-                        ></div>
-                    </div>
-                )}
-
-                <div class="mt-6 hidden text-[13px] text-red-600" data-error="submit">
+                <div
+                    class="mt-6 hidden text-[13px] text-red-600"
+                    data-error="submit"
+                >
                     Something went wrong. Please try again.
                 </div>
 
                 <div class="mt-14 flex justify-end">
                     <button
                         type="submit"
-                        data-submit-button
                         class="inline-flex items-center justify-center gap-3 rounded-full bg-primary px-8 py-3 font-Arial font-normal text-[15px] leading-[28px] tracking-normal text-center text-white"
                     >
-                        <span data-submit-label>Send Message</span>
-                        <span
-                            class="hidden text-[20px]"
-                            data-submit-spinner
-                            aria-hidden="true"
-                        >
-                            &#8635;
-                        </span>
+                        Send Message
                         <span class="text-[20px]">&#8594;</span>
                     </button>
                 </div>
@@ -205,261 +143,394 @@ const cf7Endpoint =
                 class="hidden rounded-[24px] border border-[#203A6E] bg-white px-10 py-14 text-center shadow-sm md:px-16 md:py-16"
             >
                 <h2
-                    class="font-Arial text-[24px] font-bold leading-[32px] text-primary"
+                    class="font-Arial font-bold text-[24px] leading-[32px] text-primary"
                 >
                     Thank you
                 </h2>
-                <p class="mt-3 font-Arial text-[16px] leading-[26px] text-[#4A5565]">
-                    Thank you for your message. We will get back to you soon.
+                <p
+                    class="mt-3 font-Arial text-[16px] leading-[26px] text-[#4A5565]"
+                >
+                    Thank you for registering your interest, we will soon be in
+                    contact with you.
                 </p>
             </div>
         </div>
     </section>
 
+    <!-- section 3 -->
+    <section class="bg-[#f6f7fb] pb-24">
+        <div class="mx-auto max-w-5xl px-6 md:px-14 lg:px-6">
+            <div class="grid gap-8 lg:grid-cols-2">
+                <div
+                    class="rounded-3xl border border-[#edf0f5] bg-white shadow-sm h-[380px]"
+                >
+                    <h3
+                        class="font-Arial font-normal text-[20px] leading-[32px] tracking-normal text-[#1E3A5F] px-8 py-6"
+                    >
+                        Our Location
+                    </h3>
+
+                    <div
+                        class="overflow-hidden rounded-b-2xl border border-[#e6e9ef]"
+                    >
+                        <img
+                            src="/img/Iframe.png"
+                            alt="SAI Finance Location"
+                            class="h-[300px] w-full object-cover"
+                        />
+                    </div>
+                </div>
+
+                <div
+                    class="rounded-3xl border border-[#edf0f5] bg-white shadow-sm"
+                >
+                    <h3
+                        class="font-Arial font-normal text-[20px] leading-[32px] tracking-normal text-[#1E3A5F] px-8 py-6"
+                    >
+                        Contact Information
+                    </h3>
+
+                    <div class="space-y-6 p-6 pb-16">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F9FAFB] text-[#1d2d53]"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    class="h-7 w-7"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M12 3c-3.3 0-6 2.6-6 5.9 0 4.7 6 11.1 6 11.1s6-6.4 6-11.1C18 5.6 15.3 3 12 3z"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.8"></path>
+                                    <circle
+                                        cx="12"
+                                        cy="9"
+                                        r="2.2"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.8"></circle>
+                                </svg>
+                            </div>
+                            <div>
+                                <div
+                                    class="font-Arial font-normal text-[18px] leading-[24px] tracking-normal text-[#1E3A5F]"
+                                >
+                                    Address
+                                </div>
+
+                                <div
+                                    class="mt-2 font-Arial font-normal text-[16px] leading-[25px] tracking-normal text-[#14254A]"
+                                >
+                                    123 Main St,<br />NY 10001<br />Australia
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F9FAFB] text-[#1d2d53]"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    class="h-7 w-7"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M6 3h4l2 5-2.5 1.5a12 12 0 005.5 5.5L16 12l5 2v4c-8 1-14-5-15-13z"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div
+                                    class="font-Arial font-normal text-[16px] leading-[24px] tracking-normal text-[#1E3A5F]"
+                                >
+                                    Phone
+                                </div>
+                                <div
+                                    class="mt-2 font-Arial font-normal text-[16px] leading-[25px] tracking-normal text-[#14254A]"
+                                >
+                                    +61 433 967 374
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F9FAFB] text-[#1d2d53]"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    class="h-7 w-7"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M4 6h16v12H4z"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.8"
+                                        stroke-linejoin="round"></path>
+                                    <path
+                                        d="M4 7l8 6 8-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div
+                                    class="font-Arial font-normal text-[16px] leading-[24px] tracking-normal text-[#1E3A5F]"
+                                >
+                                    Email
+                                </div>
+                                <div
+                                    class="mt-2 font-Arial font-normal text-[16px] leading-[25px] tracking-normal text-[#14254A]"
+                                >
+                                    keyur@saifinance.com.au
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F9FAFB] text-[#1d2d53]"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    class="h-7 w-7"
+                                    aria-hidden="true"
+                                >
+                                    <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="8"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.8"></circle>
+                                    <path
+                                        d="M12 7v5l3 2"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div
+                                    class="font-Arial font-normal text-[16px] leading-[24px] tracking-normal text-[#1E3A5F]"
+                                >
+                                    Business Hours
+                                </div>
+                                <div
+                                    class="mt-2 font-Arial font-normal text-[16px] leading-[20px] tracking-normal text-[#14254A]"
+                                >
+                                    Mon - Fri: 9:00 AM - 6:00 PM
+                                </div>
+                                <div
+                                    class="mt-2 font-Arial font-normal text-[16px] leading-[20px] tracking-normal text-[#14254A]"
+                                >
+                                    Saturday: 10:00 AM - 4:00 PM
+                                </div>
+                                <div
+                                    class="mt-2 font-Arial font-normal text-[16px] leading-[20px] tracking-normal text-[#14254A]"
+                                >
+                                    Sunday: Closed
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <Fragment slot="footer">
         <Footer />
     </Fragment>
 </Layout>
 
-{shouldRenderTurnstile && (
-    <script
-        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-        async
-        defer
-    ></script>
-)}
+<script>
+    const form = document.querySelector(
+        "#contact-form",
+    ) as HTMLFormElement | null;
+    const thankYou = document.querySelector(
+        "#contact-thankyou",
+    ) as HTMLElement | null;
+    const emailInput = document.querySelector(
+        "#email",
+    ) as HTMLInputElement | null;
+    const phoneInput = document.querySelector(
+        "#phone",
+    ) as HTMLInputElement | null;
+    const emailError = document.querySelector(
+        '[data-error="email"]',
+    ) as HTMLElement | null;
+    const phoneError = document.querySelector(
+        '[data-error="phone"]',
+    ) as HTMLElement | null;
+    const submitError = document.querySelector(
+        '[data-error="submit"]',
+    ) as HTMLElement | null;
+    const wpcf7Version = document.querySelector(
+        "#wpcf7-version",
+    ) as HTMLInputElement | null;
+    const wpcf7Locale = document.querySelector(
+        "#wpcf7-locale",
+    ) as HTMLInputElement | null;
+    const wpcf7UnitTag = document.querySelector(
+        "#wpcf7-unit-tag",
+    ) as HTMLInputElement | null;
+    const wpcf7ContainerPost = document.querySelector(
+        "#wpcf7-container-post",
+    ) as HTMLInputElement | null;
+    const wpcf7Id = document.querySelector(
+        "#wpcf7-id",
+    ) as HTMLInputElement | null;
+    const showError = (el: HTMLElement | null, show: boolean) => {
+        if (!el) return;
+        el.classList.toggle("hidden", !show);
+    };
 
-<script is:inline>
-    (() => {
-        const form = document.getElementById("contact-form");
-        const thankYou = document.getElementById("contact-thankyou");
-        const turnstileEnabled = form?.dataset.turnstileEnabled === "true";
+    const applyFallbackConfig = () => {
+        if (!wpcf7Locale || !wpcf7ContainerPost) return false;
+        wpcf7Locale.value = wpcf7Locale.value || "en_US";
+        wpcf7ContainerPost.value = wpcf7ContainerPost.value || "0";
+        return true;
+    };
 
-        if (!form || !thankYou) return;
+    const ensureCf7Config = async () => {
+        if (
+            !form ||
+            !wpcf7Version ||
+            !wpcf7Locale ||
+            !wpcf7UnitTag ||
+            !wpcf7ContainerPost
+        ) {
+            return false;
+        }
 
-        const errorMessage = form.querySelector('[data-message="error"]');
-        const submitAlert = form.querySelector('[data-error="submit"]');
-        const submitButton = form.querySelector("[data-submit-button]");
-        const submitLabel = form.querySelector("[data-submit-label]");
-        const submitSpinner = form.querySelector("[data-submit-spinner]");
-        const turnstileResponseField = () =>
-            form.querySelector(
-                'textarea[name="cf-turnstile-response"], input[name="cf-turnstile-response"]',
-            );
+        if (wpcf7Version.value && wpcf7Locale.value) {
+            return true;
+        }
 
-        const clearMessages = () => {
-            [errorMessage, submitAlert].forEach((node) => {
-                if (!node) return;
-                node.classList.add("hidden");
-            });
-        };
+        const configEndpoint = form.getAttribute("data-config-endpoint");
+        if (!configEndpoint) {
+            return applyFallbackConfig();
+        }
 
-        const clearFieldErrors = () => {
-            form.querySelectorAll("[data-field]").forEach((field) => {
-                field.classList.remove("border-red-400");
-            });
+        let configUrl;
+        try {
+            configUrl = new URL(configEndpoint, window.location.href);
+        } catch (error) {
+            return applyFallbackConfig();
+        }
 
-            form.querySelectorAll("[data-error]").forEach((error) => {
-                if (error.getAttribute("data-error") === "submit") return;
-                error.textContent = "";
-                error.classList.add("hidden");
-            });
+        // Skip cross-origin config requests to avoid 403 noise on static host.
+        if (configUrl.origin !== window.location.origin) {
+            return applyFallbackConfig();
+        }
 
-            form.querySelectorAll("[aria-invalid='true']").forEach((input) => {
-                input.removeAttribute("aria-invalid");
-            });
-        };
-
-        const setLoading = (isLoading) => {
-            if (submitButton instanceof HTMLButtonElement) {
-                submitButton.disabled = isLoading;
-                submitButton.classList.toggle("opacity-70", isLoading);
-                submitButton.classList.toggle("cursor-not-allowed", isLoading);
+        try {
+            const response = await fetch(configUrl.toString());
+            if (!response.ok) {
+                return applyFallbackConfig();
             }
-
-            if (submitLabel) {
-                submitLabel.textContent = isLoading ? "Sending..." : "Send Message";
+            const data = await response.json();
+            if (data?.id) {
+                wpcf7Version.value =
+                    data?.properties?.version || data?.version || "";
+                wpcf7Locale.value =
+                    data?.properties?.locale || data?.locale || "en_US";
+                wpcf7ContainerPost.value =
+                    data?.properties?.container_post || "0";
+                return true;
             }
+        } catch (error) {
+            return applyFallbackConfig();
+        }
 
-            if (submitSpinner) {
-                submitSpinner.classList.toggle("hidden", !isLoading);
-            }
-        };
+        return applyFallbackConfig();
+    };
 
-        const showThankYou = () => {
-            form.reset();
-            form.classList.add("hidden");
-            thankYou.classList.remove("hidden");
-            thankYou.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            });
-        };
+    const setUnitTag = () => {
+        if (!wpcf7UnitTag) return;
+        const containerPost = wpcf7ContainerPost?.value || "0";
+        const formId = wpcf7Id?.value || "7";
+        const unique = Date.now();
+        wpcf7UnitTag.value = `wpcf7-f${formId}-p${containerPost}-o${unique}`;
+    };
 
-        const showTurnstileError = () => {
-            if (!submitAlert) return;
-            submitAlert.textContent =
-                "Please complete the security check before sending your message.";
-            submitAlert.classList.remove("hidden");
-        };
-
-        const buildEndpoint = () => {
-            const override = form.dataset.cf7Endpoint?.trim();
-            if (override) {
-                return new URL(override, window.location.href).toString();
-            }
-
-            const baseUrl = form.dataset.cf7BaseUrl?.trim();
-            const formId = form.dataset.cf7FormId?.trim();
-
-            if (!baseUrl || !formId) return "";
-
-            const url = new URL(baseUrl, window.location.href);
-            url.pathname = `/wp-json/contact-form-7/v1/contact-forms/${encodeURIComponent(
-                formId,
-            )}/feedback`;
-            url.search = "";
-            url.hash = "";
-            return url.toString();
-        };
-
-        const showFieldError = (fieldName, message) => {
-            const field = form.querySelector(`[data-field="${fieldName}"]`);
-            const error = form.querySelector(`[data-error="${fieldName}"]`);
-            const input = form.querySelector(`[name="${fieldName}"]`);
-
-            if (field) field.classList.add("border-red-400");
-            if (input) input.setAttribute("aria-invalid", "true");
-            if (error) {
-                error.textContent = message;
-                error.classList.remove("hidden");
-            }
-        };
-
-        const extractFieldName = (item) => {
-            const into = item?.into ?? "";
-            const wrapMatch = into.match(
-                /\.wpcf7-form-control-wrap\.([A-Za-z0-9_-]+)/,
-            );
-
-            if (wrapMatch?.[1]) return wrapMatch[1];
-
-            const fieldMatch = into.match(/\[name=['"]?([^'"\]]+)['"]?\]/);
-            return fieldMatch?.[1] ?? "";
-        };
-
-        form.addEventListener("submit", async (event) => {
+    if (form && thankYou && emailInput && phoneInput) {
+        form.addEventListener("submit", async (event: SubmitEvent) => {
             event.preventDefault();
-            clearMessages();
-            clearFieldErrors();
-            setLoading(true);
 
-            const endpoint = buildEndpoint();
+            const emailValid =
+                emailInput.checkValidity() && emailInput.value.trim() !== "";
+            const phoneValid = phoneInput.value.trim() !== "";
+            showError(emailError, !emailValid);
+            showError(phoneError, !phoneValid);
+            showError(submitError, false);
 
-            if (!endpoint) {
-                if (submitAlert) {
-                    submitAlert.textContent =
-                        "Contact form endpoint is missing. Check the WordPress settings.";
-                    submitAlert.classList.remove("hidden");
-                }
-                setLoading(false);
+            if (!emailValid || !phoneValid) {
                 return;
             }
+
+            const configOk = await ensureCf7Config();
+            if (!configOk) {
+                if (submitError)
+                    submitError.textContent =
+                        "Form configuration error. Please try again.";
+                showError(submitError, true);
+                return;
+            }
+
+            setUnitTag();
 
             const formData = new FormData(form);
-            const formId = form.dataset.cf7FormId?.trim() || "0";
-
-            if (turnstileEnabled && !turnstileResponseField()?.value) {
-                showTurnstileError();
-                setLoading(false);
+            const endpoint = form.getAttribute("data-endpoint");
+            if (!endpoint) {
+                showError(submitError, true);
                 return;
-            }
-
-            if (!formData.get("_wpcf7")) {
-                formData.set("_wpcf7", formId);
-            }
-
-            if (!formData.get("_wpcf7_version")) {
-                formData.set("_wpcf7_version", "5.9.8");
-            }
-
-            if (!formData.get("_wpcf7_locale")) {
-                formData.set("_wpcf7_locale", document.documentElement.lang || "en_US");
-            }
-
-            if (!formData.get("_wpcf7_unit_tag")) {
-                formData.set(
-                    "_wpcf7_unit_tag",
-                    `wpcf7-f${formId}-p0-o${Date.now().toString(36).slice(-8)}`,
-                );
-            }
-
-            if (!formData.get("_wpcf7_container_post")) {
-                formData.set("_wpcf7_container_post", "0");
             }
 
             try {
-                const endpointUrl = new URL(endpoint, window.location.href);
-                const sameOrigin = endpointUrl.origin === window.location.origin;
-
-                if (!sameOrigin) {
-                    await fetch(endpoint, {
-                        method: "POST",
-                        body: formData,
-                        mode: "no-cors",
-                    });
-
-                    showThankYou();
-                    return;
-                }
-
                 const response = await fetch(endpoint, {
                     method: "POST",
                     body: formData,
-                    credentials: "include",
-                    headers: {
-                        Accept: "application/json",
-                    },
                 });
+                const data = await response.json();
 
-                const data = await response.json().catch(() => null);
-                const status = data?.status || "";
-                const isSuccess = response.ok && (status === "mail_sent" || status === "mail_failed");
-
-                if (!isSuccess) {
-                    if (Array.isArray(data?.invalid_fields)) {
-                        data.invalid_fields.forEach((item) => {
-                            const fieldName = extractFieldName(item);
-                            if (fieldName) {
-                                showFieldError(
-                                    fieldName,
-                                    item?.message || "Please check this field.",
-                                );
-                            }
-                        });
-                    }
-
-                    if (submitAlert) {
-                        submitAlert.textContent =
-                            status === "spam"
-                                ? "WordPress marked this submission as spam. Check your Contact Form 7 anti-spam settings."
-                                : data?.message || "Something went wrong. Please try again.";
-                        submitAlert.classList.remove("hidden");
-                    }
-                    return;
+                const status = data?.status;
+                const isSuccess = status === "mail_sent" || status === "mail_failed";
+                if (response.ok && isSuccess) {
+                    showError(submitError, false);
+                    form.classList.add("hidden");
+                    thankYou.classList.remove("hidden");
+                    thankYou.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center",
+                    });
+                } else {
+                    const msg =
+                        data?.message ||
+                        "Something went wrong. Please try again.";
+                    if (submitError) submitError.textContent = msg;
+                    showError(submitError, true);
                 }
-
-                showThankYou();
             } catch (error) {
-                if (submitAlert) {
-                    submitAlert.textContent =
-                        "Unable to send your message right now. Please try again later.";
-                    submitAlert.classList.remove("hidden");
-                }
-                console.error("Contact form submission failed", error);
-            } finally {
-                setLoading(false);
+                if (submitError)
+                    submitError.textContent =
+                        "Something went wrong. Please try again.";
+                showError(submitError, true);
             }
         });
-    })();
+    }
 </script>
