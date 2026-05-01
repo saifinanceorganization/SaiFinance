@@ -19,7 +19,9 @@ const cf7DerivedEndpoint =
         : "";
 
 const cf7Endpoint = cf7DerivedEndpoint || cf7EndpointOverride;
-
+const turnstileSiteKey = (
+    import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || ""
+).trim();
 ---
 
 <Layout title="Contact US | SAI Finance">
@@ -53,6 +55,7 @@ const cf7Endpoint = cf7DerivedEndpoint || cf7EndpointOverride;
                 id="contact-form"
                 class="rounded-[24px] border border-[#203A6E] bg-white px-10 py-10 shadow-sm md:px-16 md:py-16"
                 data-endpoint={cf7Endpoint}
+                data-turnstile-enabled={turnstileSiteKey ? "true" : "false"}
             >
                 <div class="grid gap-8 md:grid-cols-2">
                     <div class="flex flex-col gap-3">
@@ -109,16 +112,36 @@ const cf7Endpoint = cf7DerivedEndpoint || cf7EndpointOverride;
                         placeholder="Your Message"></textarea>
                 </div>
 
-                <input type="hidden" name="_wpcf7" id="wpcf7-id" value={cf7FormId} />
-                <input type="hidden" name="_wpcf7_version" id="wpcf7-version" value="5.9.8" />
-                <input type="hidden" name="_wpcf7_locale" id="wpcf7-locale" value="en_US" />
+                <input
+                    type="hidden"
+                    name="_wpcf7"
+                    id="wpcf7-id"
+                    value={cf7FormId}
+                />
+                <input
+                    type="hidden"
+                    name="_wpcf7_version"
+                    id="wpcf7-version"
+                    value="5.9.8"
+                />
+                <input
+                    type="hidden"
+                    name="_wpcf7_locale"
+                    id="wpcf7-locale"
+                    value="en_US"
+                />
                 <input
                     type="hidden"
                     name="_wpcf7_unit_tag"
                     id="wpcf7-unit-tag"
                     value="contact-form"
                 />
-                <input type="hidden" name="_wpcf7_container_post" id="wpcf7-container-post" value="0" />
+                <input
+                    type="hidden"
+                    name="_wpcf7_container_post"
+                    id="wpcf7-container-post"
+                    value="0"
+                />
 
                 <div
                     class="mt-6 hidden text-[13px] text-red-600"
@@ -126,6 +149,16 @@ const cf7Endpoint = cf7DerivedEndpoint || cf7EndpointOverride;
                 >
                     Something went wrong. Please try again.
                 </div>
+
+                <!-- turstile  set -->
+                {
+                    turnstileSiteKey && (
+                        <div
+                            class="cf-turnstile"
+                            data-sitekey={turnstileSiteKey}
+                        />
+                    )
+                }
 
                 <div class="mt-14 flex justify-end">
                     <button
@@ -136,6 +169,16 @@ const cf7Endpoint = cf7DerivedEndpoint || cf7EndpointOverride;
                         <span class="text-[20px]">&#8594;</span>
                     </button>
                 </div>
+
+                {
+                    !turnstileSiteKey && (
+                        <p class="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 font-Inter text-sm text-amber-700">
+                            Form verification is not configured. Set{" "}
+                            <code>PUBLIC_TURNSTILE_SITE_KEY</code> to match the
+                            Turnstile widget enabled in WordPress.
+                        </p>
+                    )
+                }
             </form>
 
             <div
@@ -356,11 +399,23 @@ const cf7Endpoint = cf7DerivedEndpoint || cf7EndpointOverride;
         <Footer />
     </Fragment>
 </Layout>
+{
+    turnstileSiteKey && (
+        <script
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            async
+            defer
+        />
+    )
+}
 
 <script>
     const form = document.querySelector(
         "#contact-form",
     ) as HTMLFormElement | null;
+
+    const turnstileEnabled =
+        form?.getAttribute("data-turnstile-enabled") === "true";
     const thankYou = document.querySelector(
         "#contact-thankyou",
     ) as HTMLElement | null;
@@ -509,7 +564,8 @@ const cf7Endpoint = cf7DerivedEndpoint || cf7EndpointOverride;
                 const data = await response.json();
 
                 const status = data?.status;
-                const isSuccess = status === "mail_sent" || status === "mail_failed";
+                const isSuccess =
+                    status === "mail_sent" || status === "mail_failed";
                 if (response.ok && isSuccess) {
                     showError(submitError, false);
                     form.classList.add("hidden");
