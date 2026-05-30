@@ -11,7 +11,7 @@ const getPrimaryCategory = (post: any) =>
     post?._embedded?.["wp:term"]?.[0]?.[0]?.name ?? "Finance";
 ---
 
-<section class="bg-white py-12 lg:py-10">
+<section class="bg-white py-12 lg:pt-10 lg:pb-20">
     <div class="mx-auto max-w-6xl px-6 md:px-14 lg:px-6">
         {
             posts.length > 0 ? (
