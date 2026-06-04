@@ -1,0 +1,13 @@
+---
+const GA_ID = "G-G69PLPPV8N";
+---
+
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag() {
+    window.dataLayer.push(arguments);
+  };
+  gtag("js", new Date());
+  gtag("config", "G-G69PLPPV8N");
+</script>
