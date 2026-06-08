@@ -3,9 +3,15 @@ import HomeLoanCalculators from '../../components/HomeLoanCalculators.vue';
 import Layout from '../../layouts/Layout.astro';
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
+
+const title = "Loan Repayment Calculator Australia | Estimate Repayments";
+const description =
+	"Loan repayment calculator helping Australians estimate monthly repayments, compare loan options, understand interest costs and plan finances with confidence.";
+const keywords =
+	"Loan repayment calculator, Home loan repayment calculator, House loan repayment calculator, Loan repayments Calculator, Loan Calculator Repayment, Car loan repayment Calculator ";
 ---
 
-<Layout>
+<Layout title={title} description={description} keywords={keywords}>
     <Fragment slot="header">
         <Header />
     </Fragment>

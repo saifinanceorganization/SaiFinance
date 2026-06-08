@@ -3,9 +3,15 @@ import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
 import BlogPostsSection from "../components/BlogPostsSection.astro";
 import Footer from "../components/Footer.astro";
+
+const title = "Home Loan Advice | Australia Finance, Property & Lending";
+const description =
+	"Home loan advice with finance insights, property updates, and borrowing tips to help Australians make informed lending decisions with expert guidance.";
+const keywords =
+	"Home loan advice, Mortgage advice, Finance blogs, Finance advice, Home loan tips, Mortgage News Australia";
 ---
 
-<Layout title="Blog | SAI Finance">
+<Layout title={title} description={description} keywords={keywords}>
     <Fragment slot="header">
         <Header />
     </Fragment>

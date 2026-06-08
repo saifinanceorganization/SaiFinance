@@ -22,9 +22,15 @@ const cf7Endpoint = cf7DerivedEndpoint || cf7EndpointOverride;
 const turnstileSiteKey = (
     import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || ""
 ).trim();
+
+const title = "Mortgage Broker Contact | Speak With SAI Finance Experts";
+const description =
+	"Mortgage Broker - Contact SAI Finance for expert guidance on home loans, investment finance, SMSF lending, and business funding with personalised support.";
+const keywords =
+	"Mortgage Broker Contact, Contact Mortgage Broker Perth, Home Loan Consultation, Home Loan Consultation, Mortgage Broker, SAI Finance Contact ";
 ---
 
-<Layout title="Contact US | SAI Finance">
+<Layout title={title} description={description} keywords={keywords}>
     <Fragment slot="header">
         <Header />
     </Fragment>

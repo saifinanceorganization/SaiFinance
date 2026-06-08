@@ -3,9 +3,15 @@ import BorrowingPowerCalculator from "../../components/borrowingpowercalculator.
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import Layout from "../../layouts/Layout.astro";
+
+const title = "Borrowing Power Calculator Australia | Check Your Limit";
+const description =
+	"Borrowing power calculator helping Australians estimate how much they can borrow, assess loan capacity and plan their home loan with confidence.";
+const keywords =
+	"Borrowing power calculator, Calculate borrowing power, Borrow power calculator, Home loan borrowing power calculator, Mortgage borrowing power calculator, Borrowing power calculator home loan ";
 ---
 
-<Layout title="Borrowing Power Calculator | SAI Finance">
+<Layout title={title} description={description} keywords={keywords}>
   <Fragment slot="header">
     <Header />
   </Fragment>

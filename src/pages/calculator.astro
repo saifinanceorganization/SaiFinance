@@ -4,9 +4,15 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CtaButton from "../components/CtaButton.astro";
 import { Icon } from "astro-icon/components";
+
+const title = "Home Loan Calculator Australia | Borrowing Power & Repayments";
+const description =
+	"Home loan calculator helping Australians estimate borrowing capacity, loan repayments, and affordability before applying for finance with greater confidence.";
+const keywords =
+	"Home Loan Calculator, Loan Calculator, Mortgage Calculator, Mortgage Repayment Calculator, Interest Calculator, Home Loan Calculator Australia ";
 ---
 
-<Layout title="Calculators | SAI Finance">
+<Layout title={title} description={description} keywords={keywords}>
     <Fragment slot="header">
         <Header />
     </Fragment>

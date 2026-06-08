@@ -2,9 +2,15 @@
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
+
+const title = "Privacy Policy | SAI Finance Australia";
+const description =
+	"Privacy Policy outlining SAI Finance information collection, data security measures, privacy rights, and personal data protection across all services.";
+const keywords =
+	"Privacy Policy, Privacy Policy, SAI Finance";
 ---
 
-<Layout title="Privacy Policy | SAI Finance" description="Privacy Policy for Sai Finance Pty Ltd.">
+<Layout title={title} description={description} keywords={keywords}>
 	<Fragment slot="header">
 		<Header />
 	</Fragment>
