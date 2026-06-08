@@ -31,6 +31,7 @@ export interface Props {
     heroTitle: string;
     heroSubtitle: string;
     heroImage: string;
+    heroImageAlt?: string;
     heroImagePosition?: string;
     heroCtaPrimaryText: string;
     heroCtaPrimaryHref?: string;
@@ -40,6 +41,7 @@ export interface Props {
     aboutText: string[];
     detailSections?: DetailSection[];
     aboutImage: string;
+    aboutImageAlt?: string;
     benefitsTitle?: string;
     benefits: string[];
     calculators: CalculatorCard[];
@@ -67,6 +69,7 @@ const {
     heroTitle,
     heroSubtitle,
     heroImage,
+    heroImageAlt = heroTitle,
     heroImagePosition = "center",
     heroCtaPrimaryText,
     heroCtaPrimaryHref = "/contact",
@@ -76,6 +79,7 @@ const {
     aboutText,
     detailSections = [],
     aboutImage,
+    aboutImageAlt = aboutTitle,
     benefitsTitle = "How SAI Finance Helps",
     benefits,
     calculators,
@@ -101,12 +105,12 @@ const normalizedBreadcrumb = breadcrumb.map((item) =>
 
 <!-- Hero -->
 <section class="relative overflow-hidden bg-[#0f2147] text-white">
-    <div
-        class="absolute inset-0 bg-cover"
-        style={`background-image: url(${heroImage}); background-position: ${heroImagePosition};`}
-        aria-hidden="true"
-    >
-    </div>
+    <img
+        src={heroImage}
+        alt={heroImageAlt}
+        class="absolute inset-0 h-full w-full object-cover"
+        style={`object-position: ${heroImagePosition};`}
+    />
     <div
         class="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,40,71,0.78)_0%,rgba(30,58,95,0.78)_50%,rgba(45,90,143,0.78)_100%)]"
     >
@@ -261,7 +265,7 @@ const normalizedBreadcrumb = breadcrumb.map((item) =>
                         <!-- Image -->
                         <img
                             src={aboutImage}
-                            alt={aboutTitle}
+                            alt={aboutImageAlt}
                             class="absolute inset-0 h-full w-full object-cover"
                         />
 
