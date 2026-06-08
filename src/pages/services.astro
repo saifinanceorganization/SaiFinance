@@ -4,9 +4,15 @@ import Layout from "../layouts/Layout.astro";
 import Servicess from "../components/Services.astro";
 import CtaButton from "../components/CtaButton.astro";
 import Footer from "../components/Footer.astro";
+
+const title = "Finance Broker Australia | Home, Business & Investment Loans";
+const description =
+	"Finance Broker helping Australians secure home loans, investment finance, SMSF lending, business funding, and asset finance with ease and expert support.";
+const keywords =
+	"Finance Broker, Finance broker Perth, Finance broker near me, Finance Brokers Melbourne, Brokers for Loans, Business finance broker";
 ---
 
-<Layout title="Service | SAI Finance">
+<Layout title={title} description={description} keywords={keywords}>
     <Fragment slot="header">
         <Header />
     </Fragment>

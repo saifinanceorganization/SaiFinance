@@ -11,11 +11,17 @@ import LogoSlider from "../components/LogoSlider.astro";
 import CtaButton from "../components/CtaButton.astro";
 import BlogPostsSection from "../components/BlogPostsSection.astro";
 
+const title = "Mortgage Brokers for Home & Investment Loans | SAI Finance";
+const description =
+	"SAI Finance Australia is a Mortgage Broker offering tailored home, business, and investment loans with expert guidance, great rates, and fast approvals.";
+const keywords =
+	"Mortgage Broker, Mortgage Loan brokering, Queensland Mortgage broker data breach, Mortgage broker Melbourne, Mortgage Broker Brisbane, Mortgage broker near me";
+
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout title="home | SAI Finance">
+<Layout title={title} description={description} keywords={keywords}>
 	<Fragment slot="header">
 		<Header />
 	</Fragment>

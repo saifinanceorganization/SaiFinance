@@ -1,8 +1,11 @@
 ---
 import "../styles/global.css";
 import GoogleTag from "../components/GoogleTag.astro";
-const { title = "SAI Finance", description = "Artisanalbyte - Astro" } =
-  Astro.props;
+const {
+  title = "SAI Finance",
+  description = "Artisanalbyte - Astro",
+  keywords = "",
+} = Astro.props;
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -11,6 +14,7 @@ const { title = "SAI Finance", description = "Artisanalbyte - Astro" } =
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
     <link rel="icon" type="image/png" href="/img/house_logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
