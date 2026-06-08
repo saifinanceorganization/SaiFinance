@@ -16,16 +16,47 @@ const description =
 	"SAI Finance Australia is a Mortgage Broker offering tailored home, business, and investment loans with expert guidance, great rates, and fast approvals.";
 const keywords =
 	"Mortgage Broker, Mortgage Loan brokering, Queensland Mortgage broker data breach, Mortgage broker Melbourne, Mortgage Broker Brisbane, Mortgage broker near me";
-const websiteSchema = {
-	"@context": "https://schema.org/",
-	"@type": "WebSite",
-	name: "Sai Finance",
-	url: "https://saifinance.com.au/",
-	potentialAction: {
-		"@type": "SearchAction",
-		target: "{search_term_string}",
-		"query-input": "required name=search_term_string",
-	},
+const homeSchema = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "FinancialService",
+			"@id": "https://saifinance.com.au/#financialservice",
+			name: "SAI Finance",
+			url: "https://saifinance.com.au/",
+			description:
+				"Mortgage broker helping first home buyers, investors and businesses with tailored lending solutions.",
+			telephone: "+61 433 967 374",
+			email: "keyur@saifinance.com.au",
+			areaServed: "Australia",
+			founder: {
+				"@type": "Person",
+				name: "Keyur Bandhara",
+			},
+			serviceType: [
+				"Home Loans",
+				"Investment Loans",
+				"Construction Loans",
+				"Commercial Loans",
+				"SMSF Loans",
+				"Asset Finance",
+			],
+		},
+		{
+			"@type": "Organization",
+			"@id": "https://saifinance.com.au/#organization",
+			name: "SAI Finance",
+			url: "https://saifinance.com.au/",
+			email: "keyur@saifinance.com.au",
+			telephone: "+61 433 967 374",
+		},
+		{
+			"@type": "WebSite",
+			"@id": "https://saifinance.com.au/#website",
+			url: "https://saifinance.com.au/",
+			name: "SAI Finance",
+		},
+	],
 };
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -34,7 +65,7 @@ const websiteSchema = {
 
 <Layout title={title} description={description} keywords={keywords}>
 	<Fragment slot="head">
-		<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+		<script type="application/ld+json" set:html={JSON.stringify(homeSchema)} />
 	</Fragment>
 
 	<Fragment slot="header">
