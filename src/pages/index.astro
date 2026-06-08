@@ -16,12 +16,27 @@ const description =
 	"SAI Finance Australia is a Mortgage Broker offering tailored home, business, and investment loans with expert guidance, great rates, and fast approvals.";
 const keywords =
 	"Mortgage Broker, Mortgage Loan brokering, Queensland Mortgage broker data breach, Mortgage broker Melbourne, Mortgage Broker Brisbane, Mortgage broker near me";
+const websiteSchema = {
+	"@context": "https://schema.org/",
+	"@type": "WebSite",
+	name: "Sai Finance",
+	url: "https://saifinance.com.au/",
+	potentialAction: {
+		"@type": "SearchAction",
+		target: "{search_term_string}",
+		"query-input": "required name=search_term_string",
+	},
+};
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout title={title} description={description} keywords={keywords}>
+	<Fragment slot="head">
+		<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+	</Fragment>
+
 	<Fragment slot="header">
 		<Header />
 	</Fragment>
