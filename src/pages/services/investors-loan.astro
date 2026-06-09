@@ -80,7 +80,7 @@ const data = {
             icon: "ph:arrows-clockwise",
             iconAlt: "Refinancing options",
         },
-         {
+        {
             title: "Buying New, Existing, or Off‑the‑Plan",
             description:
                 "Each type of property - new, established, or off‑the‑plan - comes with different lending requirements, risks, and growth potential. The right choice depends on your goals, budget, and appetite for construction timelines or renovation work. We help you compare the pros and cons so you can choose the property that best aligns with your investment strategy.",
@@ -104,12 +104,37 @@ const data = {
 
 const title = "Investment Property Loans Australia | Find Better Loan Deals";
 const description =
-	"Investment property loan solutions for Australian investors offering competitive rates, flexible lending, and expert mortgage guidance to grow your portfolio.";
+    "Investment property loan solutions for Australian investors offering competitive rates, flexible lending, and expert mortgage guidance to grow your portfolio.";
 const keywords =
-	"Investment Property Loans, Property investment loans, Investment Property Loans near me, Loan for Investment Property, Investment property loan broker, Home loan for investment";
+    "Investment Property Loans, Property investment loans, Investment Property Loans near me, Loan for Investment Property, Investment property loan broker, Home loan for investment";
+
+const homeSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://saifinance.com.au/services/investors-loan/#service",
+    url: "https://saifinance.com.au/services/investors-loan/",
+    name: "Investment Loan Services",
+    description:
+        "SAI Finance provides investment loan solutions across Australia, helping property investors secure suitable finance options, refinance existing loans and grow their property portfolios.",
+    serviceType: "Investment Loan",
+    areaServed: {
+        "@type": "Country",
+        name: "Australia",
+    },
+    audience: {
+        "@type": "Audience",
+        audienceType: "Property Investors",
+    },
+};
 ---
 
 <Layout title={title} description={description} keywords={keywords}>
+    <Fragment slot="head">
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(homeSchema)}
+        />
+    </Fragment>
     <Fragment slot="header">
         <Header />
     </Fragment>

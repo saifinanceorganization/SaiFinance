@@ -92,12 +92,80 @@ const data = {
 
 const title = "Commercial Loans Australia | Grow Your Business Today";
 const description =
-	"Commercial loans for Australians seeking growth, cash flow support, equipment funding and flexible finance solutions.";
+    "Commercial loans for Australians seeking growth, cash flow support, equipment funding and flexible finance solutions.";
 const keywords =
-	"Commercial loans, Commercial and Business Loans, Commercial property loan, Small business loans, Business loans, Small business loans Australia";
+    "Commercial loans, Commercial and Business Loans, Commercial property loan, Small business loans, Business loans, Small business loans Australia";
+
+const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "@id": "https://saifinance.com.au/services/commercial-business-loan/#webpage",
+            url: "https://saifinance.com.au/services/commercial-business-loan/",
+            name: "Commercial & Business Loan Services | SAI Finance",
+            description:
+                "Commercial and business loan solutions across Australia to help businesses secure funding for expansion, working capital, equipment purchases and commercial property investments.",
+            inLanguage: "en-AU",
+        },
+        {
+            "@type": "Service",
+            "@id": "https://saifinance.com.au/services/commercial-business-loan/#service",
+            name: "Commercial & Business Loan Services",
+            url: "https://saifinance.com.au/services/commercial-business-loan/",
+            description:
+                "SAI Finance provides commercial and business loan solutions across Australia, helping businesses access funding for growth, operations, commercial property purchases and investment opportunities.",
+            serviceType: "Commercial and Business Loans",
+            areaServed: {
+                "@type": "Country",
+                name: "Australia",
+            },
+            audience: {
+                "@type": "Audience",
+                audienceType:
+                    "Business Owners and Commercial Property Investors",
+            },
+            availableChannel: {
+                "@type": "ServiceChannel",
+                serviceUrl:
+                    "https://saifinance.com.au/services/commercial-business-loan/",
+            },
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://saifinance.com.au/services/commercial-business-loan/#breadcrumb",
+            itemListElement: [
+                {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://saifinance.com.au/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Services",
+                    item: "https://saifinance.com.au/services/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: "Commercial & Business Loan",
+                    item: "https://saifinance.com.au/services/commercial-business-loan/",
+                },
+            ],
+        },
+    ],
+};
 ---
 
 <Layout title={title} description={description} keywords={keywords}>
+    <Fragment slot="head">
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(homeSchema)}
+        />
+    </Fragment>
     <Fragment slot="header">
         <Header />
     </Fragment>

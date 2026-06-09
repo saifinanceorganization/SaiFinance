@@ -11,8 +11,7 @@ const data = {
         { label: "Personal & Car Loan" },
     ],
     heroTitle: "Personal & Car Loan",
-    heroSubtitle:
-        "Simple, flexible finance for the things that matter.",
+    heroSubtitle: "Simple, flexible finance for the things that matter.",
     heroImage: "/img/personal-car-loan.webp",
     heroImageAlt: "Personal and car loan finance",
     heroImagePosition: "center 35%",
@@ -89,12 +88,79 @@ const data = {
 
 const title = "Car & Personal Loans Australia | Fast Loan Approvals";
 const description =
-	"Car and Personal Loan solutions for Australians seeking competitive rates, flexible finance options and expert lending support for every need.";
+    "Car and Personal Loan solutions for Australians seeking competitive rates, flexible finance options and expert lending support for every need.";
 const keywords =
-	"Personal loans, Car loans, Business vehicle finance, Personal finance, Car Finance Broker, Vehicle finance";
+    "Personal loans, Car loans, Business vehicle finance, Personal finance, Car Finance Broker, Vehicle finance";
+
+const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "@id": "https://saifinance.com.au/services/personal-car-loan/#webpage",
+            url: "https://saifinance.com.au/services/personal-car-loan/",
+            name: "Personal Car Loan Services | SAI Finance",
+            description:
+                "Personal car loan solutions across Australia for new and used vehicles with competitive finance options and flexible repayment terms.",
+            inLanguage: "en-AU",
+        },
+        {
+            "@type": "Service",
+            "@id": "https://saifinance.com.au/services/personal-car-loan/#service",
+            name: "Personal Car Loan Services",
+            url: "https://saifinance.com.au/services/personal-car-loan/",
+            description:
+                "SAI Finance helps Australians secure personal car loans for new and used vehicles, offering access to suitable finance options and competitive lending solutions.",
+            serviceType: "Personal Car Loan",
+            areaServed: {
+                "@type": "Country",
+                name: "Australia",
+            },
+            audience: {
+                "@type": "Audience",
+                audienceType: "Vehicle Buyers",
+            },
+            availableChannel: {
+                "@type": "ServiceChannel",
+                serviceUrl:
+                    "https://saifinance.com.au/services/personal-car-loan/",
+            },
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://saifinance.com.au/services/personal-car-loan/#breadcrumb",
+            itemListElement: [
+                {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://saifinance.com.au/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Services",
+                    item: "https://saifinance.com.au/services/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: "Personal Car Loan",
+                    item: "https://saifinance.com.au/services/personal-car-loan/",
+                },
+            ],
+        },
+    ],
+};
 ---
 
 <Layout title={title} description={description} keywords={keywords}>
+    <Fragment slot="head">
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(homeSchema)}
+        />
+    </Fragment>
     <Fragment slot="header">
         <Header />
     </Fragment>

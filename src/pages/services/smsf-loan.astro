@@ -91,12 +91,80 @@ const data = {
 
 const title = "SMSF Loans | Residential & Commercial Property Finance";
 const description =
-	"SMSF loan solutions for residential and commercial property investments, helping Australians grow wealth through strategic super fund lending.";
+    "SMSF loan solutions for residential and commercial property investments, helping Australians grow wealth through strategic super fund lending.";
 const keywords =
-	"SMSF loans, SMSF property loan, SMSF home loan, SMSF commercial property loan, SMSF Investment Property Loan, SMSF loans Australia";
+    "SMSF loans, SMSF property loan, SMSF home loan, SMSF commercial property loan, SMSF Investment Property Loan, SMSF loans Australia";
+
+const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "@id": "https://saifinance.com.au/services/smsf-loan/#webpage",
+            url: "https://saifinance.com.au/services/smsf-loan/",
+            name: "SMSF Loan Services | SAI Finance",
+            description:
+                "SMSF loan solutions across Australia to help investors purchase residential and commercial investment properties through a Self-Managed Super Fund.",
+            inLanguage: "en-AU",
+        },
+        {
+            "@type": "Service",
+            "@id": "https://saifinance.com.au/services/smsf-loan/#service",
+            name: "SMSF Loan Services",
+            url: "https://saifinance.com.au/services/smsf-loan/",
+            description:
+                "SAI Finance assists Australian investors with SMSF loan solutions for purchasing investment properties through a Self-Managed Super Fund, helping clients navigate lending requirements and finance options.",
+            serviceType: "SMSF Loan",
+            areaServed: {
+                "@type": "Country",
+                name: "Australia",
+            },
+            audience: {
+                "@type": "Audience",
+                audienceType:
+                    "Property Investors and Self-Managed Super Fund Members",
+            },
+            availableChannel: {
+                "@type": "ServiceChannel",
+                serviceUrl: "https://saifinance.com.au/services/smsf-loan/",
+            },
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://saifinance.com.au/services/smsf-loan/#breadcrumb",
+            itemListElement: [
+                {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://saifinance.com.au/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Services",
+                    item: "https://saifinance.com.au/services/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: "SMSF Loan",
+                    item: "https://saifinance.com.au/services/smsf-loan/",
+                },
+            ],
+        },
+    ],
+};
 ---
 
 <Layout title={title} description={description} keywords={keywords}>
+    <Fragment slot="head">
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(homeSchema)}
+        />
+    </Fragment>
+
     <Fragment slot="header">
         <Header />
     </Fragment>

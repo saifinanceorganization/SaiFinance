@@ -81,7 +81,7 @@ const data = {
             icon: "ph:scales",
             iconAlt: "Contract comparison",
         },
-         {
+        {
             title: "Managing Cash Flow During Construction",
             description:
                 "Building comes with extra costs like rent, mortgage payments, and progress‑payment interest, so planning ahead makes everything feel easier. Because you only pay interest on the funds drawn, your repayments start small and grow as the build progresses. We help you map out your cash flow so you’re never caught off‑guard.",
@@ -105,12 +105,79 @@ const data = {
 
 const title = "Construction Loans Australia | Finance Your New Home Project";
 const description =
-	"Construction loan solutions for Australian home builders with flexible funding, progress payments, competitive rates and expert guidance.";
+    "Construction loan solutions for Australian home builders with flexible funding, progress payments, competitive rates and expert guidance.";
 const keywords =
-	"Construction Loans, Construction home loans, Construction Loan services, Construction loans Melbourne, Construction loan broker, Construction loans australia";
+    "Construction Loans, Construction home loans, Construction Loan services, Construction loans Melbourne, Construction loan broker, Construction loans australia";
+
+const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "@id": "https://saifinance.com.au/services/construction-loan/#webpage",
+            url: "https://saifinance.com.au/services/construction-loan/",
+            name: "Construction Loan Services | SAI Finance",
+            description:
+                "SAI Finance provides construction loan solutions across Australia for new home builds, renovations, knockdown rebuilds and residential development projects.",
+            inLanguage: "en-AU",
+        },
+        {
+            "@type": "Service",
+            "@id": "https://saifinance.com.au/services/construction-loan/#service",
+            name: "Construction Loan Services",
+            url: "https://saifinance.com.au/services/construction-loan/",
+            description:
+                "SAI Finance helps Australians secure construction loans for new home builds, renovations, extensions and development projects.",
+            serviceType: "Construction Loan",
+            areaServed: {
+                "@type": "Country",
+                name: "Australia",
+            },
+            audience: {
+                "@type": "Audience",
+                audienceType: "Home Builders",
+            },
+            availableChannel: {
+                "@type": "ServiceChannel",
+                serviceUrl:
+                    "https://saifinance.com.au/services/construction-loan/",
+            },
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://saifinance.com.au/services/construction-loan/#breadcrumb",
+            itemListElement: [
+                {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://saifinance.com.au/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Services",
+                    item: "https://saifinance.com.au/services/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: "Construction Loan",
+                    item: "https://saifinance.com.au/services/construction-loan/",
+                },
+            ],
+        },
+    ],
+};
 ---
 
 <Layout title={title} description={description} keywords={keywords}>
+    <Fragment slot="head">
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(homeSchema)}
+        />
+    </Fragment>
     <Fragment slot="header">
         <Header />
     </Fragment>

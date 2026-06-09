@@ -7,12 +7,82 @@ import Footer from "../components/Footer.astro";
 
 const title = "Finance Broker Australia | Home, Business & Investment Loans";
 const description =
-	"Finance Broker helping Australians secure home loans, investment finance, SMSF lending, business funding, and asset finance with ease and expert support.";
+    "Finance Broker helping Australians secure home loans, investment finance, SMSF lending, business funding, and asset finance with ease and expert support.";
 const keywords =
-	"Finance Broker, Finance broker Perth, Finance broker near me, Finance Brokers Melbourne, Brokers for Loans, Business finance broker";
+    "Finance Broker, Finance broker Perth, Finance broker near me, Finance Brokers Melbourne, Brokers for Loans, Business finance broker";
+
+const homeSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://saifinance.com.au/services/",
+    url: "https://saifinance.com.au/services/",
+    name: "Finance & Mortgage Services",
+    description:
+        "SAI Finance offers home loans, investment loans, construction loans, commercial loans, SMSF loans and asset finance solutions across Australia.",
+    mainEntity: {
+        "@type": "ItemList",
+        name: "Finance Services",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                item: {
+                    "@type": "Service",
+                    name: "Home Loans",
+                },
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                item: {
+                    "@type": "Service",
+                    name: "Investment Loans",
+                },
+            },
+            {
+                "@type": "ListItem",
+                position: 3,
+                item: {
+                    "@type": "Service",
+                    name: "Construction Loans",
+                },
+            },
+            {
+                "@type": "ListItem",
+                position: 4,
+                item: {
+                    "@type": "Service",
+                    name: "Commercial Loans",
+                },
+            },
+            {
+                "@type": "ListItem",
+                position: 5,
+                item: {
+                    "@type": "Service",
+                    name: "SMSF Loans",
+                },
+            },
+            {
+                "@type": "ListItem",
+                position: 6,
+                item: {
+                    "@type": "Service",
+                    name: "Asset Finance",
+                },
+            },
+        ],
+    },
+};
 ---
 
 <Layout title={title} description={description} keywords={keywords}>
+    <Fragment slot="head">
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(homeSchema)}
+        />
+    </Fragment>
     <Fragment slot="header">
         <Header />
     </Fragment>
@@ -302,7 +372,8 @@ const keywords =
                     <span
                         class="inline-flex items-center gap-2 font-Arial font-bold text-[16px]"
                     >
-                       <img src="/img/service_icon_4.png" class="w-4 h-4"> 90% Success
+                        <img src="/img/service_icon_4.png" class="w-4 h-4" /> 90%
+                        Success
                     </span>
                 </div>
                 <div class="mt-10 flex justify-center">

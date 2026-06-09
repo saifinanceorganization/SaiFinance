@@ -20,33 +20,14 @@ const homeSchema = {
 	"@context": "https://schema.org",
 	"@graph": [
 		{
-			"@type": "FinancialService",
-			"@id": "https://saifinance.com.au/#financialservice",
-			name: "SAI Finance",
-			url: "https://saifinance.com.au/",
-			description:
-				"Mortgage broker helping first home buyers, investors and businesses with tailored lending solutions.",
-			telephone: "+61 433 967 374",
-			email: "keyur@saifinance.com.au",
-			areaServed: "Australia",
-			founder: {
-				"@type": "Person",
-				name: "Keyur Bandhara",
-			},
-			serviceType: [
-				"Home Loans",
-				"Investment Loans",
-				"Construction Loans",
-				"Commercial Loans",
-				"SMSF Loans",
-				"Asset Finance",
-			],
-		},
-		{
 			"@type": "Organization",
 			"@id": "https://saifinance.com.au/#organization",
 			name: "SAI Finance",
 			url: "https://saifinance.com.au/",
+			logo: {
+				"@type": "ImageObject",
+				url: "https://saifinance.com.au/logo.png",
+			},
 			email: "keyur@saifinance.com.au",
 			telephone: "+61 433 967 374",
 		},
@@ -55,6 +36,23 @@ const homeSchema = {
 			"@id": "https://saifinance.com.au/#website",
 			url: "https://saifinance.com.au/",
 			name: "SAI Finance",
+			publisher: {
+				"@id": "https://saifinance.com.au/#organization",
+			},
+		},
+		{
+			"@type": "FinancialService",
+			"@id": "https://saifinance.com.au/#financialservice",
+			name: "SAI Finance",
+			url: "https://saifinance.com.au/",
+			description:
+				"SAI Finance provides mortgage and finance brokering services across Australia, including home loans, investment loans, refinancing, commercial finance, construction finance and asset finance.",
+			telephone: "+61 433 967 374",
+			email: "keyur@saifinance.com.au",
+			areaServed: {
+				"@type": "Country",
+				name: "Australia",
+			},
 		},
 	],
 };
@@ -65,7 +63,10 @@ const homeSchema = {
 
 <Layout title={title} description={description} keywords={keywords}>
 	<Fragment slot="head">
-		<script type="application/ld+json" set:html={JSON.stringify(homeSchema)} />
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(homeSchema)}
+		/>
 	</Fragment>
 
 	<Fragment slot="header">

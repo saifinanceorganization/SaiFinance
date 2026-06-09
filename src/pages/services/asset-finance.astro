@@ -91,12 +91,78 @@ const data = {
 
 const title = "Asset Finance Australia | Flexible Asset Funding Solutions";
 const description =
-	"Asset finance for vehicles, equipment and machinery with tailored funding solutions, competitive rates and expert lending support Australia-wide.";
+    "Asset finance for vehicles, equipment and machinery with tailored funding solutions, competitive rates and expert lending support Australia-wide.";
 const keywords =
-	"Asset Finance, Corporate and asset finance, Commercial Asset finance, Asset Finance Solutions, Business Asset Finance, Asset finance broker";
+    "Asset Finance, Corporate and asset finance, Commercial Asset finance, Asset Finance Solutions, Business Asset Finance, Asset finance broker";
+
+const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "@id": "https://saifinance.com.au/services/asset-finance/#webpage",
+            url: "https://saifinance.com.au/services/asset-finance/",
+            name: "Asset Finance Services | SAI Finance",
+            description:
+                "Asset finance solutions across Australia for vehicles, equipment, machinery and business assets with flexible funding options.",
+            inLanguage: "en-AU",
+        },
+        {
+            "@type": "Service",
+            "@id": "https://saifinance.com.au/services/asset-finance/#service",
+            name: "Asset Finance Services",
+            url: "https://saifinance.com.au/services/asset-finance/",
+            description:
+                "SAI Finance provides asset finance solutions across Australia, helping individuals and businesses fund vehicles, equipment, machinery and other essential assets through tailored finance options.",
+            serviceType: "Asset Finance",
+            areaServed: {
+                "@type": "Country",
+                name: "Australia",
+            },
+            audience: {
+                "@type": "Audience",
+                audienceType: "Individuals and Businesses",
+            },
+            availableChannel: {
+                "@type": "ServiceChannel",
+                serviceUrl: "https://saifinance.com.au/services/asset-finance/",
+            },
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://saifinance.com.au/services/asset-finance/#breadcrumb",
+            itemListElement: [
+                {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://saifinance.com.au/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Services",
+                    item: "https://saifinance.com.au/services/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: "Asset Finance",
+                    item: "https://saifinance.com.au/services/asset-finance/",
+                },
+            ],
+        },
+    ],
+};
 ---
 
 <Layout title={title} description={description} keywords={keywords}>
+    <Fragment slot="head">
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(homeSchema)}
+        />
+    </Fragment>
     <Fragment slot="header">
         <Header />
     </Fragment>
