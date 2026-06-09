@@ -6,12 +6,64 @@ import Footer from "../components/Footer.astro";
 
 const title = "Home Loan Advice | Australia Finance, Property & Lending";
 const description =
-	"Home loan advice with finance insights, property updates, and borrowing tips to help Australians make informed lending decisions with expert guidance.";
+    "Home loan advice with finance insights, property updates, and borrowing tips to help Australians make informed lending decisions with expert guidance.";
 const keywords =
-	"Home loan advice, Mortgage advice, Finance blogs, Finance advice, Home loan tips, Mortgage News Australia";
+    "Home loan advice, Mortgage advice, Finance blogs, Finance advice, Home loan tips, Mortgage News Australia";
+
+const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "@id": "https://saifinance.com.au/blog/#webpage",
+            url: "https://saifinance.com.au/blog/",
+            name: "SAI Finance Blog",
+            description:
+                "Latest mortgage, finance, property investment and lending insights from SAI Finance.",
+            inLanguage: "en-AU",
+        },
+        {
+            "@type": "Blog",
+            "@id": "https://saifinance.com.au/blog/#blog",
+            url: "https://saifinance.com.au/blog/",
+            name: "SAI Finance Blog",
+            description:
+                "Expert articles, market updates, mortgage tips, property investment insights and finance news for Australian borrowers and investors.",
+            publisher: {
+                "@type": "Organization",
+                name: "SAI Finance",
+                url: "https://saifinance.com.au/",
+            },
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://saifinance.com.au/blog/#breadcrumb",
+            itemListElement: [
+                {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://saifinance.com.au/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Blog",
+                    item: "https://saifinance.com.au/blog/",
+                },
+            ],
+        },
+    ],
+};
 ---
 
 <Layout title={title} description={description} keywords={keywords}>
+    <Fragment slot="head">
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(homeSchema)}
+        />
+    </Fragment>
     <Fragment slot="header">
         <Header />
     </Fragment>
@@ -158,7 +210,7 @@ const keywords =
                         </span>
 
                         <span class="text-[#1E2E4A]">&#8594;</span>
-                    </a> 
+                    </a>
 
                     <a
                         href="/contact"

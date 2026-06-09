@@ -6,12 +6,101 @@ import Layout from "../../layouts/Layout.astro";
 
 const title = "Borrowing Power Calculator Australia | Check Your Limit";
 const description =
-	"Borrowing power calculator helping Australians estimate how much they can borrow, assess loan capacity and plan their home loan with confidence.";
+  "Borrowing power calculator helping Australians estimate how much they can borrow, assess loan capacity and plan their home loan with confidence.";
 const keywords =
-	"Borrowing power calculator, Calculate borrowing power, Borrow power calculator, Home loan borrowing power calculator, Mortgage borrowing power calculator, Borrowing power calculator home loan ";
+  "Borrowing power calculator, Calculate borrowing power, Borrow power calculator, Home loan borrowing power calculator, Mortgage borrowing power calculator, Borrowing power calculator home loan ";
+
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id":
+        "https://saifinance.com.au/calculator/borrowing-power-calculator/#webpage",
+      url: "https://saifinance.com.au/calculator/borrowing-power-calculator/",
+      name: "Borrowing Power Calculator Australia | SAI Finance",
+      description:
+        "Estimate how much you may be able to borrow for a home loan based on your income, expenses and financial commitments using SAI Finance's Borrowing Power Calculator.",
+      isPartOf: {
+        "@id": "https://saifinance.com.au/#website",
+      },
+      publisher: {
+        "@id": "https://saifinance.com.au/#organization",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://saifinance.com.au/#website",
+      url: "https://saifinance.com.au/",
+      name: "SAI Finance",
+      publisher: {
+        "@id": "https://saifinance.com.au/#organization",
+      },
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://saifinance.com.au/#organization",
+      name: "SAI Finance",
+      url: "https://saifinance.com.au/",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://saifinance.com.au/wp-content/uploads/logo.png",
+      },
+      email: "keyur@saifinance.com.au",
+      telephone: "+61-433-967-374",
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id":
+        "https://saifinance.com.au/calculator/borrowing-power-calculator/#calculator",
+      name: "Borrowing Power Calculator",
+      applicationCategory: "FinanceApplication",
+      operatingSystem: "Web Browser",
+      description:
+        "A calculator that estimates home loan borrowing capacity based on income, expenses and liabilities.",
+      url: "https://saifinance.com.au/calculator/borrowing-power-calculator/",
+      provider: {
+        "@id": "https://saifinance.com.au/#organization",
+      },
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "AUD",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id":
+        "https://saifinance.com.au/calculator/borrowing-power-calculator/#breadcrumb",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://saifinance.com.au/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Calculators",
+          item: "https://saifinance.com.au/calculators/",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "Borrowing Power Calculator",
+          item: "https://saifinance.com.au/calculator/borrowing-power-calculator/",
+        },
+      ],
+    },
+  ],
+};
 ---
 
 <Layout title={title} description={description} keywords={keywords}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(homeSchema)} />
+  </Fragment>
   <Fragment slot="header">
     <Header />
   </Fragment>

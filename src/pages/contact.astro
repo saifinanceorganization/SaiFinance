@@ -25,12 +25,90 @@ const turnstileSiteKey = (
 
 const title = "Mortgage Broker Contact | Speak With SAI Finance Experts";
 const description =
-	"Mortgage Broker - Contact SAI Finance for expert guidance on home loans, investment finance, SMSF lending, and business funding with personalised support.";
+    "Mortgage Broker - Contact SAI Finance for expert guidance on home loans, investment finance, SMSF lending, and business funding with personalised support.";
 const keywords =
-	"Mortgage Broker Contact, Contact Mortgage Broker Perth, Home Loan Consultation, Home Loan Consultation, Mortgage Broker, SAI Finance Contact ";
+    "Mortgage Broker Contact, Contact Mortgage Broker Perth, Home Loan Consultation, Home Loan Consultation, Mortgage Broker, SAI Finance Contact ";
+
+const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "ContactPage",
+            "@id": "https://saifinance.com.au/contact/#contactpage",
+            url: "https://saifinance.com.au/contact/",
+            name: "Contact SAI Finance",
+            description:
+                "Contact SAI Finance for expert mortgage and finance solutions across Australia.",
+            inLanguage: "en-AU",
+        },
+        {
+            "@type": "Organization",
+            "@id": "https://saifinance.com.au/#organization",
+            name: "SAI Finance",
+            url: "https://saifinance.com.au/",
+            email: "keyur@saifinance.com.au",
+            telephone: "+61 433 967 374",
+            contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+61 433 967 374",
+                email: "keyur@saifinance.com.au",
+                contactType: "customer service",
+                areaServed: "AU",
+                availableLanguage: "English",
+            },
+        },
+        {
+            "@type": "LocalBusiness",
+            "@id": "https://saifinance.com.au/#localbusiness",
+            name: "SAI Finance",
+            url: "https://saifinance.com.au/",
+            telephone: "+61 433 967 374",
+            email: "keyur@saifinance.com.au",
+            openingHoursSpecification: [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday",
+                    ],
+                    opens: "08:00",
+                    closes: "20:00",
+                },
+            ],
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://saifinance.com.au/contact/#breadcrumb",
+            itemListElement: [
+                {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://saifinance.com.au/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Contact",
+                    item: "https://saifinance.com.au/contact/",
+                },
+            ],
+        },
+    ],
+};
 ---
 
 <Layout title={title} description={description} keywords={keywords}>
+    <Fragment slot="head">
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(homeSchema)}
+        />
+    </Fragment>
     <Fragment slot="header">
         <Header />
     </Fragment>
