@@ -57,6 +57,23 @@ const homeSchema = {
 	],
 };
 
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: [
+		{
+			"@type": "Question",
+			name: "What does a mortgage broker do, and how do you help clients?",
+			acceptedAnswer: {
+				"@type": "Answer",
+				text: "A mortgage broker acts as an intermediary between you and multiple lenders to find the most suitable loan for your situation. We assess your financial position, borrowing capacity, and long-term goals, then compare loan products across banks and non-bank lenders. Our role is to simplify the process, negotiate competitive rates, and guide you from application through to settlement and beyond.",
+			},
+		},
+	],
+};
+
+homeSchema["@graph"].push(faqSchema);
+
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
