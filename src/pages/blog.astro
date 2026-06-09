@@ -14,6 +14,13 @@ const blogSchema = {
     "@context": "https://schema.org",
     "@graph": [
         {
+            "@type": "Organization",
+            "@id": "https://saifinance.com.au/#organization",
+            name: "SAI Finance",
+            url: "https://saifinance.com.au/",
+        },
+
+        {
             "@type": "WebPage",
             "@id": "https://saifinance.com.au/blog/#webpage",
             url: "https://saifinance.com.au/blog/",
@@ -21,7 +28,11 @@ const blogSchema = {
             description:
                 "Latest mortgage, finance, property investment and lending insights from SAI Finance.",
             inLanguage: "en-AU",
+            mainEntity: {
+                "@id": "https://saifinance.com.au/blog/#blog",
+            },
         },
+
         {
             "@type": "Blog",
             "@id": "https://saifinance.com.au/blog/#blog",
@@ -30,11 +41,10 @@ const blogSchema = {
             description:
                 "Expert articles, market updates, mortgage tips, property investment insights and finance news for Australian borrowers and investors.",
             publisher: {
-                "@type": "Organization",
-                name: "SAI Finance",
-                url: "https://saifinance.com.au/",
+                "@id": "https://saifinance.com.au/#organization",
             },
         },
+
         {
             "@type": "BreadcrumbList",
             "@id": "https://saifinance.com.au/blog/#breadcrumb",

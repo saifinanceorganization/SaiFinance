@@ -113,6 +113,13 @@ const constructionSchema = {
     "@context": "https://schema.org",
     "@graph": [
         {
+            "@type": "Organization",
+            "@id": "https://saifinance.com.au/#organization",
+            name: "SAI Finance",
+            url: "https://saifinance.com.au/",
+        },
+
+        {
             "@type": "WebPage",
             "@id": "https://saifinance.com.au/services/construction-loan/#webpage",
             url: "https://saifinance.com.au/services/construction-loan/",
@@ -120,15 +127,22 @@ const constructionSchema = {
             description:
                 "SAI Finance provides construction loan solutions across Australia for new home builds, renovations, knockdown rebuilds and residential development projects.",
             inLanguage: "en-AU",
+            mainEntity: {
+                "@id": "https://saifinance.com.au/services/construction-loan/#service",
+            },
         },
+
         {
             "@type": "Service",
             "@id": "https://saifinance.com.au/services/construction-loan/#service",
             name: "Construction Loan Services",
-            url: "https://saifinance.com.au/services/construction-loan/",
             description:
                 "SAI Finance helps Australians secure construction loans for new home builds, renovations, extensions and development projects.",
+            url: "https://saifinance.com.au/services/construction-loan/",
             serviceType: "Construction Loan",
+            provider: {
+                "@id": "https://saifinance.com.au/#organization",
+            },
             areaServed: {
                 "@type": "Country",
                 name: "Australia",
@@ -143,6 +157,7 @@ const constructionSchema = {
                     "https://saifinance.com.au/services/construction-loan/",
             },
         },
+
         {
             "@type": "BreadcrumbList",
             "@id": "https://saifinance.com.au/services/construction-loan/#breadcrumb",
