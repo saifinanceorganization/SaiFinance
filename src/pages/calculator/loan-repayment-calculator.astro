@@ -10,7 +10,7 @@ const description =
 const keywords =
   "Loan repayment calculator, Home loan repayment calculator, House loan repayment calculator, Loan repayments Calculator, Loan Calculator Repayment, Car loan repayment Calculator ";
 
-const homeSchema = {
+const loanrepaymentcalculatorSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -93,7 +93,7 @@ const homeSchema = {
 
 <Layout title={title} description={description} keywords={keywords}>
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(homeSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(loanrepaymentcalculatorSchema)} />
   </Fragment>
   <Fragment slot="header">
     <Header />

@@ -10,7 +10,7 @@ const description =
 const keywords =
     "Home loan advice, Mortgage advice, Finance blogs, Finance advice, Home loan tips, Mortgage News Australia";
 
-const homeSchema = {
+const blogSchema = {
     "@context": "https://schema.org",
     "@graph": [
         {
@@ -61,7 +61,7 @@ const homeSchema = {
     <Fragment slot="head">
         <script
             type="application/ld+json"
-            set:html={JSON.stringify(homeSchema)}
+            set:html={JSON.stringify(blogSchema)}
         />
     </Fragment>
     <Fragment slot="header">

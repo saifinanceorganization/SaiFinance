@@ -11,7 +11,7 @@ const description =
 const keywords =
     "Home Loan Calculator, Loan Calculator, Mortgage Calculator, Mortgage Repayment Calculator, Interest Calculator, Home Loan Calculator Australia ";
 
-const homeSchema = {
+const calculatorSchema = {
     "@context": "https://schema.org",
     "@graph": [
         {
@@ -62,7 +62,7 @@ const homeSchema = {
     <Fragment slot="head">
         <script
             type="application/ld+json"
-            set:html={JSON.stringify(homeSchema)}
+            set:html={JSON.stringify(calculatorSchema)}
         />
     </Fragment>
     <Fragment slot="header">

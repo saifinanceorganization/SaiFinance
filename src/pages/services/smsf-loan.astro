@@ -95,7 +95,7 @@ const description =
 const keywords =
     "SMSF loans, SMSF property loan, SMSF home loan, SMSF commercial property loan, SMSF Investment Property Loan, SMSF loans Australia";
 
-const homeSchema = {
+const smsfloanSchema = {
     "@context": "https://schema.org",
     "@graph": [
         {
@@ -161,7 +161,7 @@ const homeSchema = {
     <Fragment slot="head">
         <script
             type="application/ld+json"
-            set:html={JSON.stringify(homeSchema)}
+            set:html={JSON.stringify(smsfloanSchema)}
         />
     </Fragment>
 

@@ -10,7 +10,7 @@ const description =
 const keywords =
   "Borrowing power calculator, Calculate borrowing power, Borrow power calculator, Home loan borrowing power calculator, Mortgage borrowing power calculator, Borrowing power calculator home loan ";
 
-const homeSchema = {
+const borrowingcalculatorSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -99,7 +99,7 @@ const homeSchema = {
 
 <Layout title={title} description={description} keywords={keywords}>
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(homeSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(borrowingcalculatorSchema)} />
   </Fragment>
   <Fragment slot="header">
     <Header />
