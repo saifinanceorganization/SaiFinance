@@ -18,22 +18,25 @@ const calculatorSchema = {
             "@type": "WebPage",
             "@id": "https://saifinance.com.au/calculator/#webpage",
             url: "https://saifinance.com.au/calculator/",
-            name: "Loan & Mortgage Calculator | SAI Finance",
+            name: "Mortgage & Finance Calculators | SAI Finance",
             description:
-                "Use the SAI Finance calculator to estimate loan repayments, borrowing capacity and mortgage costs across Australia.",
+                "Access home loan, borrowing power and mortgage calculators to help estimate repayments and finance options across Australia.",
             inLanguage: "en-AU",
         },
         {
-            "@type": "FinancialProduct",
-            "@id": "https://saifinance.com.au/calculator/#financialproduct",
-            name: "Loan Calculator",
-            description:
-                "Online calculator for estimating mortgage repayments, loan affordability and borrowing costs.",
+            "@type": "WebApplication",
+            "@id": "https://saifinance.com.au/calculator/#application",
+            name: "SAI Finance Calculator Suite",
             url: "https://saifinance.com.au/calculator/",
-            category: "Loan Calculator",
-            areaServed: {
-                "@type": "Country",
-                name: "Australia",
+            applicationCategory: "FinanceApplication",
+            operatingSystem: "Web Browser",
+            description:
+                "Online finance calculators including borrowing power calculators, repayment calculators and mortgage planning tools.",
+            browserRequirements: "Requires JavaScript",
+            offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "AUD",
             },
         },
         {

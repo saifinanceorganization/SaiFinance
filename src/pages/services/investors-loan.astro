@@ -110,21 +110,165 @@ const keywords =
 
 const investorsloanSchema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": "https://saifinance.com.au/services/investors-loan/#service",
-    url: "https://saifinance.com.au/services/investors-loan/",
-    name: "Investment Loan Services",
-    description:
-        "SAI Finance provides investment loan solutions across Australia, helping property investors secure suitable finance options, refinance existing loans and grow their property portfolios.",
-    serviceType: "Investment Loan",
-    areaServed: {
-        "@type": "Country",
-        name: "Australia",
-    },
-    audience: {
-        "@type": "Audience",
-        audienceType: "Property Investors",
-    },
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "@id": "https://saifinance.com.au/services/investors-loan/#webpage",
+            url: "https://saifinance.com.au/services/investors-loan/",
+            name: "Investor Loan Services | SAI Finance",
+            description:
+                "Investment property loan solutions across Australia to help property investors finance residential and commercial investment properties.",
+            inLanguage: "en-AU",
+        },
+        {
+            "@type": "Service",
+            "@id": "https://saifinance.com.au/services/investors-loan/#service",
+            name: "Investor Loan Services",
+            url: "https://saifinance.com.au/services/investors-loan/",
+            description:
+                "SAI Finance helps Australian property investors secure investment property loans, refinance existing investment loans and build long-term property portfolios.",
+            serviceType: "Investment Property Loan",
+            areaServed: {
+                "@type": "Country",
+                name: "Australia",
+            },
+            audience: {
+                "@type": "Audience",
+                audienceType: "Property Investors",
+            },
+            availableChannel: {
+                "@type": "ServiceChannel",
+                serviceUrl:
+                    "https://saifinance.com.au/services/investors-loan/",
+            },
+        },
+        {
+            "@type": "FAQPage",
+            "@id": "https://saifinance.com.au/services/investors-loan/#faq",
+            mainEntity: [
+                {
+                    "@type": "Question",
+                    name: "How much deposit do I need for an investment property in Australia?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Most lenders prefer a deposit of at least 20% of the property's value. However, some lenders may accept a lower deposit, subject to eligibility criteria and lender requirements.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "Can I use equity in my home to buy an investment property?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Yes. Many investors use the equity built up in their existing home to help fund the deposit and purchasing costs of an investment property.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "How much can I borrow for an investment property?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Your borrowing capacity depends on your income, existing debts, living expenses, rental income and overall financial position. Each lender uses different assessment criteria.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "Can rental income increase my borrowing capacity?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Yes. Many lenders consider a portion of expected or existing rental income when assessing your borrowing capacity.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "Is it better to choose an interest-only or principal and interest investment loan?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Interest-only loans can help reduce repayments during the interest-only period, while principal and interest loans help reduce the loan balance over time.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "What is negative gearing and how does it work?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Negative gearing occurs when the costs of owning an investment property exceed the rental income it generates and may provide eligible tax benefits subject to Australian tax laws.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "Can I refinance my investment property loan?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Yes. Refinancing may help you access a more competitive interest rate, reduce repayments, access equity or restructure your finances.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "How many investment properties can I own in Australia?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "There is no legal limit on the number of investment properties you can own. The number depends on your borrowing capacity, available equity and lender requirements.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "Is property investment still worth it in Australia?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Property investment remains a popular long-term wealth-building strategy for many Australians through rental income and potential capital growth.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "What are the ongoing costs of owning an investment property?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Ongoing costs may include loan repayments, council rates, insurance, property management fees, maintenance expenses and strata fees where applicable.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "Why choose SAI Finance for an investment property loan?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "SAI Finance works with a wide range of Australian lenders to help property investors compare loan options and secure finance solutions tailored to their investment goals.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "How can SAI Finance help me build a property investment portfolio?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "SAI Finance assists investors with lending strategies, equity release opportunities, refinancing solutions and loan structuring to support long-term property investment goals.",
+                    },
+                },
+            ],
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://saifinance.com.au/services/investors-loan/#breadcrumb",
+            itemListElement: [
+                {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://saifinance.com.au/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Services",
+                    item: "https://saifinance.com.au/services/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: "Investor Loan",
+                    item: "https://saifinance.com.au/services/investors-loan/",
+                },
+            ],
+        },
+    ],
 };
 ---
 

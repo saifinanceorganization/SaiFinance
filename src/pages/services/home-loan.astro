@@ -95,23 +95,164 @@ const keywords =
 
 const homeloanSchema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": "https://saifinance.com.au/services/home-loan/#service",
-    name: "Home Loan Services",
-    url: "https://saifinance.com.au/services/home-loan/",
-    description:
-        "SAI Finance helps Australians secure competitive home loan solutions with expert mortgage broking support, tailored lending options and guidance throughout the application process.",
-    serviceType: "Home Loan",
-    areaServed: {
-        "@type": "Country",
-        name: "Australia",
-    },
-    provider: {
-        "@type": "Organization",
-        "@id": "https://saifinance.com.au/#organization",
-        name: "SAI Finance",
-        url: "https://saifinance.com.au/",
-    },
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "@id": "https://saifinance.com.au/services/home-loan/#webpage",
+            url: "https://saifinance.com.au/services/home-loan/",
+            name: "Home Loan Services | SAI Finance",
+            description:
+                "SAI Finance helps Australians secure home loans with access to multiple lenders, competitive finance solutions and expert mortgage guidance.",
+            inLanguage: "en-AU",
+        },
+        {
+            "@type": "Service",
+            "@id": "https://saifinance.com.au/services/home-loan/#service",
+            name: "Home Loan Services",
+            url: "https://saifinance.com.au/services/home-loan/",
+            description:
+                "Home loan solutions for first home buyers, owner occupiers, refinancers and property buyers across Australia.",
+            serviceType: "Home Loan",
+            areaServed: {
+                "@type": "Country",
+                name: "Australia",
+            },
+            audience: {
+                "@type": "Audience",
+                audienceType: "Home Buyers",
+            },
+            availableChannel: {
+                "@type": "ServiceChannel",
+                serviceUrl: "https://saifinance.com.au/services/home-loan/",
+            },
+        },
+        {
+            "@type": "FAQPage",
+            "@id": "https://saifinance.com.au/services/home-loan/#faq",
+            mainEntity: [
+                {
+                    "@type": "Question",
+                    name: "How much deposit do I need for a home loan in Australia?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Most lenders prefer a deposit of 20%, however some borrowers may be eligible to purchase a property with as little as a 5% deposit, subject to lender criteria.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "How much can I borrow for a home loan?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Your borrowing capacity depends on factors such as income, expenses, existing debts, credit history and the lender's assessment criteria.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "Can I buy a house with a 5% deposit in Australia?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Yes. Many lenders offer low-deposit home loans. Additional costs such as Lenders Mortgage Insurance may apply.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "What is Lenders Mortgage Insurance (LMI)?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "LMI is generally required when a borrower has less than a 20% deposit and helps protect the lender if the loan cannot be repaid.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "What is home loan pre-approval?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Pre-approval provides an indication of how much you may be able to borrow before purchasing a property, helping you understand your budget.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "Can first home buyers get government assistance in Australia?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Eligible first home buyers may qualify for grants, stamp duty concessions and government-backed home guarantee schemes depending on their state or territory.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "What documents do I need to apply for a home loan?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Most lenders require proof of identity, income documents, bank statements, employment details and information about existing liabilities.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "Can self-employed borrowers get a home loan?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Yes. Self-employed applicants can apply for home loans by providing business financial records, tax returns and evidence of stable income.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "Is it better to choose a fixed or variable home loan?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "A fixed-rate loan offers repayment certainty, while a variable-rate loan provides flexibility and may allow borrowers to benefit from future rate reductions.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "Why should I use SAI Finance for my home loan?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "SAI Finance works with multiple lenders across Australia to help borrowers compare loan options, navigate the application process and secure a home loan aligned with their financial goals.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "How does SAI Finance help first home buyers?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "SAI Finance provides personalised guidance throughout the home buying journey, helping first home buyers understand borrowing capacity, government incentives and suitable loan options.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "How long does the home loan approval process take?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Approval timeframes vary by lender and borrower circumstances. Pre-approval may take a few days, while formal approval may take one to several weeks.",
+                    },
+                },
+            ],
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://saifinance.com.au/services/home-loan/#breadcrumb",
+            itemListElement: [
+                {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://saifinance.com.au/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Services",
+                    item: "https://saifinance.com.au/services/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: "Home Loan",
+                    item: "https://saifinance.com.au/services/home-loan/",
+                },
+            ],
+        },
+    ],
 };
 ---
 
