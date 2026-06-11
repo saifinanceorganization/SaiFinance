@@ -16,4 +16,18 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: CloudflareBrowserRenderingCrawler
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
 Sitemap: https://saifinance.com.au/sitemap-index.xml
+
+
