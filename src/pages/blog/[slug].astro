@@ -27,9 +27,15 @@ const formatDate = (dateStr: string) =>
         month: "short",
         year: "numeric",
     });
+
+const seoTitle =
+  post?.seo?.title || post?.title.rendered;
+
+const seoDescription =
+  post?.seo?.description || post?.excerpt.rendered;    
 ---
 
-<Layout>
+<Layout title={seoTitle} description={seoDescription}>
     <Fragment slot="header">
         <Header />
     </Fragment>
