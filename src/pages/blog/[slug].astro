@@ -32,10 +32,12 @@ const seoTitle =
   post?.seo?.title || post?.title.rendered;
 
 const seoDescription =
-  post?.seo?.description || post?.excerpt.rendered;    
+  post?.seo?.description || post?.excerpt.rendered;  
+  
+const seoKeywords = post?.seo?.focus_keyword || post?.tags?.map((tag: any) => tag.name).join(", ") || "";  
 ---
 
-<Layout title={seoTitle} description={seoDescription}>
+<Layout title={seoTitle} description={seoDescription} keywords={seoKeywords}>
     <Fragment slot="header">
         <Header />
     </Fragment>
